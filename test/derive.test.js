@@ -61,3 +61,26 @@ test("beijingToday：按 UTC+8 判定日期", () => {
   // 2026-08-24 16:00 UTC = 北京时间 2026-08-25 00:00（跨日边界）
   assert.strictEqual(D.beijingToday(Date.UTC(2026, 7, 24, 16, 0)), "2026-08-25");
 });
+
+test("songStats:按歌单统计披露次数与最近日期", () => {
+  const past = [
+    { date: "2026-06-07", setlist: [1, 2, 3] },
+    { date: "2026-06-10", setlist: [1, 2] },
+    { date: "2026-06-13", setlist: [] },
+  ];
+  assert.deepStrictEqual(D.songStats(2, past), { count: 2, lastDate: "2026-06-10" });
+  assert.deepStrictEqual(D.songStats(3, past), { count: 1, lastDate: "2026-06-07" });
+  assert.deepStrictEqual(D.songStats(9, past), { count: 0, lastDate: null });
+});
+
+test("setlistLabels:SE 曲标 SE,其余 M1/M2 顺延", () => {
+  const songsById = new Map([
+    [1, { id: 1, title: "RealizE SE" }],
+    [2, { id: 2, title: "青の余白" }],
+    [3, { id: 3, title: "戴冠" }],
+  ]);
+  const labels = D.setlistLabels([1, 2, 3], songsById).map((x) => x.label);
+  assert.deepStrictEqual(labels, ["SE", "M1", "M2"]);
+  const noSE = D.setlistLabels([3, 2], songsById).map((x) => x.label);
+  assert.deepStrictEqual(noSE, ["M1", "M2"]);
+});

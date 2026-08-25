@@ -4,7 +4,10 @@
 
   const SHOW_FIELDS = [
     ["date", "日期"], ["time", "时间"], ["venue", "场地"], ["note", "备注"],
-    ["special", "特别场"], ["absent", "缺席"],
+    ["special", "特别场"], ["absent", "缺席"], ["setlist", "歌单"],
+  ];
+  const SONG_FIELDS = [
+    ["title", "曲名"], ["artist", "原曲"], ["note", "备注"], ["call", "应援"],
   ];
   const EVENT_FIELDS = [
     ["date", "日期"], ["title", "标题"], ["note", "备注"], ["who", "关联"],
@@ -108,12 +111,14 @@
       if (!v.title) errs.push("有影像的标题为空");
       if (!okUrl(v.url) || !v.url) errs.push("影像「" + (v.title || "?") + "」链接需以 http(s):// 开头");
     }
+    for (const s of cur.songs || []) if (!s.title) errs.push("有歌曲的曲名为空");
     return errs;
   }
 
   const api = {
     diffList, diffObject, validateAll, fmt,
     SHOW_FIELDS, EVENT_FIELDS, GROUP_FIELDS, MEMBER_FIELDS, VENUE_FIELDS, VIDEO_FIELDS,
+    SONG_FIELDS,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else global.editDiff = api;

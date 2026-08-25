@@ -64,6 +64,25 @@
     return sortByDate(items);
   }
 
+  // 每首歌的披露统计：次数 + 最近披露日期（只数已演场次）
+  function songStats(songId, pastShows) {
+    const dates = pastShows
+      .filter((s) => (s.setlist || []).includes(songId))
+      .map((s) => s.date)
+      .sort();
+    return { count: dates.length, lastDate: dates.length ? dates[dates.length - 1] : null };
+  }
+
+  // setlist 编号：SE 曲标 "SE"，其余按出场顺序 M1、M2……（日系惯例）
+  function setlistLabels(setlist, songsById) {
+    let m = 0;
+    return setlist.map((id) => {
+      const song = songsById.get(id);
+      const isSE = song && /SE/.test(song.title);
+      return { id, label: isSE ? "SE" : "M" + ++m, song };
+    });
+  }
+
   // "今天"固定按北京时间（UTC+8，无夏令时）计算，与访问者所在时区无关
   function beijingToday(nowMs) {
     const d = new Date((nowMs == null ? Date.now() : nowMs) + 8 * 3600 * 1000);
@@ -91,6 +110,8 @@
     buildTimeline,
     daysBetween,
     beijingToday,
+    songStats,
+    setlistLabels,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = derive;

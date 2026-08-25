@@ -8,14 +8,16 @@
   }
 
   const D = window.derive;
-  const [site, shows, events, venues, videos] = await Promise.all([
+  const [site, shows, events, venues, videos, songs] = await Promise.all([
     fetch("data/site.json").then((r) => r.json()),
     fetch("data/shows.json").then((r) => r.json()),
     fetch("data/events.json").then((r) => r.json()),
     fetch("data/venues.json").then((r) => r.json()),
     fetch("data/videos.json").then((r) => r.json()),
+    fetch("data/songs.json").then((r) => r.json()),
   ]);
   const venueByName = new Map(venues.map((v) => [v.name, v]));
+  const songById = new Map(songs.map((s) => [s.id, s]));
 
   const today = D.beijingToday();
   const numbered = D.withNumbers(shows);
@@ -34,6 +36,8 @@
   });
   renderShows();
   bindFilters();
+  bindSetlistToggle();
+  renderSongs();
   renderVideos();
   renderTimeline();
 
@@ -272,6 +276,7 @@
     document.getElementById("shows").innerHTML = slice
       .map((s) => {
         const future = s.date >= today;
+        const hasSetlist = (s.setlist || []).length > 0;
         const lineup = site.members
           .map((m) => {
             const here = D.attended(s, m.name);
@@ -279,8 +284,9 @@
               esc(m.name + (here ? "" : "（缺席）")) + '">' + m.emoji + "</span>";
           })
           .join("");
-        return (
-          '<div class="show-row' + (future ? " future" : "") + (s.special ? " special" : "") + '">' +
+        let html =
+          '<div class="show-row' + (future ? " future" : "") + (s.special ? " special" : "") +
+          (hasSetlist ? " has-setlist" : "") + '" data-id="' + s.id + '">' +
           '<div class="show-n">' + (future ? "待演" : "第" + s.n + "场") + "</div>" +
           '<div class="show-date">' + fmtDate(s.date) + " " + weekday(s.date) +
           (s.time ? " " + esc(s.time) : "") + "</div>" +
@@ -289,7 +295,54 @@
           (s.venue ? '<span class="show-venue">📍' + esc(s.venue) + "</span>" : "") +
           esc(s.note || "") +
           "</div>" +
+          (hasSetlist ? '<span class="setlist-badge">♪ 歌单</span>' : "") +
           '<div class="show-lineup">' + lineup + "</div>" +
+          "</div>";
+        if (hasSetlist && expandedShowId === s.id) {
+          const items = D.setlistLabels(s.setlist, songById)
+            .map((it) =>
+              '<div class="sl-item"><span class="sl-label">' + it.label + "</span>" +
+              '<span class="sl-title">' + esc(it.song ? it.song.title : "?") + "</span>" +
+              (it.song && it.song.artist
+                ? '<span class="sl-artist">' + esc(it.song.artist) + "</span>" : "") +
+              "</div>")
+            .join("");
+          html += '<div class="setlist-panel">' + items + "</div>";
+        }
+        return html;
+      })
+      .join("");
+  }
+
+  let expandedShowId = null;
+  function bindSetlistToggle() {
+    document.getElementById("shows").addEventListener("click", (e) => {
+      const row = e.target.closest(".show-row.has-setlist");
+      if (!row) return;
+      const id = Number(row.dataset.id);
+      expandedShowId = expandedShowId === id ? null : id;
+      renderShows();
+    });
+  }
+
+  // ---------- 歌曲 ----------
+  function renderSongs() {
+    const box = document.getElementById("songs");
+    document.getElementById("song-count").textContent = "共 " + songs.length + " 首";
+    box.innerHTML = songs
+      .map((song, i) => {
+        const st = D.songStats(song.id, past);
+        const right = st.count
+          ? "披露 " + st.count + " 回 · 最近 " + fmtDate(st.lastDate)
+          : esc(song.note || "");
+        return (
+          '<div class="song-row">' +
+          '<span class="song-idx">' + String(i + 1).padStart(2, "0") + "</span>" +
+          '<div class="song-main">' +
+          '<div class="song-title">' + esc(song.title) + "</div>" +
+          (song.artist ? '<div class="song-artist">原曲：' + esc(song.artist) + "</div>" : "") +
+          "</div>" +
+          '<div class="song-stats">' + right + "</div>" +
           "</div>"
         );
       })

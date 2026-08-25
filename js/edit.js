@@ -5,8 +5,8 @@
 
   const ED = window.editDiff;
 
-  let orig = { site: null, shows: [], events: [], venues: [], videos: [] };
-  let cur = { site: null, shows: [], events: [], venues: [], videos: [] };
+  let orig = { site: null, shows: [], events: [], venues: [], videos: [], songs: [] };
+  let cur = { site: null, shows: [], events: [], venues: [], videos: [], songs: [] };
   const hashes = {}; // 文件名 -> 读取时的 sha256,保存时给 serve.py 做并发核对
 
   await reload();
@@ -26,11 +26,11 @@
   }
 
   async function reload() {
-    const [site, shows, events, venues, videos] = await Promise.all([
+    const [site, shows, events, venues, videos, songs] = await Promise.all([
       loadJson("site"), loadJson("shows"), loadJson("events"), loadJson("venues"),
-      loadJson("videos"),
+      loadJson("videos"), loadJson("songs"),
     ]);
-    orig = { site, shows, events, venues, videos };
+    orig = { site, shows, events, venues, videos, songs };
     cur = deepCopy(orig);
     renderAll();
   }
@@ -46,6 +46,7 @@
     renderGroupForm();
     renderMemberRows();
     renderVenueRows();
+    renderSongRows();
     renderShowRows();
     renderEventRows();
     renderVideoRows();
@@ -179,6 +180,7 @@
       }));
     }
     row.appendChild(absentBox);
+    row.appendChild(setlistEditor(s));
     row.appendChild(delButton(() => {
       cur.shows = cur.shows.filter((x) => x !== s);
       renderShowRows();
@@ -218,6 +220,68 @@
     return row;
   }
 
+  // ---------- 歌曲 ----------
+  function renderSongRows() {
+    const box = document.getElementById("song-rows");
+    box.innerHTML = "";
+    for (const s of cur.songs) box.appendChild(songRow(s));
+  }
+
+  function songRow(s) {
+    const row = el("div", "edit-row");
+    row.appendChild(labeled("曲名", input("text", s.title, (v) => { s.title = v; renderAll(); }, "", 14)));
+    row.appendChild(labeled("原曲", input("text", s.artist, (v) => { s.artist = v; updateDiff(); }, "原唱/出处(可选)", 12)));
+    row.appendChild(labeled("备注", input("text", s.note, (v) => { s.note = v; updateDiff(); }, "", 10)));
+    row.appendChild(labeled("应援", textarea(s.call, (v) => { s.call = v; updateDiff(); })));
+    row.appendChild(delButton(() => {
+      cur.songs = cur.songs.filter((x) => x !== s);
+      for (const sh of cur.shows) sh.setlist = (sh.setlist || []).filter((id) => id !== s.id);
+      renderAll();
+    }, "删除歌曲(会同时从所有歌单里移除)"));
+    return row;
+  }
+
+  // 演出行里的歌单编辑器:已选曲目按顺序排,点 × 移除,下拉选曲添加
+  function setlistEditor(show) {
+    const wrap = el("span", "member-checks setlist-editor");
+    wrap.append("歌单:");
+    (show.setlist || []).forEach((id, idx) => {
+      const song = cur.songs.find((x) => x.id === id);
+      const chip = el("span", "sl-chip");
+      chip.textContent = (idx + 1) + "." + (song ? song.title : "?");
+      const x = el("button", "sl-remove");
+      x.type = "button";
+      x.textContent = "×";
+      x.addEventListener("click", () => {
+        show.setlist.splice(idx, 1);
+        renderShowRows();
+        updateDiff();
+      });
+      chip.appendChild(x);
+      wrap.appendChild(chip);
+    });
+    const sel = document.createElement("select");
+    sel.className = "sl-select";
+    const ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "+ 加一首…";
+    sel.appendChild(ph);
+    for (const song of cur.songs) {
+      const opt = document.createElement("option");
+      opt.value = song.id;
+      opt.textContent = song.title;
+      sel.appendChild(opt);
+    }
+    sel.addEventListener("change", () => {
+      if (!sel.value) return;
+      show.setlist = (show.setlist || []).concat(Number(sel.value));
+      renderShowRows();
+      updateDiff();
+    });
+    wrap.appendChild(sel);
+    return wrap;
+  }
+
   // ---------- 影像 ----------
   function renderVideoRows() {
     const box = document.getElementById("video-rows");
@@ -240,6 +304,19 @@
 
   // ---------- 添加表单 ----------
   function bindAddForms() {
+    document.getElementById("song-add").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const f = ev.target;
+      cur.songs.push({
+        id: nextId(cur.songs.concat(orig.songs)),
+        title: f.title.value.trim(),
+        artist: f.artist.value.trim(),
+        note: "", call: "",
+      });
+      f.reset();
+      renderAll();
+    });
+
     document.getElementById("video-add").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const f = ev.target;
@@ -345,6 +422,8 @@
         (v) => "场地「" + v.name + "」"), "venues"),
       videos: tag(ED.diffList(orig.videos, cur.videos, ED.VIDEO_FIELDS,
         (v) => "影像「" + v.title + "」"), "videos"),
+      songs: tag(ED.diffList(orig.songs, cur.songs, ED.SONG_FIELDS,
+        (s) => "歌曲「" + s.title + "」"), "songs"),
       shows: tag(ED.diffList(orig.shows, cur.shows, ED.SHOW_FIELDS,
         (s) => "演出 " + s.date + (s.note ? "「" + s.note + "」" : "")), "shows"),
       events: tag(ED.diffList(orig.events, cur.events, ED.EVENT_FIELDS,
@@ -363,6 +442,7 @@
         shows: [cur.shows, orig.shows],
         events: [cur.events, orig.events],
         videos: [cur.videos, orig.videos],
+        songs: [cur.songs, orig.songs],
       };
       const [curList, origList] = lists[ch.coll];
       const idx = curList.findIndex((x) => x.id === ch.ref);
@@ -377,7 +457,7 @@
 
   function updateDiff() {
     const c = computeChanges();
-    const all = c.group.concat(c.members, c.venues, c.shows, c.events, c.videos);
+    const all = c.group.concat(c.members, c.venues, c.songs, c.shows, c.events, c.videos);
     const errors = ED.validateAll(cur);
     const box = document.getElementById("diff-list");
     document.getElementById("save").disabled = !all.length || errors.length > 0;
@@ -428,6 +508,7 @@
     if (c.shows.length) jobs.push(post("shows", cur.shows));
     if (c.events.length) jobs.push(post("events", cur.events));
     if (c.videos.length) jobs.push(post("videos", cur.videos));
+    if (c.songs.length) jobs.push(post("songs", cur.songs));
     try {
       await Promise.all(jobs);
       orig = deepCopy(cur);

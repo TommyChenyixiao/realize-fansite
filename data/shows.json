@@ -8,7 +8,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 15,
@@ -19,7 +20,8 @@
     "special": true,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 16,
@@ -30,7 +32,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 17,
@@ -41,7 +44,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 18,
@@ -52,7 +56,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 19,
@@ -63,7 +68,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 20,
@@ -74,7 +80,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 21,
@@ -85,7 +92,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 22,
@@ -96,7 +104,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 23,
@@ -107,7 +116,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 26,
@@ -118,7 +128,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 27,
@@ -129,7 +140,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 24,
@@ -141,7 +153,8 @@
     "absent": [
       "冰冰",
       "小噜"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 25,
@@ -152,7 +165,8 @@
     "special": false,
     "absent": [
       "冰冰"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 28,
@@ -163,7 +177,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 34,
@@ -172,7 +187,8 @@
     "venue": "",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [],
+    "setlist": []
   },
   {
     "id": 33,
@@ -183,7 +199,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 42,
@@ -194,7 +211,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 35,
@@ -205,7 +223,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 36,
@@ -216,7 +235,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 43,
@@ -227,7 +247,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 37,
@@ -238,7 +259,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 44,
@@ -249,7 +271,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 45,
@@ -260,7 +283,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 39,
@@ -271,7 +295,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 40,
@@ -282,7 +307,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 41,
@@ -293,7 +319,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 32,
@@ -304,7 +331,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 11,
@@ -315,7 +343,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 12,
@@ -326,7 +355,8 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   },
   {
     "id": 13,
@@ -337,6 +367,7 @@
     "special": false,
     "absent": [
       "阿鱼"
-    ]
+    ],
+    "setlist": []
   }
 ]

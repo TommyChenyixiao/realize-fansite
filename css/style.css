@@ -199,7 +199,7 @@ h2::after {
 }
 .show-row {
   display: grid;
-  grid-template-columns: 72px 150px 1fr auto;
+  grid-template-columns: 72px 150px 1fr auto auto;
   gap: 10px;
   align-items: center;
   padding: 10px 16px;
@@ -422,6 +422,49 @@ h2::after {
   cursor: pointer;
 }
 
+/* ---------- 歌曲 ---------- */
+.songs { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.song-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.94rem;
+}
+.song-row:last-child { border-bottom: none; }
+.song-row:hover { background: var(--accent-soft); }
+.song-idx { color: var(--accent); font-size: 0.82rem; font-weight: 600; width: 22px; flex-shrink: 0; }
+.song-main { min-width: 0; }
+.song-title { font-weight: 600; }
+.song-artist { color: var(--muted); font-size: 0.82rem; }
+.song-stats { margin-left: auto; color: var(--muted); font-size: 0.84rem; white-space: nowrap; }
+
+/* 演出行的歌单标记与展开面板 */
+.show-row.has-setlist { cursor: pointer; }
+.setlist-badge {
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  padding: 1px 9px;
+  white-space: nowrap;
+}
+.setlist-panel {
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 16px 10px 88px;
+}
+.sl-item { display: flex; align-items: baseline; gap: 10px; padding: 2px 0; font-size: 0.9rem; }
+.sl-label {
+  color: var(--accent-deep);
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 28px;
+  flex-shrink: 0;
+}
+.sl-artist { color: var(--muted); font-size: 0.82rem; }
+
 /* ---------- 影像 ---------- */
 .videos { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 .video-row {
@@ -550,6 +593,31 @@ footer a { color: var(--muted); }
 .edit-row:last-child { border-bottom: none; }
 .member-checks { display: inline-flex; flex-wrap: wrap; gap: 8px; color: var(--muted); }
 .field { display: inline-flex; align-items: center; gap: 4px; }
+.sl-chip {
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  border-radius: 999px;
+  padding: 1px 4px 1px 10px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.sl-remove {
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0 4px;
+}
+.sl-remove:hover { color: #c0392b; }
+.sl-select {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 2px 6px;
+}
 .edit-row textarea {
   border: 1px solid var(--line);
   border-radius: 8px;
