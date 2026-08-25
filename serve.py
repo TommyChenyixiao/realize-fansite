@@ -22,6 +22,7 @@ SAVABLE = {
     "events": (ROOT / "data" / "events.json", list),
     "site": (ROOT / "data" / "site.json", dict),
     "venues": (ROOT / "data" / "venues.json", list),
+    "videos": (ROOT / "data" / "videos.json", list),
 }
 
 

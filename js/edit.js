@@ -5,8 +5,8 @@
 
   const ED = window.editDiff;
 
-  let orig = { site: null, shows: [], events: [], venues: [] };
-  let cur = { site: null, shows: [], events: [], venues: [] };
+  let orig = { site: null, shows: [], events: [], venues: [], videos: [] };
+  let cur = { site: null, shows: [], events: [], venues: [], videos: [] };
   const hashes = {}; // 文件名 -> 读取时的 sha256,保存时给 serve.py 做并发核对
 
   await reload();
@@ -26,10 +26,11 @@
   }
 
   async function reload() {
-    const [site, shows, events, venues] = await Promise.all([
+    const [site, shows, events, venues, videos] = await Promise.all([
       loadJson("site"), loadJson("shows"), loadJson("events"), loadJson("venues"),
+      loadJson("videos"),
     ]);
-    orig = { site, shows, events, venues };
+    orig = { site, shows, events, venues, videos };
     cur = deepCopy(orig);
     renderAll();
   }
@@ -47,6 +48,7 @@
     renderVenueRows();
     renderShowRows();
     renderEventRows();
+    renderVideoRows();
     renderChecks("show-add-absent", memberNames());
     renderChecks("event-add-who", whoOptions());
     updateDiff();
@@ -97,6 +99,7 @@
     row.appendChild(labeled("官方微博", input("text", g.weibo, (v) => { g.weibo = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("经纪人微博", input("text", g.managerWeibo, (v) => { g.managerWeibo = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("微博群", input("text", g.fanGroup, (v) => { g.fanGroup = v; updateDiff(); }, "链接", 18)));
+    row.appendChild(labeled("经纪公司微博", input("text", g.agencyWeibo, (v) => { g.agencyWeibo = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("经纪人头像", input("text", g.managerIcon, (v) => { g.managerIcon = v; updateDiff(); }, "图片路径", 14)));
     row.appendChild(labeled("介绍", input("text", g.intro, (v) => { g.intro = v; updateDiff(); }, "更长的介绍(可选)", 24)));
     box.appendChild(row);
@@ -127,6 +130,7 @@
     row.appendChild(labeled("照片", input("text", m.photo, (v) => { m.photo = v; updateDiff(); }, "assets/xx.jpg", 14)));
     row.appendChild(labeled("粉丝群名", input("text", m.fanGroupName, (v) => { m.fanGroupName = v; updateDiff(); }, "", 10)));
     row.appendChild(labeled("粉丝群链接", input("text", m.fanGroup, (v) => { m.fanGroup = v; updateDiff(); }, "链接", 16)));
+    row.appendChild(labeled("超话", input("text", m.chaohua, (v) => { m.chaohua = v; updateDiff(); }, "链接(可选)", 16)));
     row.appendChild(labeled("链接", input("text", (m.socials || []).join(", "), (v) => {
       m.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
       updateDiff();
@@ -214,8 +218,42 @@
     return row;
   }
 
+  // ---------- 影像 ----------
+  function renderVideoRows() {
+    const box = document.getElementById("video-rows");
+    box.innerHTML = "";
+    for (const v of cur.videos) box.appendChild(videoRow(v));
+  }
+
+  function videoRow(v) {
+    const row = el("div", "edit-row");
+    row.appendChild(input("date", v.date, (nv) => { v.date = nv; updateDiff(); }));
+    row.appendChild(input("text", v.title, (nv) => { v.title = nv; updateDiff(); }, "标题", 24));
+    row.appendChild(input("text", v.url, (nv) => { v.url = nv; updateDiff(); }, "链接", 28));
+    row.appendChild(delButton(() => {
+      cur.videos = cur.videos.filter((x) => x !== v);
+      renderVideoRows();
+      updateDiff();
+    }));
+    return row;
+  }
+
   // ---------- 添加表单 ----------
   function bindAddForms() {
+    document.getElementById("video-add").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const f = ev.target;
+      cur.videos.unshift({
+        id: nextId(cur.videos.concat(orig.videos)),
+        date: f.date.value,
+        title: f.title.value.trim(),
+        url: f.url.value.trim(),
+      });
+      f.reset();
+      renderVideoRows();
+      updateDiff();
+    });
+
     document.getElementById("venue-add").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const f = ev.target;
@@ -305,6 +343,8 @@
         (m) => "成员「" + m.name + "」"), "members"),
       venues: tag(ED.diffList(orig.venues, cur.venues, ED.VENUE_FIELDS,
         (v) => "场地「" + v.name + "」"), "venues"),
+      videos: tag(ED.diffList(orig.videos, cur.videos, ED.VIDEO_FIELDS,
+        (v) => "影像「" + v.title + "」"), "videos"),
       shows: tag(ED.diffList(orig.shows, cur.shows, ED.SHOW_FIELDS,
         (s) => "演出 " + s.date + (s.note ? "「" + s.note + "」" : "")), "shows"),
       events: tag(ED.diffList(orig.events, cur.events, ED.EVENT_FIELDS,
@@ -322,6 +362,7 @@
         venues: [cur.venues, orig.venues],
         shows: [cur.shows, orig.shows],
         events: [cur.events, orig.events],
+        videos: [cur.videos, orig.videos],
       };
       const [curList, origList] = lists[ch.coll];
       const idx = curList.findIndex((x) => x.id === ch.ref);
@@ -336,7 +377,7 @@
 
   function updateDiff() {
     const c = computeChanges();
-    const all = c.group.concat(c.members, c.venues, c.shows, c.events);
+    const all = c.group.concat(c.members, c.venues, c.shows, c.events, c.videos);
     const errors = ED.validateAll(cur);
     const box = document.getElementById("diff-list");
     document.getElementById("save").disabled = !all.length || errors.length > 0;
@@ -386,6 +427,7 @@
     if (c.venues.length) jobs.push(post("venues", cur.venues));
     if (c.shows.length) jobs.push(post("shows", cur.shows));
     if (c.events.length) jobs.push(post("events", cur.events));
+    if (c.videos.length) jobs.push(post("videos", cur.videos));
     try {
       await Promise.all(jobs);
       orig = deepCopy(cur);

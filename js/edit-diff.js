@@ -13,7 +13,7 @@
     ["name", "团名"], ["emoji", "emoji"], ["tagline", "一句介绍"],
     ["debutDate", "出道日"], ["agency", "经纪公司"], ["manager", "经纪人"],
     ["weibo", "官方微博"], ["managerWeibo", "经纪人微博"], ["managerIcon", "经纪人头像"],
-    ["fanGroup", "微博群"], ["intro", "介绍"],
+    ["fanGroup", "微博群"], ["agencyWeibo", "经纪公司微博"], ["intro", "介绍"],
   ];
   const VENUE_FIELDS = [
     ["name", "名称"], ["address", "地址"], ["transit", "交通"], ["note", "备注"],
@@ -22,7 +22,11 @@
     ["name", "名字"], ["roman", "罗马音"], ["emoji", "emoji"], ["heart", "应援心"],
     ["color", "应援色"], ["birthday", "生日"], ["mascot", "代表物"], ["mbti", "MBTI"],
     ["intro", "出身/介绍"], ["bio", "详细介绍"], ["photo", "照片"],
-    ["fanGroupName", "粉丝群名"], ["fanGroup", "粉丝群链接"], ["socials", "链接"],
+    ["fanGroupName", "粉丝群名"], ["fanGroup", "粉丝群链接"], ["chaohua", "超话"],
+    ["socials", "链接"],
+  ];
+  const VIDEO_FIELDS = [
+    ["date", "日期"], ["title", "标题"], ["url", "链接"],
   ];
 
   function fmt(v) {
@@ -78,7 +82,8 @@
     const okUrl = (v) => !v || /^https?:\/\//.test(v);
     const g = cur.site.group;
     if (!g.name) errs.push("团名不能为空");
-    for (const [key, label] of [["weibo", "官方微博"], ["managerWeibo", "经纪人微博"], ["fanGroup", "微博群"]]) {
+    for (const [key, label] of [["weibo", "官方微博"], ["managerWeibo", "经纪人微博"],
+      ["fanGroup", "微博群"], ["agencyWeibo", "经纪公司微博"]]) {
       if (!okUrl(g[key])) errs.push("团体·" + label + " 链接需以 http(s):// 开头");
     }
     for (const m of cur.site.members) {
@@ -99,12 +104,16 @@
       if (!e.title) errs.push("大事纪 " + (e.date || "?") + " 的标题为空");
     }
     for (const v of cur.venues || []) if (!v.name) errs.push("有场地的名称为空");
+    for (const v of cur.videos || []) {
+      if (!v.title) errs.push("有影像的标题为空");
+      if (!okUrl(v.url) || !v.url) errs.push("影像「" + (v.title || "?") + "」链接需以 http(s):// 开头");
+    }
     return errs;
   }
 
   const api = {
     diffList, diffObject, validateAll, fmt,
-    SHOW_FIELDS, EVENT_FIELDS, GROUP_FIELDS, MEMBER_FIELDS, VENUE_FIELDS,
+    SHOW_FIELDS, EVENT_FIELDS, GROUP_FIELDS, MEMBER_FIELDS, VENUE_FIELDS, VIDEO_FIELDS,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else global.editDiff = api;

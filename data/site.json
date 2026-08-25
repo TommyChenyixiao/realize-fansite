@@ -10,7 +10,8 @@
     "weibo": "https://weibo.com/n/RealizE_Project",
     "managerWeibo": "https://weibo.com/n/-Toooobi-",
     "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5323851308473034&source_from=11",
-    "managerIcon": "assets/tobi.png"
+    "managerIcon": "assets/tobi.png",
+    "agencyWeibo": "https://weibo.com/n/七韵IdolProductions"
   },
   "members": [
     {
@@ -30,7 +31,8 @@
       "bio": "白色担当阿鱼 Sakana，尤其喜欢别人叫我鱼鱼🤍\n动物塑：一条小丑鱼，喜欢在深海里发呆吐泡泡\n兴趣：寻找各地美食（可以找我推荐上海的美味餐厅）；在凉爽的晚上或明媚的清晨看书、追剧、散步\n音乐：听得很杂，JPOP / KPOP / 英文流行；最喜欢的中文歌是《一生所爱》\n游戏：锈湖绝对拥护者；喜欢的作家：张爱玲\n追求的人生目标：平静、健康、自由\n「希望能让每一个人感受到『真诚』和『力量』」",
       "photo": "assets/members/sakana.jpg",
       "fanGroupName": "",
-      "fanGroup": ""
+      "fanGroup": "",
+      "chaohua": ""
     },
     {
       "id": 1,
@@ -49,7 +51,8 @@
       "bio": "昵称：小圆、猫头卡。诞生日 4/25，正好是世界企鹅日🐧\n可查询 tag：宅 / 重度猫瘾 / 毛绒玩偶 / 仓鼠型三坑爱好者 / 老番战士 / 单机游戏玩家 / 日音杂食……更多内容支持线下解锁\n超 i 属性慢热人，喜欢碎碎念，欢迎梦游式交流\n一般路过帝企鹅宝宝，不充 q 币\n「谢谢你看见我！期待每一次见面～」",
       "photo": "assets/members/madoka.jpg",
       "fanGroupName": "见泷原驻上海办事处",
-      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5307555647591444&source_from=11"
+      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5307555647591444&source_from=11",
+      "chaohua": "https://weibo.com/p/100808427f91accfc0b80834e6cc8676fd8f57"
     },
     {
       "id": 4,
@@ -68,7 +71,8 @@
       "bio": "小噜的自我介绍还在路上哦～🪼\n水母咕噜噜地漂了很久，简介还是一片空白…\n大家快去微博评论区催催 Ruruko 吧：「小噜～简介什么时候写呀？」\n（本页面正以水母的速度耐心等待中…🫧）",
       "photo": "assets/members/ruruko.jpg",
       "fanGroupName": "我好想去海边啊",
-      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5228272574271297&source_from=11"
+      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5228272574271297&source_from=11",
+      "chaohua": ""
     },
     {
       "id": 5,
@@ -87,7 +91,8 @@
       "bio": "黄色担当冰冰 Icey，直接叫我冰冰就好啦☁️\n来自海南，黎族小妹（要学方言来找我！）\n水瓶座；喜欢看海吹风、漫无边际发呆、甜食奶茶（有好吃的一定要跟我分享！）\n『一切都是最好的安排，命运牵引我们相遇💙』\n「潮風と水色を連れて、全力で大好きを届けるね」[译:带着海风和水色,全力把「最喜欢」送到你身边]",
       "photo": "assets/members/icey.jpg",
       "fanGroupName": "冰冰的小岛",
-      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5191361072726107&source_from=11"
+      "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5191361072726107&source_from=11",
+      "chaohua": "https://weibo.com/p/100808e1de8f2e66242e1a074bbe2c82b83bcc"
     },
     {
       "id": 3,
@@ -106,7 +111,8 @@
       "bio": "粉色担当芋圆 yuika，叫我小芋圆我会很开心！\n水瓶座；擅长唱歌，希望成为厉害的小歌担（有在做乐队主唱，喜欢 JPOP）\n特点：人长得很小只（154），慢热，熟起来会解锁完全不一样的性格\n爱好：唱歌、跳宅舞（每年都在跳 LL）、喜欢一切可爱的东西（三丽鸥 / chiikawa / 清楚系 / 量产系）\n「唱歌是认真的，对舞台的热爱也是认真的——希望平凡的我站在台上时，可以成为你眼里闪着光的存在✨」",
       "photo": "assets/members/yuika.jpg",
       "fanGroupName": "",
-      "fanGroup": ""
+      "fanGroup": "",
+      "chaohua": ""
     }
   ],
   "milestones": [

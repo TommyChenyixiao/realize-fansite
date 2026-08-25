@@ -8,11 +8,12 @@
   }
 
   const D = window.derive;
-  const [site, shows, events, venues] = await Promise.all([
+  const [site, shows, events, venues, videos] = await Promise.all([
     fetch("data/site.json").then((r) => r.json()),
     fetch("data/shows.json").then((r) => r.json()),
     fetch("data/events.json").then((r) => r.json()),
     fetch("data/venues.json").then((r) => r.json()),
+    fetch("data/videos.json").then((r) => r.json()),
   ]);
   const venueByName = new Map(venues.map((v) => [v.name, v]));
 
@@ -29,6 +30,7 @@
   bindMemberModal();
   renderShows();
   bindFilters();
+  renderVideos();
   renderTimeline();
 
   // ---------- Hero ----------
@@ -58,6 +60,10 @@
     }
     if (g.fanGroup) {
       groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">💬 微博群</a>');
+    }
+    if (g.agencyWeibo) {
+      groupLinks.push('<a href="' + esc(g.agencyWeibo) + '" target="_blank" rel="noopener">' +
+        wbIcon + "七韵官博</a>");
     }
     document.getElementById("group-links").innerHTML = groupLinks.join(" · ");
 
@@ -225,6 +231,9 @@
       links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">💬 ' +
         esc(m.fanGroupName || "粉丝群") + "</a>";
     }
+    if (m.chaohua) {
+      links += ' <a class="modal-weibo" href="' + esc(m.chaohua) + '" target="_blank" rel="noopener">⭐ 超话</a>';
+    }
     document.getElementById("modal-body").innerHTML =
       photo +
       '<div class="modal-info">' +
@@ -326,6 +335,26 @@
         renderShows();
       })
     );
+  }
+
+  // ---------- 影像 ----------
+  function renderVideos() {
+    const box = document.getElementById("videos");
+    if (!videos.length) {
+      box.closest("section").hidden = true;
+      return;
+    }
+    box.innerHTML = videos
+      .map(
+        (v) =>
+          '<a class="video-row" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
+          '<span class="video-play">▶</span>' +
+          '<span class="video-title">' + esc(v.title) + "</span>" +
+          (v.date ? '<span class="video-date">' + fmtDate(v.date) + "</span>" : "") +
+          '<span class="video-src"><img class="wb-icon" src="assets/weibo.png" alt="">微博</span>' +
+          "</a>"
+      )
+      .join("");
   }
 
   // ---------- 时间线 ----------
