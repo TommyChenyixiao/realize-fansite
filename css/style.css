@@ -17,7 +17,10 @@
 body {
   background: linear-gradient(180deg, #f1eafb 0%, var(--bg) 360px) no-repeat, var(--bg);
   color: var(--text);
-  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  /* 偶像官网惯例(=LOVE/FRUITS ZIPPER):中文用干净黑体,
+     数字/英文用圆润西文字体 Comfortaa 出可爱感 */
+  font-family: "Comfortaa", -apple-system, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
   line-height: 1.6;
 }
 
@@ -75,14 +78,17 @@ main, .hero { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   border-radius: 50%;
   vertical-align: -4px;
 }
+/* 微博图标:用 logo 做遮罩、以文字颜色填充——紫色文字就是紫色图标 */
 .wb-icon {
+  display: inline-block;
   width: 15px;
   height: 15px;
   vertical-align: -2.5px;
   margin-right: 4px;
+  background-color: currentColor;
+  -webkit-mask: url(../assets/weibo.png) center / contain no-repeat;
+  mask: url(../assets/weibo.png) center / contain no-repeat;
 }
-/* 紫色按钮上的微博图标:转成纯白剪影,融入按钮 */
-.wb-icon-light { filter: brightness(0) invert(1); }
 
 .stats { display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
 .stat {
@@ -293,22 +299,24 @@ h2::after {
   margin-top: 14px;
   padding-top: 12px;
   border-top: 1px dashed var(--line);
-  font-family: "Yuanti SC", "YouYuan", "Wawati SC", "PingFang SC", sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.85;
+  font-size: 0.92rem;
+  line-height: 1.95;
+  letter-spacing: 0.02em;
 }
 .modal-bio p { margin-bottom: 6px; }
 .bio-empty { color: var(--muted); }
 .modal-weibo {
   display: inline-block;
   margin-top: 12px;
-  background: var(--accent);
-  color: #fff;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent-deep);
   text-decoration: none;
   border-radius: 999px;
   padding: 6px 18px;
   font-size: 0.88rem;
 }
+.modal-weibo:hover { background: var(--accent); color: #fff; }
 @media (max-width: 560px) {
   .modal-body { flex-direction: column; }
   .modal-photo { width: 100%; max-width: 300px; margin: 0 auto; }
