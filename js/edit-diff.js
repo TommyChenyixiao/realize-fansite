@@ -21,7 +21,8 @@
   const MEMBER_FIELDS = [
     ["name", "名字"], ["roman", "罗马音"], ["emoji", "emoji"], ["heart", "应援心"],
     ["color", "应援色"], ["birthday", "生日"], ["mascot", "代表物"], ["mbti", "MBTI"],
-    ["intro", "出身/介绍"], ["bio", "详细介绍"], ["photo", "照片"], ["socials", "链接"],
+    ["intro", "出身/介绍"], ["bio", "详细介绍"], ["photo", "照片"],
+    ["fanGroupName", "粉丝群名"], ["fanGroup", "粉丝群链接"], ["socials", "链接"],
   ];
 
   function fmt(v) {

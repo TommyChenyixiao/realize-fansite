@@ -125,6 +125,8 @@
     row.appendChild(labeled("MBTI", input("text", m.mbti, (v) => { m.mbti = v; updateDiff(); }, "", 5)));
     row.appendChild(labeled("出身/介绍", input("text", m.intro, (v) => { m.intro = v; updateDiff(); }, "介绍(可选)", 14)));
     row.appendChild(labeled("照片", input("text", m.photo, (v) => { m.photo = v; updateDiff(); }, "assets/xx.jpg", 14)));
+    row.appendChild(labeled("粉丝群名", input("text", m.fanGroupName, (v) => { m.fanGroupName = v; updateDiff(); }, "", 10)));
+    row.appendChild(labeled("粉丝群链接", input("text", m.fanGroup, (v) => { m.fanGroup = v; updateDiff(); }, "链接", 16)));
     row.appendChild(labeled("链接", input("text", (m.socials || []).join(", "), (v) => {
       m.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
       updateDiff();
@@ -237,7 +239,7 @@
         roman: f.roman.value.trim(),
         emoji: f.emoji.value.trim(),
         heart: "", color: "", birthday: "", mascot: "", mbti: "",
-        intro: "", bio: "", photo: "", socials: [],
+        intro: "", bio: "", photo: "", fanGroupName: "", fanGroup: "", socials: [],
       });
       f.reset();
       renderAll();

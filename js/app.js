@@ -153,6 +153,13 @@
       openMemberModal(site.members[Number(card.dataset.index)]);
     });
     document.getElementById("modal-close").addEventListener("click", closeModal);
+    document.getElementById("modal-body").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tr-btn");
+      if (!btn) return;
+      const tr = btn.nextElementSibling;
+      tr.hidden = !tr.hidden;
+      btn.classList.toggle("on", !tr.hidden);
+    });
     mask.addEventListener("click", (e) => {
       if (e.target === mask) closeModal();
     });
@@ -180,14 +187,25 @@
     if (m.mascot) facts.push(["代表物", m.mascot]);
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " / " + s.total + " 场"]);
+    // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
     const bioHtml = m.bio
-      ? m.bio.split("\n").map((p) => "<p>" + esc(p) + "</p>").join("")
+      ? m.bio.split("\n").map((line) => {
+          const match = line.match(/^(.*?)\s*\[译[:：](.+)\]\s*$/);
+          if (!match) return "<p>" + esc(line) + "</p>";
+          return "<p>" + esc(match[1]) +
+            ' <button class="tr-btn" type="button">译</button>' +
+            '<span class="tr-text" hidden>' + esc(match[2]) + "</span></p>";
+        }).join("")
       : "<p class=\"bio-empty\">详细介绍整理中…</p>";
-    const links = (m.socials || [])
+    let links = (m.socials || [])
       .map((url) =>
         '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
         '<img class="wb-icon" src="assets/weibo.png" alt="">她的微博</a>')
       .join(" ");
+    if (m.fanGroup) {
+      links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">💬 ' +
+        esc(m.fanGroupName || "粉丝群") + "</a>";
+    }
     document.getElementById("modal-body").innerHTML =
       photo +
       '<div class="modal-info">' +
