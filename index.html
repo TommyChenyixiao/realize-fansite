@@ -12,7 +12,19 @@
 </head>
 <body>
 
-  <header class="hero">
+  <nav class="topnav">
+    <a href="#top" class="nav-logo">RealizE</a>
+    <div class="nav-links">
+      <a href="#sec-member">成员</a>
+      <a href="#sec-schedule">演出</a>
+      <a href="#sec-songs">歌曲</a>
+      <a href="#sec-video">影像</a>
+      <a href="#sec-history">大事纪</a>
+    </div>
+    <a class="nav-sns" href="https://weibo.com/n/RealizE_Project" target="_blank" rel="noopener" title="官方微博"><img class="wb-icon" src="assets/weibo.png" alt="微博"></a>
+  </nav>
+
+  <header class="hero" id="top">
     <img class="logo" src="assets/logo.jpg" alt="RealizE logo">
     <h1 id="group-name"></h1>
     <p id="group-tagline" class="tagline"></p>
@@ -25,29 +37,29 @@
   </header>
 
   <main>
-    <section>
+    <section id="sec-member">
       <h2>成员 <span class="h2-en">MEMBER</span></h2>
       <div id="members" class="members"></div>
     </section>
 
-    <section>
+    <section id="sec-schedule">
       <h2>演出档案 <span class="h2-en">SCHEDULE</span> <span id="show-count" class="h2-sub"></span></h2>
       <div id="filters" class="filters"></div>
       <div id="shows" class="shows"></div>
       <div id="pager" class="pager"></div>
     </section>
 
-    <section>
+    <section id="sec-songs">
       <h2>歌曲 <span class="h2-en">DISCOGRAPHY</span> <span id="song-count" class="h2-sub"></span></h2>
       <div id="songs" class="songs"></div>
     </section>
 
-    <section>
+    <section id="sec-video">
       <h2>影像 <span class="h2-en">VIDEO</span></h2>
       <div id="videos" class="videos"></div>
     </section>
 
-    <section>
+    <section id="sec-history">
       <h2>大事纪 <span class="h2-en">HISTORY</span></h2>
       <div id="timeline" class="timeline"></div>
     </section>

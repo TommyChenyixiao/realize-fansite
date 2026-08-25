@@ -40,6 +40,38 @@
   renderSongs();
   renderVideos();
   renderTimeline();
+  initReveal();
+
+  // ---------- 滚动渐入(区块整体 + 成员卡错峰) ----------
+  function initReveal() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const targets = [];
+    document.querySelectorAll("main section, footer .disclaimer").forEach((el) => targets.push(el));
+    document.querySelectorAll(".member-card").forEach((el, i) => {
+      el.style.setProperty("--d", (i * 0.09).toFixed(2) + "s");
+      targets.push(el);
+    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          el.classList.add("in");
+          io.unobserve(el);
+          // 渐入完成后清掉过渡类,避免影响 hover 等常规过渡
+          setTimeout(() => {
+            el.classList.remove("reveal", "in");
+            el.style.removeProperty("--d");
+          }, 1100);
+        });
+      },
+      { threshold: 0.08 }
+    );
+    targets.forEach((el) => {
+      el.classList.add("reveal");
+      io.observe(el);
+    });
+  }
 
   // ---------- Hero ----------
   function renderHero() {
