@@ -285,6 +285,18 @@ footer {
   padding: 40px 20px 60px;
 }
 footer a { color: var(--muted); }
+.disclaimer {
+  max-width: 640px;
+  margin: 0 auto 18px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.7;
+}
+.disclaimer strong { color: var(--text); }
+.disclaimer p { margin-top: 6px; }
 
 /* ---------- 编辑页 ---------- */
 .edit-page { padding-bottom: 260px; }
