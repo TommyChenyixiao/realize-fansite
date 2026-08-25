@@ -158,16 +158,6 @@
         if (m.mascot) rows.push(["代表物", m.mascot]);
         rows.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
         rows.push(["出席", s.count + " 场"]);
-        const links = (m.socials || [])
-          .map((url) =>
-            '<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
-            (url.includes("bilibili")
-              ? '<img class="wb-icon" src="assets/bilibili.png" alt="">B站'
-              : url.includes("weibo")
-                ? '<img class="wb-icon" src="assets/weibo.png" alt="">微博'
-                : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
-            "</a>")
-          .join(" ");
         return (
           '<div class="member-card" data-index="' + i + '" title="点击查看详细介绍"' +
           (m.color ? ' style="border-top: 3px solid ' + esc(m.color) + '"' : "") + ">" +
@@ -184,9 +174,7 @@
                 '</span><span class="mv">' + esc(value) + "</span></div>"
             )
             .join("") +
-          "</div>" +
-          (links ? '<div class="member-links">' + links + "</div>" : "") +
-          "</div>"
+          "</div></div>"
         );
       })
       .join("");
