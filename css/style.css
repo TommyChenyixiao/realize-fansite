@@ -81,7 +81,8 @@ main, .hero { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   vertical-align: -2.5px;
   margin-right: 4px;
 }
-.wb-icon-light { background: #fff; border-radius: 3px; padding: 1px; }
+/* 紫色按钮上的微博图标:转成纯白剪影,融入按钮 */
+.wb-icon-light { filter: brightness(0) invert(1); }
 
 .stats { display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
 .stat {
