@@ -75,6 +75,13 @@ main, .hero { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   border-radius: 50%;
   vertical-align: -4px;
 }
+.wb-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: -2.5px;
+  margin-right: 4px;
+}
+.wb-icon-light { background: #fff; border-radius: 3px; padding: 1px; }
 
 .stats { display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
 .stat {

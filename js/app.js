@@ -46,8 +46,9 @@
     if (g.agency) meta.push("运营:" + g.agency);
     if (g.manager) meta.push("经纪人:" + g.manager);
     setText("group-sub", meta.join(" · "));
+    const wbIcon = '<img class="wb-icon" src="assets/weibo.png" alt="">';
     const groupLinks = [];
-    if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">📱 官方微博</a>');
+    if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' + wbIcon + "官方微博</a>");
     if (g.managerWeibo) {
       const icon = g.managerIcon
         ? '<img class="link-avatar" src="' + esc(g.managerIcon) + '" alt=""> '
@@ -113,7 +114,9 @@
         const links = (m.socials || [])
           .map((url) =>
             '<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
-            (url.includes("weibo") ? "微博" : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
+            (url.includes("weibo")
+              ? '<img class="wb-icon" src="assets/weibo.png" alt="">微博'
+              : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
             "</a>")
           .join(" ");
         return (
@@ -182,7 +185,8 @@
       : "<p class=\"bio-empty\">详细介绍整理中…</p>";
     const links = (m.socials || [])
       .map((url) =>
-        '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">📱 她的微博</a>')
+        '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+        '<img class="wb-icon wb-icon-light" src="assets/weibo.png" alt="">她的微博</a>')
       .join(" ");
     document.getElementById("modal-body").innerHTML =
       photo +
