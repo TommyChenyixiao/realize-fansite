@@ -67,8 +67,9 @@
 
 ### 3.0 上线与联动(已有共识,等触发)
 
-13. [ ] GitHub 仓库 + Pages 部署(等 `gh auth login`)
-14. [ ] publish 脚本(编辑后一条命令 commit+push 上线)
+13. [x] GitHub 仓库(2026-08-25 建,**私有**:TommyChenyixiao/realize-fansite);
+    Pages 等转公开后再开(免费版仅公开仓库可用 Pages)
+14. [x] publish 脚本 `tools/publish.sh`(一条命令 commit+push)
 15. [ ] star-tracker「同步公共记录」:fetch 本站 JSON 按 id 合并,个人数据不动
 16. [ ] SEO/分享卡片:og:image 用公式照、站点描述
 
