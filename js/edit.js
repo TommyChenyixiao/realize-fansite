@@ -122,11 +122,14 @@
     row.appendChild(labeled("应援色", input("text", m.color, (v) => { m.color = v; updateDiff(); }, "#rrggbb", 8)));
     row.appendChild(labeled("生日", input("text", m.birthday, (v) => { m.birthday = v; updateDiff(); }, "月-日", 6)));
     row.appendChild(labeled("代表物", input("text", m.mascot, (v) => { m.mascot = v; updateDiff(); }, "", 8)));
+    row.appendChild(labeled("MBTI", input("text", m.mbti, (v) => { m.mbti = v; updateDiff(); }, "", 5)));
     row.appendChild(labeled("出身/介绍", input("text", m.intro, (v) => { m.intro = v; updateDiff(); }, "介绍(可选)", 14)));
+    row.appendChild(labeled("照片", input("text", m.photo, (v) => { m.photo = v; updateDiff(); }, "assets/xx.jpg", 14)));
     row.appendChild(labeled("链接", input("text", (m.socials || []).join(", "), (v) => {
       m.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
       updateDiff();
     }, "逗号分隔(可选)", 18)));
+    row.appendChild(labeled("详细介绍", textarea(m.bio, (v) => { m.bio = v; updateDiff(); })));
     row.appendChild(delButton(() => {
       cur.site.members = cur.site.members.filter((x) => x !== m);
       stripName(m.name);
@@ -233,7 +236,8 @@
         name: f.name.value.trim(),
         roman: f.roman.value.trim(),
         emoji: f.emoji.value.trim(),
-        heart: "", color: "", birthday: "", mascot: "", intro: "", socials: [],
+        heart: "", color: "", birthday: "", mascot: "", mbti: "",
+        intro: "", bio: "", photo: "", socials: [],
       });
       f.reset();
       renderAll();
@@ -452,6 +456,14 @@
     node.value = value == null ? "" : value;
     if (placeholder) node.placeholder = placeholder;
     if (size) node.size = size;
+    node.addEventListener("change", () => onChange(node.value.trim()));
+    return node;
+  }
+  function textarea(value, onChange) {
+    const node = document.createElement("textarea");
+    node.value = value == null ? "" : value;
+    node.rows = 2;
+    node.placeholder = "多行介绍(可选),回车分段";
     node.addEventListener("change", () => onChange(node.value.trim()));
     return node;
   }

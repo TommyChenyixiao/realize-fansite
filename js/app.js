@@ -26,6 +26,7 @@
 
   renderHero();
   renderMembers();
+  bindMemberModal();
   renderShows();
   bindFilters();
   renderTimeline();
@@ -102,7 +103,7 @@
   // ---------- 成员 ----------
   function renderMembers() {
     document.getElementById("members").innerHTML = site.members
-      .map((m) => {
+      .map((m, i) => {
         const s = D.memberStats(m.name, past);
         const rows = [];
         if (m.birthday) rows.push(["生日", m.birthday.replace("-", ".")]);
@@ -116,7 +117,7 @@
             "</a>")
           .join(" ");
         return (
-          '<div class="member-card"' +
+          '<div class="member-card" data-index="' + i + '" title="点击查看详细介绍"' +
           (m.color ? ' style="border-top: 3px solid ' + esc(m.color) + '"' : "") + ">" +
           '<div class="member-emoji"' +
           (m.color ? ' style="background:' + esc(m.color) + '2e"' : "") + ">" + m.emoji + "</div>" +
@@ -137,6 +138,66 @@
         );
       })
       .join("");
+  }
+
+  // ---------- 成员详情弹窗 ----------
+  function bindMemberModal() {
+    const mask = document.getElementById("member-modal");
+    document.getElementById("members").addEventListener("click", (e) => {
+      if (e.target.closest("a")) return; // 点微博链接不弹窗
+      const card = e.target.closest(".member-card");
+      if (!card) return;
+      openMemberModal(site.members[Number(card.dataset.index)]);
+    });
+    document.getElementById("modal-close").addEventListener("click", closeModal);
+    mask.addEventListener("click", (e) => {
+      if (e.target === mask) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+    function closeModal() {
+      mask.hidden = true;
+      document.body.style.overflow = "";
+    }
+  }
+
+  function openMemberModal(m) {
+    const s = D.memberStats(m.name, past);
+    // 竖版(3:4)照片位:有照片放照片,没有就用应援色底 + emoji 占位
+    const photo = m.photo
+      ? '<img class="modal-photo" src="' + esc(m.photo) + '" alt="' + esc(m.name) + '">'
+      : '<div class="modal-photo modal-photo-placeholder"' +
+        (m.color ? ' style="background:' + esc(m.color) + '2e"' : "") + ">" +
+        '<span class="ph-emoji">' + m.emoji + "</span>" +
+        '<span class="ph-text">写真准备中</span></div>';
+    const facts = [];
+    if (m.birthday) facts.push(["生日", m.birthday.replace("-", ".")]);
+    if (m.mbti) facts.push(["MBTI", m.mbti]);
+    if (m.mascot) facts.push(["代表物", m.mascot]);
+    facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
+    facts.push(["出席", s.count + " / " + s.total + " 场"]);
+    const bioHtml = m.bio
+      ? m.bio.split("\n").map((p) => "<p>" + esc(p) + "</p>").join("")
+      : "<p class=\"bio-empty\">详细介绍整理中…</p>";
+    const links = (m.socials || [])
+      .map((url) =>
+        '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">📱 她的微博</a>')
+      .join(" ");
+    document.getElementById("modal-body").innerHTML =
+      photo +
+      '<div class="modal-info">' +
+      '<div class="modal-name">' + esc(m.name) + (m.heart ? " " + m.heart : "") +
+      ' <span class="modal-roman">' + esc(m.roman || "") + "</span></div>" +
+      '<div class="modal-facts">' +
+      facts.map(([l, v]) =>
+        '<span class="fact"><span class="fact-l">' + esc(l) + "</span>" + esc(v) + "</span>").join("") +
+      "</div>" +
+      '<div class="modal-bio">' + bioHtml + "</div>" +
+      links +
+      "</div>";
+    document.getElementById("member-modal").hidden = false;
+    document.body.style.overflow = "hidden";
   }
 
   // ---------- 演出档案 ----------

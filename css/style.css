@@ -218,6 +218,93 @@ h2::after {
   .show-note:empty { display: none; }
 }
 
+/* ---------- 成员详情弹窗 ---------- */
+.member-card { cursor: pointer; }
+.modal-mask[hidden] { display: none; }
+.modal-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 39, 52, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+.modal {
+  position: relative;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(43, 39, 52, 0.3);
+  max-width: 680px;
+  width: 100%;
+  max-height: 86vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+.modal-body { display: flex; gap: 20px; padding: 22px; }
+.modal-photo {
+  width: 240px;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(167, 139, 219, 0.25);
+}
+.modal-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent-soft);
+}
+.ph-emoji { font-size: 3.4rem; }
+.ph-text { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.1em; }
+.modal-info { min-width: 0; flex: 1; }
+.modal-name { font-size: 1.5rem; font-weight: 700; }
+.modal-roman { font-size: 0.95rem; font-weight: 400; color: var(--muted); letter-spacing: 0.06em; }
+.modal-facts { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; }
+.fact { font-size: 0.86rem; }
+.fact-l { color: var(--muted); margin-right: 4px; }
+.modal-bio {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+.modal-bio p { margin-bottom: 6px; }
+.bio-empty { color: var(--muted); }
+.modal-weibo {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 0.88rem;
+}
+@media (max-width: 560px) {
+  .modal-body { flex-direction: column; }
+  .modal-photo { width: 100%; max-width: 300px; margin: 0 auto; }
+}
+
 /* ---------- 分页 ---------- */
 .pager { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
 .page-btn {
@@ -351,6 +438,18 @@ footer a { color: var(--muted); }
 .edit-row:last-child { border-bottom: none; }
 .member-checks { display: inline-flex; flex-wrap: wrap; gap: 8px; color: var(--muted); }
 .field { display: inline-flex; align-items: center; gap: 4px; }
+.edit-row textarea {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 0.86rem;
+  font-family: inherit;
+  background: var(--card);
+  color: var(--text);
+  width: 420px;
+  max-width: 80vw;
+  resize: vertical;
+}
 .field-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
 .check, .add-form label { white-space: nowrap; font-size: 0.85rem; cursor: pointer; }
 button.del {

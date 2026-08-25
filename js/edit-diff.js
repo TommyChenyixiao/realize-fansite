@@ -20,14 +20,16 @@
   ];
   const MEMBER_FIELDS = [
     ["name", "名字"], ["roman", "罗马音"], ["emoji", "emoji"], ["heart", "应援心"],
-    ["color", "应援色"], ["birthday", "生日"], ["mascot", "代表物"],
-    ["intro", "出身/介绍"], ["socials", "链接"],
+    ["color", "应援色"], ["birthday", "生日"], ["mascot", "代表物"], ["mbti", "MBTI"],
+    ["intro", "出身/介绍"], ["bio", "详细介绍"], ["photo", "照片"], ["socials", "链接"],
   ];
 
   function fmt(v) {
     if (Array.isArray(v)) return v.length ? v.join("、") : "（无）";
     if (typeof v === "boolean") return v ? "是" : "否";
-    return v === "" || v == null ? "（空）" : String(v);
+    if (v === "" || v == null) return "（空）";
+    const s = String(v).replace(/\n/g, " ");
+    return s.length > 60 ? s.slice(0, 60) + "…" : s;
   }
 
   function isEmpty(v) {
