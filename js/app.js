@@ -129,9 +129,11 @@
         const links = (m.socials || [])
           .map((url) =>
             '<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
-            (url.includes("weibo")
-              ? '<img class="wb-icon" src="assets/weibo.png" alt="">微博'
-              : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
+            (url.includes("bilibili")
+              ? '<img class="wb-icon" src="assets/bilibili.png" alt="">B站'
+              : url.includes("weibo")
+                ? '<img class="wb-icon" src="assets/weibo.png" alt="">微博'
+                : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
             "</a>")
           .join(" ");
         return (
@@ -232,9 +234,15 @@
         }).join("")
       : "<p class=\"bio-empty\">详细介绍整理中…</p>";
     let links = (m.socials || [])
-      .map((url) =>
-        '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
-        '<img class="wb-icon" src="assets/weibo.png" alt="">她的微博</a>')
+      .map((url) => {
+        const kind = url.includes("bilibili")
+          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "她的B站"]
+          : url.includes("weibo")
+            ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "她的微博"]
+            : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
+        return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+          kind[0] + kind[1] + "</a>";
+      })
       .join(" ");
     if (m.fanGroup) {
       links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">' +
@@ -340,7 +348,7 @@
           '<span class="song-idx">' + String(i + 1).padStart(2, "0") + "</span>" +
           '<div class="song-main">' +
           '<div class="song-title">' + esc(song.title) + "</div>" +
-          (song.artist ? '<div class="song-artist">原曲：' + esc(song.artist) + "</div>" : "") +
+          (song.artist ? '<div class="song-artist">原唱：' + esc(song.artist) + "</div>" : "") +
           "</div>" +
           '<div class="song-stats">' + right + "</div>" +
           "</div>"

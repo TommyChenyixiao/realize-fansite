@@ -230,7 +230,7 @@
   function songRow(s) {
     const row = el("div", "edit-row");
     row.appendChild(labeled("曲名", input("text", s.title, (v) => { s.title = v; renderAll(); }, "", 14)));
-    row.appendChild(labeled("原曲", input("text", s.artist, (v) => { s.artist = v; updateDiff(); }, "原唱/出处(可选)", 12)));
+    row.appendChild(labeled("原唱", input("text", s.artist, (v) => { s.artist = v; updateDiff(); }, "原唱(可选)", 12)));
     row.appendChild(labeled("备注", input("text", s.note, (v) => { s.note = v; updateDiff(); }, "", 10)));
     row.appendChild(labeled("应援", textarea(s.call, (v) => { s.call = v; updateDiff(); })));
     row.appendChild(delButton(() => {
