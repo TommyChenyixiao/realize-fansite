@@ -1,0 +1,100 @@
+{
+  "group": {
+    "name": "RealizE",
+    "emoji": "✨",
+    "tagline": "上海地下偶像团体",
+    "debutDate": "2026-06-07",
+    "agency": "七韵文化",
+    "manager": "小飞Tobi",
+    "intro": "七韵IdolProductions旗下女子偶像团体，和我们一起实现所有愿望吧！",
+    "weibo": "https://weibo.com/n/RealizE_Project",
+    "managerWeibo": "https://weibo.com/n/-Toooobi-",
+    "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5323851308473034&source_from=11",
+    "managerIcon": "assets/tobi.png"
+  },
+  "members": [
+    {
+      "id": 2,
+      "name": "阿鱼",
+      "roman": "Sakana",
+      "emoji": "🐟",
+      "heart": "🤍",
+      "color": "#dfe3ea",
+      "birthday": "",
+      "intro": "初始成员",
+      "socials": [
+        "https://weibo.com/n/阿鱼Sakana_RealizE"
+      ],
+      "mascot": "小丑鱼"
+    },
+    {
+      "id": 1,
+      "name": "小圆",
+      "roman": "Madoka",
+      "emoji": "🐧",
+      "heart": "💜",
+      "color": "#a06ee1",
+      "birthday": "04-25",
+      "intro": "初始成员 · 原 REAL1TY",
+      "socials": [
+        "https://weibo.com/n/小圆Madoka_RealizE"
+      ],
+      "mascot": "帝企鹅宝宝"
+    },
+    {
+      "id": 4,
+      "name": "小噜",
+      "roman": "Ruruko",
+      "emoji": "🪼",
+      "heart": "🩵",
+      "color": "#6ec6e6",
+      "birthday": "06-10",
+      "intro": "初始成员 · 原 Anastasia",
+      "socials": [
+        "https://weibo.com/n/小噜Ruruko_RealizE"
+      ],
+      "mascot": "水母"
+    },
+    {
+      "id": 5,
+      "name": "冰冰",
+      "roman": "Icey",
+      "emoji": "🐬",
+      "heart": "💛",
+      "color": "#ffd44d",
+      "birthday": "02-16",
+      "intro": "原 Re∞Jumping!! · 兼任中",
+      "socials": [
+        "https://weibo.com/n/冰冰icey_RealizE"
+      ],
+      "mascot": "海豚"
+    },
+    {
+      "id": 3,
+      "name": "芋圆",
+      "roman": "Yuika",
+      "emoji": "🐰",
+      "heart": "💖",
+      "color": "#ff7ab8",
+      "birthday": "02-06",
+      "intro": "初始成员",
+      "socials": [
+        "https://weibo.com/n/芋圆Yuika_RealizE"
+      ],
+      "mascot": "垂耳兔"
+    }
+  ],
+  "milestones": [
+    1,
+    10,
+    20,
+    30,
+    50,
+    100,
+    150,
+    200,
+    300,
+    500,
+    1000
+  ]
+}

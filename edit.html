@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RealizE · 数据编辑</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="edit-page">
+
+  <header class="edit-header">
+    <h1>✏️ 数据编辑</h1>
+    <p class="sub">改动会先列在底部的「待保存改动」里,点保存才写入文件 · <a href="index.html">← 返回网站</a></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>团体资料</h2>
+      <div id="group-form" class="edit-rows"></div>
+    </section>
+
+    <section>
+      <h2>成员</h2>
+      <form id="member-add" class="add-form">
+        <input type="text" name="name" placeholder="名字" required size="6">
+        <input type="text" name="roman" placeholder="罗马音" size="8">
+        <input type="text" name="emoji" placeholder="emoji" size="4">
+        <button type="submit">+ 添加成员</button>
+      </form>
+      <div id="member-rows" class="edit-rows"></div>
+    </section>
+
+    <section>
+      <h2>演出记录</h2>
+      <form id="show-add" class="add-form">
+        <input type="date" name="date" required>
+        <input type="text" name="time" placeholder="时间(可选)" size="8">
+        <input type="text" name="venue" placeholder="场地(可选)" size="10">
+        <input type="text" name="note" placeholder="备注(可选)">
+        <label><input type="checkbox" name="special"> 特别场</label>
+        <span class="absent-label">缺席:</span>
+        <span id="show-add-absent"></span>
+        <button type="submit">+ 添加演出</button>
+      </form>
+      <div id="show-rows" class="edit-rows"></div>
+    </section>
+
+    <section>
+      <h2>大事纪</h2>
+      <form id="event-add" class="add-form">
+        <input type="date" name="date" required>
+        <input type="text" name="title" placeholder="标题" required>
+        <input type="text" name="note" placeholder="备注(可选)">
+        <span class="absent-label">关联:</span>
+        <span id="event-add-who"></span>
+        <button type="submit">+ 添加大事纪</button>
+      </form>
+      <div id="event-rows" class="edit-rows"></div>
+    </section>
+  </main>
+
+  <div id="diff-panel" class="diff-panel">
+    <div class="diff-head">
+      <strong>待保存改动</strong>
+      <span id="diff-status" class="diff-status"></span>
+      <span class="diff-actions">
+        <button id="discard" disabled>放弃改动</button>
+        <button id="save" class="primary" disabled>保存到文件</button>
+      </span>
+    </div>
+    <div id="diff-list" class="diff-list">暂无改动</div>
+  </div>
+
+  <script src="js/edit-diff.js"></script>
+  <script src="js/edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+// 纯数据推导，不碰 DOM。浏览器里挂到 window.derive，Node 测试里走 module.exports。
+(function (global) {
+  "use strict";
+
+  function sortByDate(items) {
+    return items
+      .slice()
+      .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  }
+
+  // 给全部演出按日期顺序编号（含未来场次）——"第N场"
+  function withNumbers(shows) {
+    return sortByDate(shows).map((s, i) => Object.assign({}, s, { n: i + 1 }));
+  }
+
+  // 已演 = 日期在今天之前；今天及以后算"接下来"
+  function splitByToday(numbered, today) {
+    return {
+      past: numbered.filter((s) => s.date < today),
+      upcoming: numbered.filter((s) => s.date >= today),
+    };
+  }
+
+  function attended(show, name) {
+    return !(show.absent || []).includes(name);
+  }
+
+  // 成员出席统计：只数已演场次
+  function memberStats(name, past) {
+    const shows = past.filter((s) => attended(s, name));
+    return {
+      count: shows.length,
+      total: past.length,
+      firstDate: shows.length ? shows[0].date : null,
+    };
+  }
+
+  // 下一个场次里程碑；已排期的话带上具体日期
+  function nextMilestone(pastCount, milestones, numbered) {
+    const target = milestones.find((m) => m > pastCount);
+    if (!target) return null;
+    const scheduled = numbered.find((s) => s.n === target);
+    return {
+      target,
+      remaining: target - pastCount,
+      date: scheduled ? scheduled.date : null,
+    };
+  }
+
+  // 大事纪 + 有备注/特别场的演出，合并成一条时间线
+  function buildTimeline(events, numbered) {
+    const items = events
+      .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
+      .concat(
+        numbered
+          .filter((s) => s.note || s.special)
+          .map((s) => ({
+            date: s.date,
+            title: s.note || "特别公演",
+            note: "第" + s.n + "场" + (s.special ? " · 特别场" : ""),
+            type: "show",
+          }))
+      );
+    return sortByDate(items);
+  }
+
+  // "今天"固定按北京时间（UTC+8，无夏令时）计算，与访问者所在时区无关
+  function beijingToday(nowMs) {
+    const d = new Date((nowMs == null ? Date.now() : nowMs) + 8 * 3600 * 1000);
+    const pad = (n) => String(n).padStart(2, "0");
+    return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate());
+  }
+
+  function daysBetween(from, to) {
+    const ms = Date.UTC(...splitYmd(to)) - Date.UTC(...splitYmd(from));
+    return Math.round(ms / 86400000);
+  }
+
+  function splitYmd(ymd) {
+    const [y, m, d] = ymd.split("-").map(Number);
+    return [y, m - 1, d];
+  }
+
+  const derive = {
+    sortByDate,
+    withNumbers,
+    splitByToday,
+    attended,
+    memberStats,
+    nextMilestone,
+    buildTimeline,
+    daysBetween,
+    beijingToday,
+  };
+
+  if (typeof module !== "undefined" && module.exports) module.exports = derive;
+  else global.derive = derive;
+})(this);
