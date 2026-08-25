@@ -12,7 +12,7 @@
       '<img class="fallback-photo" src="assets/group-photo.jpg" alt="RealizE">' +
       '<h1>🛠 网站维护中</h1>' +
       "<p>数据暂时加载不出来，请稍后再来看看。</p>" +
-      '<button class="fallback-retry" onclick="location.reload()">重试</button>' +
+      '<button class="fallback-retry" onclick="location.href=location.pathname">重试</button>' +
       "</div>";
   }
 
