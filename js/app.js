@@ -144,15 +144,19 @@
   }
 
   // ---------- 成员详情弹窗 ----------
+  let curMemberIndex = -1;
+
   function bindMemberModal() {
     const mask = document.getElementById("member-modal");
     document.getElementById("members").addEventListener("click", (e) => {
       if (e.target.closest("a")) return; // 点微博链接不弹窗
       const card = e.target.closest(".member-card");
       if (!card) return;
-      openMemberModal(site.members[Number(card.dataset.index)]);
+      openMemberModal(Number(card.dataset.index));
     });
     document.getElementById("modal-close").addEventListener("click", closeModal);
+    document.getElementById("modal-prev").addEventListener("click", () => navMember(-1));
+    document.getElementById("modal-next").addEventListener("click", () => navMember(1));
     document.getElementById("modal-body").addEventListener("click", (e) => {
       const btn = e.target.closest(".tr-btn");
       if (!btn) return;
@@ -160,11 +164,19 @@
       tr.hidden = !tr.hidden;
       btn.classList.toggle("on", !tr.hidden);
     });
+    // 点弹窗左/右侧空白 = 上/下一位,点上下空白 = 关闭
     mask.addEventListener("click", (e) => {
-      if (e.target === mask) closeModal();
+      if (e.target !== mask) return;
+      const rect = mask.querySelector(".modal").getBoundingClientRect();
+      if (e.clientX > rect.right) navMember(1);
+      else if (e.clientX < rect.left) navMember(-1);
+      else closeModal();
     });
     document.addEventListener("keydown", (e) => {
+      if (mask.hidden) return;
       if (e.key === "Escape") closeModal();
+      else if (e.key === "ArrowRight") navMember(1);
+      else if (e.key === "ArrowLeft") navMember(-1);
     });
     function closeModal() {
       mask.hidden = true;
@@ -172,7 +184,14 @@
     }
   }
 
-  function openMemberModal(m) {
+  function navMember(delta) {
+    const n = site.members.length;
+    openMemberModal((curMemberIndex + delta + n) % n);
+  }
+
+  function openMemberModal(index) {
+    curMemberIndex = index;
+    const m = site.members[index];
     const s = D.memberStats(m.name, past);
     // 竖版(3:4)照片位:有照片放照片,没有就用应援色底 + emoji 占位
     const photo = m.photo

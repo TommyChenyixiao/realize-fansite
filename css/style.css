@@ -252,6 +252,21 @@ h2::after {
   max-height: 92vh;
   overflow-y: auto;
 }
+.modal-nav {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  margin: 0 14px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--accent-deep);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(43, 39, 52, 0.2);
+}
+.modal-nav:hover { background: var(--accent); color: #fff; }
 .modal-close {
   position: absolute;
   top: 12px;
