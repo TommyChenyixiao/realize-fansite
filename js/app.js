@@ -348,7 +348,7 @@
       .map(
         (v) =>
           '<a class="video-row" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
-          '<span class="video-play">▶</span>' +
+          '<span class="video-play"></span>' +
           '<span class="video-title">' + esc(v.title) + "</span>" +
           (v.date ? '<span class="video-date">' + fmtDate(v.date) + "</span>" : "") +
           '<span class="video-src"><img class="wb-icon" src="assets/weibo.png" alt="">微博</span>' +
