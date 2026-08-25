@@ -31,6 +31,16 @@
     </section>
 
     <section>
+      <h2>场地</h2>
+      <form id="venue-add" class="add-form">
+        <input type="text" name="name" placeholder="场地名" required size="10">
+        <input type="text" name="address" placeholder="地址(可选)" size="26">
+        <button type="submit">+ 添加场地</button>
+      </form>
+      <div id="venue-rows" class="edit-rows"></div>
+    </section>
+
+    <section>
       <h2>演出记录</h2>
       <form id="show-add" class="add-form">
         <input type="date" name="date" required>
@@ -71,6 +81,7 @@
     <div id="diff-list" class="diff-list">暂无改动</div>
   </div>
 
+  <script src="js/fallback.js"></script>
   <script src="js/edit-diff.js"></script>
   <script src="js/edit.js"></script>
 </body>

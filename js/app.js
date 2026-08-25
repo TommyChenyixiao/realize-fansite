@@ -3,6 +3,10 @@
 (async function () {
   "use strict";
 
+  if (new URLSearchParams(location.search).has("maintenance")) {
+    throw new Error("维护模式预览(URL 带 ?maintenance)");
+  }
+
   const D = window.derive;
   const [site, shows, events, venues] = await Promise.all([
     fetch("data/site.json").then((r) => r.json()),
@@ -16,9 +20,13 @@
   const numbered = D.withNumbers(shows);
   const { past, upcoming } = D.splitByToday(numbered, today);
 
+  const PER_PAGE = 10;
+  let curFilter = null;
+  let curPage = 1;
+
   renderHero();
   renderMembers();
-  renderShows(null);
+  renderShows();
   bindFilters();
   renderTimeline();
 
@@ -132,15 +140,19 @@
   }
 
   // ---------- 演出档案 ----------
-  function renderShows(filterName) {
+  function renderShows() {
     const list = numbered
       .slice()
       .reverse()
-      .filter((s) => !filterName || D.attended(s, filterName));
+      .filter((s) => !curFilter || D.attended(s, curFilter));
     document.getElementById("show-count").textContent =
-      filterName ? filterName + " 出席 " + list.filter((s) => s.date < today).length + " 场"
-                 : "共 " + numbered.length + " 场";
-    document.getElementById("shows").innerHTML = list
+      curFilter ? curFilter + " 出席 " + list.filter((s) => s.date < today).length + " 场"
+                : "共 " + numbered.length + " 场";
+    const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+    if (curPage > pages) curPage = pages;
+    const slice = list.slice((curPage - 1) * PER_PAGE, curPage * PER_PAGE);
+    renderPager(pages);
+    document.getElementById("shows").innerHTML = slice
       .map((s) => {
         const future = s.date >= today;
         const lineup = site.members
@@ -185,8 +197,33 @@
       const btn = e.target.closest(".chip");
       if (!btn) return;
       box.querySelectorAll(".chip").forEach((b) => b.classList.toggle("on", b === btn));
-      renderShows(btn.dataset.name || null);
+      curFilter = btn.dataset.name || null;
+      curPage = 1;
+      renderShows();
     });
+  }
+
+  function renderPager(pages) {
+    const box = document.getElementById("pager");
+    if (pages <= 1) {
+      box.innerHTML = "";
+      return;
+    }
+    let html = '<button class="page-btn" data-page="' + (curPage - 1) + '"' +
+      (curPage === 1 ? " disabled" : "") + ">‹</button>";
+    for (let p = 1; p <= pages; p++) {
+      html += '<button class="page-btn' + (p === curPage ? " on" : "") +
+        '" data-page="' + p + '">' + p + "</button>";
+    }
+    html += '<button class="page-btn" data-page="' + (curPage + 1) + '"' +
+      (curPage === pages ? " disabled" : "") + ">›</button>";
+    box.innerHTML = html;
+    box.querySelectorAll(".page-btn").forEach((b) =>
+      b.addEventListener("click", () => {
+        curPage = Number(b.dataset.page);
+        renderShows();
+      })
+    );
   }
 
   // ---------- 时间线 ----------

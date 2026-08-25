@@ -5,8 +5,9 @@
 
   const ED = window.editDiff;
 
-  let orig = { site: null, shows: [], events: [] };
-  let cur = { site: null, shows: [], events: [] };
+  let orig = { site: null, shows: [], events: [], venues: [] };
+  let cur = { site: null, shows: [], events: [], venues: [] };
+  const hashes = {}; // 文件名 -> 读取时的 sha256,保存时给 serve.py 做并发核对
 
   await reload();
   bindAddForms();
@@ -16,13 +17,19 @@
     setStatus("已放弃改动");
   });
 
+  async function loadJson(name) {
+    const r = await fetch("data/" + name + ".json");
+    if (!r.ok) throw new Error("data/" + name + ".json 加载失败(HTTP " + r.status + ")");
+    const text = await r.text();
+    hashes[name] = await sha256(text);
+    return JSON.parse(text);
+  }
+
   async function reload() {
-    const [site, shows, events] = await Promise.all([
-      fetch("data/site.json").then((r) => r.json()),
-      fetch("data/shows.json").then((r) => r.json()),
-      fetch("data/events.json").then((r) => r.json()),
+    const [site, shows, events, venues] = await Promise.all([
+      loadJson("site"), loadJson("shows"), loadJson("events"), loadJson("venues"),
     ]);
-    orig = { site, shows, events };
+    orig = { site, shows, events, venues };
     cur = deepCopy(orig);
     renderAll();
   }
@@ -37,11 +44,38 @@
   function renderAll() {
     renderGroupForm();
     renderMemberRows();
+    renderVenueRows();
     renderShowRows();
     renderEventRows();
     renderChecks("show-add-absent", memberNames());
     renderChecks("event-add-who", whoOptions());
     updateDiff();
+  }
+
+  // ---------- 场地 ----------
+  function renderVenueRows() {
+    const box = document.getElementById("venue-rows");
+    box.innerHTML = "";
+    for (const v of cur.venues) box.appendChild(venueRow(v));
+  }
+
+  function venueRow(v) {
+    const row = el("div", "edit-row");
+    row.appendChild(labeled("名称", input("text", v.name, (nv) => {
+      if (nv && nv !== v.name) {
+        for (const s of cur.shows) if (s.venue === v.name) s.venue = nv;
+      }
+      v.name = nv;
+      renderAll();
+    }, "", 10)));
+    row.appendChild(labeled("地址", input("text", v.address, (nv) => { v.address = nv; updateDiff(); }, "", 28)));
+    row.appendChild(labeled("交通", input("text", v.transit, (nv) => { v.transit = nv; updateDiff(); }, "地铁/公交(可选)", 14)));
+    row.appendChild(labeled("备注", input("text", v.note, (nv) => { v.note = nv; updateDiff(); }, "", 12)));
+    row.appendChild(delButton(() => {
+      cur.venues = cur.venues.filter((x) => x !== v);
+      renderAll();
+    }, "删除场地(演出上的场地名不受影响)"));
+    return row;
   }
 
   // ---------- 团体资料 ----------
@@ -177,6 +211,20 @@
 
   // ---------- 添加表单 ----------
   function bindAddForms() {
+    document.getElementById("venue-add").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const f = ev.target;
+      cur.venues.push({
+        id: nextId(cur.venues.concat(orig.venues)),
+        name: f.name.value.trim(),
+        address: f.address.value.trim(),
+        transit: "", note: "",
+      });
+      f.reset();
+      renderVenueRows();
+      updateDiff();
+    });
+
     document.getElementById("member-add").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const f = ev.target;
@@ -244,34 +292,74 @@
 
   // ---------- 待保存改动 ----------
   function computeChanges() {
+    const tag = (list, coll) => list.map((c) => Object.assign({ coll }, c));
     return {
-      site: ED.diffObject(orig.site.group, cur.site.group, ED.GROUP_FIELDS, "团体资料")
-        .concat(ED.diffList(orig.site.members, cur.site.members, ED.MEMBER_FIELDS,
-          (m) => "成员「" + m.name + "」")),
-      shows: ED.diffList(orig.shows, cur.shows, ED.SHOW_FIELDS,
-        (s) => "演出 " + s.date + (s.note ? "「" + s.note + "」" : "")),
-      events: ED.diffList(orig.events, cur.events, ED.EVENT_FIELDS,
-        (e) => "大事纪 " + e.date + "「" + e.title + "」"),
+      group: tag(ED.diffObject(orig.site.group, cur.site.group, ED.GROUP_FIELDS, "团体资料"), "group"),
+      members: tag(ED.diffList(orig.site.members, cur.site.members, ED.MEMBER_FIELDS,
+        (m) => "成员「" + m.name + "」"), "members"),
+      venues: tag(ED.diffList(orig.venues, cur.venues, ED.VENUE_FIELDS,
+        (v) => "场地「" + v.name + "」"), "venues"),
+      shows: tag(ED.diffList(orig.shows, cur.shows, ED.SHOW_FIELDS,
+        (s) => "演出 " + s.date + (s.note ? "「" + s.note + "」" : "")), "shows"),
+      events: tag(ED.diffList(orig.events, cur.events, ED.EVENT_FIELDS,
+        (e) => "大事纪 " + e.date + "「" + e.title + "」"), "events"),
     };
+  }
+
+  // 撤销单条改动:恢复成文件里(orig)的样子
+  function undoChange(ch) {
+    if (ch.coll === "group") {
+      cur.site.group = deepCopy(orig.site.group);
+    } else {
+      const lists = {
+        members: [cur.site.members, orig.site.members],
+        venues: [cur.venues, orig.venues],
+        shows: [cur.shows, orig.shows],
+        events: [cur.events, orig.events],
+      };
+      const [curList, origList] = lists[ch.coll];
+      const idx = curList.findIndex((x) => x.id === ch.ref);
+      const origItem = origList.find((x) => x.id === ch.ref);
+      if (ch.type === "add" && idx >= 0) curList.splice(idx, 1);
+      else if (ch.type === "del" && origItem) curList.push(deepCopy(origItem));
+      else if (ch.type === "mod" && idx >= 0 && origItem) curList[idx] = deepCopy(origItem);
+      if (ch.coll === "members") cur.site.members = curList;
+    }
+    renderAll();
   }
 
   function updateDiff() {
     const c = computeChanges();
-    const all = c.site.concat(c.shows, c.events);
+    const all = c.group.concat(c.members, c.venues, c.shows, c.events);
+    const errors = ED.validateAll(cur);
     const box = document.getElementById("diff-list");
-    document.getElementById("save").disabled = !all.length;
+    document.getElementById("save").disabled = !all.length || errors.length > 0;
     document.getElementById("discard").disabled = !all.length;
-    setStatus(all.length ? all.length + " 项改动" : "");
-    if (!all.length) {
+    setStatus(
+      errors.length ? "⚠️ " + errors.length + " 处格式错误,修正后才能保存"
+        : all.length ? all.length + " 项改动" : ""
+    );
+    if (!all.length && !errors.length) {
       box.textContent = "暂无改动";
       return;
     }
     box.innerHTML = "";
+    for (const err of errors) {
+      const line = el("div", "diff-error");
+      line.textContent = "⚠️ " + err;
+      box.appendChild(line);
+    }
     const typeLabel = { add: "新增", mod: "修改", del: "删除" };
     for (const ch of all) {
       const item = el("div", "diff-item " + ch.type);
       const head = el("div", "diff-item-head");
       head.append(badge(typeLabel[ch.type], ch.type), " " + ch.label);
+      const undo = el("button", "diff-undo");
+      undo.type = "button";
+      undo.textContent = "撤销";
+      undo.title = "只撤销这一条改动";
+      undo.addEventListener("click", () => undoChange(ch));
+      head.appendChild(undo);
       item.appendChild(head);
       for (const d of ch.details) {
         const line = el("div", "diff-detail");
@@ -288,7 +376,8 @@
     sortShows(cur.shows);
     sortByDate(cur.events);
     const jobs = [];
-    if (c.site.length) jobs.push(post("site", cur.site));
+    if (c.group.length || c.members.length) jobs.push(post("site", cur.site));
+    if (c.venues.length) jobs.push(post("venues", cur.venues));
     if (c.shows.length) jobs.push(post("shows", cur.shows));
     if (c.events.length) jobs.push(post("events", cur.events));
     try {
@@ -297,7 +386,12 @@
       renderAll();
       setStatus("✓ 已保存");
     } catch (err) {
-      setStatus("✗ 保存失败:" + err.message + "(线上不可保存,请在本地 serve.py 下编辑)");
+      if (err.conflict) {
+        setStatus("✗ 保存被拒绝:数据已在别的标签页(或手工)被修改过。" +
+          "请复制好你的改动内容,刷新本页后重做,以免覆盖别处的修改。");
+      } else {
+        setStatus("✗ 保存失败:" + err.message + "(线上不可保存,请在本地 serve.py 下编辑)");
+      }
     }
   }
 
@@ -305,9 +399,23 @@
     const r = await fetch("/api/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ file, data }),
+      body: JSON.stringify({ file, data, baseHash: hashes[file] }),
     });
+    if (r.status === 409) {
+      const e = new Error("conflict");
+      e.conflict = true;
+      throw e;
+    }
     if (!r.ok) throw new Error("HTTP " + r.status);
+    const resp = await r.json();
+    if (resp.hash) hashes[file] = resp.hash;
+  }
+
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   // ---------- 小工具 ----------
