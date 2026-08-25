@@ -46,7 +46,7 @@
     if (g.agency) meta.push("运营:" + g.agency);
     if (g.manager) meta.push("经纪人:" + g.manager);
     setText("group-sub", meta.join(" · "));
-    const wbIcon = '<span class="wb-icon"></span>';
+    const wbIcon = '<img class="wb-icon" src="assets/weibo.png" alt="">';
     const groupLinks = [];
     if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' + wbIcon + "官方微博</a>");
     if (g.managerWeibo) {
@@ -115,7 +115,7 @@
           .map((url) =>
             '<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
             (url.includes("weibo")
-              ? '<span class="wb-icon"></span>微博'
+              ? '<img class="wb-icon" src="assets/weibo.png" alt="">微博'
               : esc(url.replace(/^https?:\/\//, "").split("/")[0])) +
             "</a>")
           .join(" ");
@@ -186,7 +186,7 @@
     const links = (m.socials || [])
       .map((url) =>
         '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
-        '<span class="wb-icon"></span>她的微博</a>')
+        '<img class="wb-icon" src="assets/weibo.png" alt="">她的微博</a>')
       .join(" ");
     document.getElementById("modal-body").innerHTML =
       photo +
