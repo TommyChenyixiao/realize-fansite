@@ -28,6 +28,10 @@
   renderHero();
   renderMembers();
   bindMemberModal();
+  // 预载成员写真,弹窗左右切换不闪白
+  site.members.forEach((m) => {
+    if (m.photo) new Image().src = m.photo;
+  });
   renderShows();
   bindFilters();
   renderVideos();
@@ -45,8 +49,8 @@
       "出道第 " + (D.daysBetween(g.debutDate, today) + 1) + " 天",
       "已演出 " + past.length + " 场",
     ];
-    if (g.agency) meta.push("运营:" + g.agency);
-    if (g.manager) meta.push("经纪人:" + g.manager);
+    if (g.agency) meta.push("运营：" + g.agency);
+    if (g.manager) meta.push("经纪人：" + g.manager);
     setText("group-sub", meta.join(" · "));
     const wbIcon = '<img class="wb-icon" src="assets/weibo.png" alt="">';
     const groupLinks = [];
@@ -54,12 +58,13 @@
     if (g.managerWeibo) {
       const icon = g.managerIcon
         ? '<img class="link-avatar" src="' + esc(g.managerIcon) + '" alt=""> '
-        : "👤 ";
+        : '<span class="link-emoji">👤</span>';
       groupLinks.push('<a href="' + esc(g.managerWeibo) + '" target="_blank" rel="noopener">' +
         icon + esc(g.manager || "经纪人") + " 微博</a>");
     }
     if (g.fanGroup) {
-      groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">💬 微博群</a>');
+      groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">' +
+        '<span class="link-emoji">💬</span>微博群</a>');
     }
     if (g.agencyWeibo) {
       groupLinks.push('<a href="' + esc(g.agencyWeibo) + '" target="_blank" rel="noopener">' +
@@ -116,7 +121,7 @@
         if (m.birthday) rows.push(["生日", m.birthday.replace("-", ".")]);
         if (m.mascot) rows.push(["代表物", m.mascot]);
         rows.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
-        rows.push(["出席", s.count + " / " + s.total + " 场"]);
+        rows.push(["出席", s.count + " 场"]);
         const links = (m.socials || [])
           .map((url) =>
             '<a href="' + esc(url) + '" target="_blank" rel="noopener">' +
@@ -211,7 +216,7 @@
     if (m.mbti) facts.push(["MBTI", m.mbti]);
     if (m.mascot) facts.push(["代表物", m.mascot]);
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
-    facts.push(["出席", s.count + " / " + s.total + " 场"]);
+    facts.push(["出席", s.count + " 场"]);
     // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
     const bioHtml = m.bio
       ? m.bio.split("\n").map((line) => {
@@ -228,11 +233,12 @@
         '<img class="wb-icon" src="assets/weibo.png" alt="">她的微博</a>')
       .join(" ");
     if (m.fanGroup) {
-      links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">💬 ' +
-        esc(m.fanGroupName || "粉丝群") + "</a>";
+      links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">' +
+        '<span class="link-emoji">💬</span>' + esc(m.fanGroupName || "粉丝群") + "</a>";
     }
     if (m.chaohua) {
-      links += ' <a class="modal-weibo" href="' + esc(m.chaohua) + '" target="_blank" rel="noopener">⭐ 超话</a>';
+      links += ' <a class="modal-weibo" href="' + esc(m.chaohua) + '" target="_blank" rel="noopener">' +
+        '<span class="link-emoji">⭐</span>超话</a>';
     }
     document.getElementById("modal-body").innerHTML =
       photo +
@@ -278,7 +284,7 @@
           '<div class="show-n">' + (future ? "待演" : "第" + s.n + "场") + "</div>" +
           '<div class="show-date">' + fmtDate(s.date) + " " + weekday(s.date) +
           (s.time ? " " + esc(s.time) : "") + "</div>" +
-          '<div class="show-note">' +
+          '<div class="show-note"' + (s.note ? ' title="' + esc(s.note) + '"' : "") + ">" +
           (s.special ? '<span class="tag">特别场</span>' : "") +
           (s.venue ? '<span class="show-venue">📍' + esc(s.venue) + "</span>" : "") +
           esc(s.note || "") +
@@ -333,6 +339,8 @@
       b.addEventListener("click", () => {
         curPage = Number(b.dataset.page);
         renderShows();
+        // 翻页后把列表顶部滚回视口,避免停在半空
+        document.getElementById("filters").scrollIntoView({ behavior: "smooth", block: "start" });
       })
     );
   }
@@ -350,9 +358,10 @@
           '<a class="video-row" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
           '<span class="video-play"></span>' +
           '<span class="video-title">' + esc(v.title) + "</span>" +
+          '<span class="video-right">' +
           (v.date ? '<span class="video-date">' + fmtDate(v.date) + "</span>" : "") +
           '<span class="video-src"><img class="wb-icon" src="assets/weibo.png" alt="">微博</span>' +
-          "</a>"
+          "</span></a>"
       )
       .join("");
   }
