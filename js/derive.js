@@ -47,7 +47,7 @@
     };
   }
 
-  // 大事纪 + 有备注/特别场的演出，合并成一条时间线
+  // 大事纪 + 有备注/特别场的演出，合并成一条时间线(新事在前,倒序)
   function buildTimeline(events, numbered) {
     const items = events
       .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
@@ -61,7 +61,7 @@
             type: "show",
           }))
       );
-    return sortByDate(items);
+    return sortByDate(items).reverse();
   }
 
   // 月历网格：返回补齐首尾周的扁平格子数组（周日开头），每格 {ymd, day, inMonth}
