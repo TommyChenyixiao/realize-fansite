@@ -184,15 +184,15 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   color: var(--accent-deep);
   text-shadow: 0 2px 16px rgba(167, 139, 219, 0.4);
 }
-/* 团名下:小字副标(疏排)→ 一句简介 → PROFILE 资料行 */
+/* 眉题(属性小字)在上,大标语在下——海报式层级 */
 .tagline {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   /* 副标含拉丁字母(IdolProductions),疏排适度,免得字母被拉散 */
   letter-spacing: 0.16em;
   text-indent: 0.16em;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /* 副标各段不内部换行,窄屏只在分隔符处折行 */
 .tg-seg { white-space: nowrap; }
