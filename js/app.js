@@ -103,7 +103,11 @@
     const g = site.group;
     document.title = g.name + " " + g.emoji;
     // 大标题用 catchphrase(照片里已有 RealizE 手写字,避免名字连出现两次)
-    setText("group-name", g.emoji + " " + (g.catch || g.name) + " " + g.emoji);
+    // 标语以全角标点(!?。~)结尾时,标点字框右半是空的——
+    // 右侧 emoji 前不再加空格,否则整行墨迹左偏、与上行光学不对中
+    const catchText = g.catch || g.name;
+    const tailGap = /[！？。～!?]$/.test(catchText) ? "" : " ";
+    setText("group-name", g.emoji + " " + catchText + tailGap + g.emoji);
     // 副标:所属 + 定位 + 站点性质(表明是粉丝站,与免责声明呼应);
     // 每段 nowrap,窄屏只在「·」处换行,不把词组拦腰截断
     document.getElementById("group-tagline").innerHTML =
