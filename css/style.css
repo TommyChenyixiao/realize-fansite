@@ -194,7 +194,7 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   /* 副标含拉丁字母(IdolProductions),疏排适度,免得字母被拉散 */
   letter-spacing: 0.16em;
   /* 桌面端:眉题首字「七」与下方大标语首字「和」左缘对齐(实测校准) */
-  text-indent: -25px;
+  text-indent: -17px;
   margin-bottom: 10px;
 }
 /* 副标各段不内部换行,窄屏只在分隔符处折行 */
