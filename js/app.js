@@ -50,10 +50,6 @@
   renderTimeline();
   initReveal();
   initNavAutoHide();
-  // 编辑入口只在本地开发时显示(线上编辑页本来也没有保存接口)
-  if (["localhost", "127.0.0.1"].includes(location.hostname)) {
-    document.getElementById("edit-link").hidden = false;
-  }
 
   // ---------- 顶栏:大图上透明白字,滚过 Hero 后变毛玻璃 ----------
   function initNavAutoHide() {
