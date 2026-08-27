@@ -18,9 +18,9 @@ RealizE 是上海地下偶像团体(七韵文化/七韵IdolProductions 旗下,�
    edit.html/edit.js 编辑支持 + serve.py 白名单」四件事一起做,缺一不可。
    编辑改动先进「待保存改动」预览面板,确认后才写文件。
 3. **视觉**:结构参考日本地偶官网(miteititle.com、peel-the-apple.com 等),
-   但永远保持 RealizE 官方梦幻淡紫色系。详见 STYLE.md。
+   但永远保持 RealizE 官方梦幻淡紫色系。详见 docs/STYLE.md。
 4. **字体**:中文一律干净的系统黑体,**绝不用**圆体/手写体等花哨中文字体;
-   拉丁字母/数字/日期用 Comfortaa;手写体只用于 logo/标题。(STYLE.md 有完整规范)
+   拉丁字母/数字/日期用 Comfortaa;手写体只用于 logo/标题。(docs/STYLE.md 有完整规范)
 5. **微博图标用官方红色 logo**,不改色。B 站用小电视图标。
 6. **时间一律北京时间**(UTC+8),用 derive.beijingToday(),不用本地时区。
 7. **票务/价格信息不做**(用户明确说过先不做)。
@@ -43,7 +43,7 @@ RealizE 是上海地下偶像团体(七韵文化/七韵IdolProductions 旗下,�
   会覆盖 hidden 属性,新样式别再踩这个坑。
 - 测试:`node --test test/*.test.js`,改 derive.js / edit-diff.js 必须跑。
 - 本地开发:`python3 serve.py` → http://localhost:8123(编辑页 /edit.html)。
-- 路线图在 PLAN.md(2.0/3.0 明细),视觉规范在 STYLE.md,项目说明在 README.md。
+- 路线图在 docs/PLAN.md(2.0/3.0 明细),视觉规范在 docs/STYLE.md,项目说明在 README.md。
 - 信息来源:官方微博 @RealizE_Project、五位成员微博置顶、chinaidols fandom wiki。
   更新成员资料时优先扫她们的微博置顶。
 

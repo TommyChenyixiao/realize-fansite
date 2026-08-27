@@ -1,1 +1,5 @@
 .DS_Store
+/Screenshot*.png
+/IMG_*.HEIC
+/IMG_*.heic
+/*.heic
