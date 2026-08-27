@@ -24,8 +24,11 @@ RealizE 是上海地下偶像团体(七韵文化/七韵IdolProductions 旗下,�
 5. **微博图标用官方红色 logo**,不改色。B 站用小电视图标。
 6. **时间一律北京时间**(UTC+8),用 derive.beijingToday(),不用本地时区。
 7. **票务/价格信息不做**(用户明确说过先不做)。
-8. **开发流程**:功能改动开新 branch → 本地起 serve.py 让用户测 → 用户确认后才提 PR。
-   master 上的纯数据更新可用 tools/publish.sh 直接推。
+8. **开发流程(2026-08-27 起收紧)**:**任何**改动——代码、数据、文案——一律
+   开分支 → 本地验证 → 提 PR,由站长在 GitHub 上审批合并后自动上线。
+   **AI 永远不做的事**:`git push` 到 master、`git push -f`、`gh pr merge`/approve、
+   改仓库设置(可见性/Pages/权限)。一切上线动作只到"提 PR"为止,合并权只在站长手里。
+   master 有 Ruleset 保护(必须走 PR + 禁 force push)。publish.sh 也已改为自动开分支提 PR。
    **每一步 UI 改动必须双端校验后才 commit**:桌面(localhost:8123)+ 手机
    (tools/mobile-preview.html,390×844 iframe)都截图确认,再跑单测。缺一端不算完成。
 9. 成员卡顺序:阿鱼 → 小圆 → 小噜 → 冰冰 → 芋圆(与团体公式照对位,别动)。
