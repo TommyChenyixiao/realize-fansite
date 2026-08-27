@@ -51,7 +51,8 @@ python3 serve.py          # → http://localhost:8123
 
 - `PLAN.md` —— 路线图(已完成 / 计划中)
 - `STYLE.md` —— 视觉规范(梦幻淡紫色系、字体铁律,请勿破坏)
-- 约定:功能改动走 branch + PR;新增内容类型 = 新 JSON + 渲染 + 编辑页 + serve.py
+- 约定:**所有改动(含数据)一律走 branch + PR**,master 受保护不可直推,
+  仅站长可审批合并;新增内容类型 = 新 JSON + 渲染 + 编辑页 + serve.py
   白名单四件套;改完跑 `node --test test/*.test.js`,UI 改动需桌面 + 手机
   (`tools/mobile-preview.html`)双端确认
 
