@@ -103,18 +103,28 @@
     const g = site.group;
     document.title = g.name + " " + g.emoji;
     // 大标题用 catchphrase(照片里已有 RealizE 手写字,避免名字连出现两次)
-    setText("group-name", g.emoji + " " + (g.catch || g.name) + " " + g.emoji);
-    // 副标一行:所属 + 定位(intro · tagline),避免多行层级碎、信息重复
-    setText("group-tagline", [g.intro, g.tagline].filter(Boolean).join(" · "));
+    // 标语以全角标点(!?。~)结尾时,标点字框右半是空的——
+    // 右侧 emoji 前不再加空格,否则整行墨迹左偏、与上行光学不对中
+    const catchText = g.catch || g.name;
+    const tailGap = /[！？。～!?]$/.test(catchText) ? "" : " ";
+    setText("group-name", g.emoji + " " + catchText + tailGap + g.emoji);
+    // 副标:所属 + 定位 + 站点性质(表明是粉丝站,与免责声明呼应);
+    // 每段 nowrap,窄屏只在「·」处换行,不把词组拦腰截断
+    document.getElementById("group-tagline").innerHTML =
+      [g.intro, g.tagline, "粉丝应援站"].filter(Boolean)
+        .map((t) => '<span class="tg-seg">' + esc(t) + "</span>")
+        .join(" · ");
     // PROFILE 式资料行:标签 + 值,竖线分隔
     const facts = [["出道", fmtDate(g.debutDate)]];
     if (g.agency) facts.push(["运营", g.agency]);
     if (g.manager) facts.push(["经纪人", g.manager]);
+    // 「竖线+资料项」绑成整体,窄屏换行不会把竖线孤零零留在行尾
     document.getElementById("group-sub").innerHTML = facts
-      .map(([k, v]) =>
+      .map(([k, v], i) =>
+        '<span class="fact-unit">' + (i ? '<span class="f-sep"></span>' : "") +
         '<span class="fact"><span class="f-label">' + esc(k) +
-        '</span><span class="f-value">' + esc(v) + "</span></span>")
-      .join('<span class="f-sep"></span>');
+        '</span><span class="f-value">' + esc(v) + "</span></span></span>")
+      .join("");
     const groupLinks = [];
     if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' +
       '<img class="wb-icon" src="assets/weibo.png" alt="">官方微博</a>');
@@ -163,7 +173,7 @@
         "</div>" +
         '<div class="next-venuebox">' +
         (next.venue ? '<div class="next-venue">📍 ' + esc(next.venue) + "</div>" : "") +
-        (v && v.address ? '<div class="next-address">' + esc(v.address) + "</div>" : "") +
+        (v && v.address ? '<div class="next-address">' + glueTail(v.address) + "</div>" : "") +
         (next.note ? '<div class="next-note">' + esc(next.note) + "</div>" : "") +
         "</div>" +
         "</div>";
@@ -501,7 +511,7 @@
       (s.time ? " · " + esc(s.time) : "") + "</div>" +
       (s.venue
         ? '<div class="sd-venue">📍 ' + esc(s.venue) +
-          (v && v.address ? '<span class="sd-address">' + esc(v.address) + "</span>" : "") + "</div>"
+          (v && v.address ? '<span class="sd-address">' + glueTail(v.address) + "</span>" : "") + "</div>"
         : "") +
       (s.note ? '<div class="sd-note">' + esc(s.note) + "</div>" : "") +
       '<div class="sd-label">出席</div><div class="sd-lineup">' + lineup + "</div>" +
@@ -728,5 +738,16 @@
     return String(s).replace(/[&<>"]/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
     );
+  }
+  // 地址末尾的短尾巴(如「2F」)连同前一个词整体不换行,避免孤字/孤词独占一行。
+  // 返回 HTML(内部已转义),调用处直接拼进 innerHTML
+  function glueTail(s) {
+    const tokens = String(s).split(" ");
+    if (tokens.length > 1 && [...tokens[tokens.length - 1]].length <= 3) {
+      const tail = tokens.splice(-2).join(" ");
+      return tokens.map(esc).join(" ") + (tokens.length ? " " : "") +
+        '<span class="nbk">' + esc(tail) + "</span>";
+    }
+    return esc(s);
   }
 })();

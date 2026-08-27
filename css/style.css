@@ -176,24 +176,31 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
 /* ---------- Hero 信息区 ---------- */
 .hero-info { max-width: 860px; margin: 0 auto; padding: 4px 20px 28px; text-align: center; }
-/* 大标题是中文 catchphrase(照片里已有 RealizE 手写字) */
+/* 大标题是中文 catchphrase(照片里已有 RealizE 手写字);
+   text-indent 补偿行尾字距,墨迹与眉题同轴 */
 .hero-info h1 {
   font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  text-indent: 0.08em;
   color: var(--accent-deep);
   text-shadow: 0 2px 16px rgba(167, 139, 219, 0.4);
 }
-/* 团名下:小字副标(疏排)→ 一句简介 → PROFILE 资料行 */
+/* 眉题(属性小字)在上,大标语在下——海报式层级 */
 .tagline {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   /* 副标含拉丁字母(IdolProductions),疏排适度,免得字母被拉散 */
   letter-spacing: 0.16em;
-  text-indent: 0.16em;
-  margin-top: 10px;
+  /* 桌面端:眉题首字「七」与下方大标语首字「和」左缘对齐(实测校准) */
+  text-indent: -25px;
+  margin-bottom: 10px;
 }
+/* 副标各段不内部换行,窄屏只在分隔符处折行 */
+.tg-seg { white-space: nowrap; }
+/* 地址末段(场地名+楼层)整体不换行 */
+.nbk { white-space: nowrap; }
 .sub { color: var(--text); font-size: 1rem; line-height: 1.9; margin-top: 14px; }
 
 .facts {
@@ -204,6 +211,7 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   flex-wrap: wrap;
   margin-top: 18px;
 }
+.fact-unit { display: inline-flex; align-items: center; gap: 20px; white-space: nowrap; }
 .fact { display: inline-flex; align-items: baseline; gap: 8px; }
 .f-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.14em; }
 .f-value { font-size: 0.95rem; font-weight: 600; }
@@ -350,6 +358,9 @@ h2::after {
   background: var(--grad);
   margin: 4px auto 0;
 }
+/* 编辑页是工具页:标题豁免居中,回到左对齐 */
+.edit-page h2 { text-align: left; }
+.edit-page h2::after { margin-left: 0; }
 .h2-sub { font-size: 0.85rem; font-weight: normal; color: var(--muted); margin-left: 8px; }
 .h2-en {
   font-size: 0.72rem;
@@ -1256,7 +1267,10 @@ button.del:hover { opacity: 1; }
   .hero-info h1 { font-size: 1.26rem; letter-spacing: 0.04em; white-space: nowrap; }
   .tagline { font-size: 0.78rem; letter-spacing: 0.08em; text-indent: 0.08em; }
   .sub { font-size: 0.92rem; }
-  .facts { gap: 12px; }
+  /* 换行后竖线会变成行首孤儿——手机端隐藏竖线,靠间距分隔 */
+  .facts { gap: 6px 16px; }
+  .f-sep { display: none; }
+  .fact-unit { gap: 0; }
   .next-show { padding: 16px 18px 18px; }
   .next-flex { flex-direction: column; gap: 12px; text-align: center; }
   .next-datebox {
