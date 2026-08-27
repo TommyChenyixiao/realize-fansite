@@ -193,8 +193,8 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   font-weight: 500;
   /* 副标含拉丁字母(IdolProductions),疏排适度,免得字母被拉散 */
   letter-spacing: 0.16em;
-  /* 桌面端按站长目测微调:整行左移约 6px */
-  text-indent: -4px;
+  /* 桌面端按站长目测微调:整行左移约 9px */
+  text-indent: -7px;
   margin-bottom: 10px;
 }
 /* 副标各段不内部换行,窄屏只在分隔符处折行 */
