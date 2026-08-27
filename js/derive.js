@@ -64,6 +64,24 @@
     return sortByDate(items);
   }
 
+  // 月历网格：返回补齐首尾周的扁平格子数组（周日开头），每格 {ymd, day, inMonth}
+  function monthGrid(year, month) {
+    const pad = (n) => String(n).padStart(2, "0");
+    const startDow = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    const total = Math.ceil((startDow + daysInMonth) / 7) * 7;
+    const cells = [];
+    for (let i = 0; i < total; i++) {
+      const d = new Date(Date.UTC(year, month - 1, i - startDow + 1));
+      cells.push({
+        ymd: d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()),
+        day: d.getUTCDate(),
+        inMonth: i - startDow + 1 >= 1 && i - startDow + 1 <= daysInMonth,
+      });
+    }
+    return cells;
+  }
+
   // 每首歌的披露统计：次数 + 最近披露日期（只数已演场次）
   function songStats(songId, pastShows) {
     const dates = pastShows
@@ -112,6 +130,7 @@
     beijingToday,
     songStats,
     setlistLabels,
+    monthGrid,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = derive;

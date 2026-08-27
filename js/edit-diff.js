@@ -13,9 +13,10 @@
     ["date", "日期"], ["title", "标题"], ["note", "备注"], ["who", "关联"],
   ];
   const GROUP_FIELDS = [
-    ["name", "团名"], ["emoji", "emoji"], ["tagline", "一句介绍"],
+    ["name", "团名"], ["emoji", "emoji"], ["tagline", "一句介绍"], ["catch", "标语"],
     ["debutDate", "出道日"], ["agency", "经纪公司"], ["manager", "经纪人"],
-    ["weibo", "官方微博"], ["managerWeibo", "经纪人微博"], ["managerIcon", "经纪人头像"],
+    ["weibo", "官方微博"], ["xiaohongshu", "官方小红书"], ["douyin", "官方抖音"],
+    ["managerWeibo", "经纪人微博"], ["managerIcon", "经纪人头像"],
     ["fanGroup", "微博群"], ["agencyWeibo", "经纪公司微博"], ["intro", "介绍"],
   ];
   const VENUE_FIELDS = [
@@ -26,10 +27,14 @@
     ["color", "应援色"], ["birthday", "生日"], ["mascot", "代表物"], ["mbti", "MBTI"],
     ["intro", "出身/介绍"], ["bio", "详细介绍"], ["photo", "照片"],
     ["fanGroupName", "粉丝群名"], ["fanGroup", "粉丝群链接"], ["chaohua", "超话"],
-    ["socials", "链接"],
+    ["catch", "担当宣言"], ["socials", "链接"],
   ];
   const VIDEO_FIELDS = [
-    ["date", "日期"], ["title", "标题"], ["url", "链接"],
+    ["date", "日期"], ["title", "标题"], ["url", "链接"], ["cover", "封面"],
+  ];
+  const NEWS_FIELDS = [
+    ["date", "日期"], ["cat", "分类"], ["title", "标题"], ["body", "正文"],
+    ["link", "链接"], ["pinned", "置顶"],
   ];
 
   function fmt(v) {
@@ -85,8 +90,9 @@
     const okUrl = (v) => !v || /^https?:\/\//.test(v);
     const g = cur.site.group;
     if (!g.name) errs.push("团名不能为空");
-    for (const [key, label] of [["weibo", "官方微博"], ["managerWeibo", "经纪人微博"],
-      ["fanGroup", "微博群"], ["agencyWeibo", "经纪公司微博"]]) {
+    for (const [key, label] of [["weibo", "官方微博"], ["xiaohongshu", "官方小红书"],
+      ["douyin", "官方抖音"], ["managerWeibo", "经纪人微博"], ["fanGroup", "微博群"],
+      ["agencyWeibo", "经纪公司微博"]]) {
       if (!okUrl(g[key])) errs.push("团体·" + label + " 链接需以 http(s):// 开头");
     }
     for (const m of cur.site.members) {
@@ -112,13 +118,18 @@
       if (!okUrl(v.url) || !v.url) errs.push("影像「" + (v.title || "?") + "」链接需以 http(s):// 开头");
     }
     for (const s of cur.songs || []) if (!s.title) errs.push("有歌曲的曲名为空");
+    for (const n of cur.news || []) {
+      if (!n.title) errs.push("有情报的标题为空");
+      if (!n.date) errs.push("情报「" + (n.title || "?") + "」日期为空");
+      if (!okUrl(n.link)) errs.push("情报「" + (n.title || "?") + "」链接需以 http(s):// 开头");
+    }
     return errs;
   }
 
   const api = {
     diffList, diffObject, validateAll, fmt,
     SHOW_FIELDS, EVENT_FIELDS, GROUP_FIELDS, MEMBER_FIELDS, VENUE_FIELDS, VIDEO_FIELDS,
-    SONG_FIELDS,
+    SONG_FIELDS, NEWS_FIELDS,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else global.editDiff = api;

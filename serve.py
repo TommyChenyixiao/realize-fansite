@@ -24,6 +24,7 @@ SAVABLE = {
     "venues": (ROOT / "data" / "venues.json", list),
     "videos": (ROOT / "data" / "videos.json", list),
     "songs": (ROOT / "data" / "songs.json", list),
+    "news": (ROOT / "data" / "news.json", list),
 }
 
 

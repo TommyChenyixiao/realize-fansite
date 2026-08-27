@@ -5,8 +5,8 @@
 
   const ED = window.editDiff;
 
-  let orig = { site: null, shows: [], events: [], venues: [], videos: [], songs: [] };
-  let cur = { site: null, shows: [], events: [], venues: [], videos: [], songs: [] };
+  let orig = { site: null, shows: [], events: [], venues: [], videos: [], songs: [], news: [] };
+  let cur = { site: null, shows: [], events: [], venues: [], videos: [], songs: [], news: [] };
   const hashes = {}; // 文件名 -> 读取时的 sha256,保存时给 serve.py 做并发核对
 
   await reload();
@@ -26,11 +26,11 @@
   }
 
   async function reload() {
-    const [site, shows, events, venues, videos, songs] = await Promise.all([
+    const [site, shows, events, venues, videos, songs, news] = await Promise.all([
       loadJson("site"), loadJson("shows"), loadJson("events"), loadJson("venues"),
-      loadJson("videos"), loadJson("songs"),
+      loadJson("videos"), loadJson("songs"), loadJson("news"),
     ]);
-    orig = { site, shows, events, venues, videos, songs };
+    orig = { site, shows, events, venues, videos, songs, news };
     cur = deepCopy(orig);
     renderAll();
   }
@@ -46,6 +46,7 @@
     renderGroupForm();
     renderMemberRows();
     renderVenueRows();
+    renderNewsRows();
     renderSongRows();
     renderShowRows();
     renderEventRows();
@@ -94,10 +95,13 @@
     }, "", 10)));
     row.appendChild(labeled("emoji", input("text", g.emoji, (v) => { g.emoji = v; updateDiff(); }, "", 4)));
     row.appendChild(labeled("一句介绍", input("text", g.tagline, (v) => { g.tagline = v; updateDiff(); }, "", 18)));
+    row.appendChild(labeled("标语", input("text", g.catch, (v) => { g.catch = v; updateDiff(); }, "首页大标题", 18)));
     row.appendChild(labeled("出道日", input("date", g.debutDate, (v) => { g.debutDate = v; updateDiff(); })));
     row.appendChild(labeled("经纪公司", input("text", g.agency, (v) => { g.agency = v; updateDiff(); }, "", 8)));
     row.appendChild(labeled("经纪人", input("text", g.manager, (v) => { g.manager = v; updateDiff(); }, "", 8)));
     row.appendChild(labeled("官方微博", input("text", g.weibo, (v) => { g.weibo = v; updateDiff(); }, "链接", 18)));
+    row.appendChild(labeled("官方小红书", input("text", g.xiaohongshu, (v) => { g.xiaohongshu = v; updateDiff(); }, "链接", 18)));
+    row.appendChild(labeled("官方抖音", input("text", g.douyin, (v) => { g.douyin = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("经纪人微博", input("text", g.managerWeibo, (v) => { g.managerWeibo = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("微博群", input("text", g.fanGroup, (v) => { g.fanGroup = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("经纪公司微博", input("text", g.agencyWeibo, (v) => { g.agencyWeibo = v; updateDiff(); }, "链接", 18)));
@@ -132,6 +136,7 @@
     row.appendChild(labeled("粉丝群名", input("text", m.fanGroupName, (v) => { m.fanGroupName = v; updateDiff(); }, "", 10)));
     row.appendChild(labeled("粉丝群链接", input("text", m.fanGroup, (v) => { m.fanGroup = v; updateDiff(); }, "链接", 16)));
     row.appendChild(labeled("超话", input("text", m.chaohua, (v) => { m.chaohua = v; updateDiff(); }, "链接(可选)", 16)));
+    row.appendChild(labeled("担当宣言", input("text", m.catch, (v) => { m.catch = v; updateDiff(); }, "如:浅紫色担当", 10)));
     row.appendChild(labeled("链接", input("text", (m.socials || []).join(", "), (v) => {
       m.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
       updateDiff();
@@ -220,6 +225,40 @@
     return row;
   }
 
+  // ---------- 情报 ----------
+  function renderNewsRows() {
+    const box = document.getElementById("news-rows");
+    box.innerHTML = "";
+    const sorted = cur.news.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+    for (const n of sorted) box.appendChild(newsRow(n));
+  }
+
+  function newsRow(n) {
+    const row = el("div", "edit-row");
+    row.appendChild(input("date", n.date, (v) => { n.date = v; renderNewsRows(); updateDiff(); }));
+    const sel = document.createElement("select");
+    sel.className = "sl-select";
+    for (const c of ["公演", "物贩", "生诞祭", "其他"]) {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      if (n.cat === c) opt.selected = true;
+      sel.appendChild(opt);
+    }
+    sel.addEventListener("change", () => { n.cat = sel.value; updateDiff(); });
+    row.appendChild(labeled("分类", sel));
+    row.appendChild(input("text", n.title, (v) => { n.title = v; updateDiff(); }, "标题", 20));
+    row.appendChild(input("text", n.link, (v) => { n.link = v; updateDiff(); }, "链接(可选)", 16));
+    row.appendChild(checkbox("置顶", !!n.pinned, (v) => { n.pinned = v; updateDiff(); }));
+    row.appendChild(labeled("正文", textarea(n.body, (v) => { n.body = v; updateDiff(); })));
+    row.appendChild(delButton(() => {
+      cur.news = cur.news.filter((x) => x !== n);
+      renderNewsRows();
+      updateDiff();
+    }));
+    return row;
+  }
+
   // ---------- 歌曲 ----------
   function renderSongRows() {
     const box = document.getElementById("song-rows");
@@ -274,7 +313,13 @@
     }
     sel.addEventListener("change", () => {
       if (!sel.value) return;
-      show.setlist = (show.setlist || []).concat(Number(sel.value));
+      let list = show.setlist || [];
+      // 开场 SE 每场必有:歌单从空开始录第一首时自动补上(除非第一首就是 SE)
+      if (!list.length) {
+        const se = cur.songs.find((song) => /SE/.test(song.title));
+        if (se && Number(sel.value) !== se.id) list = [se.id];
+      }
+      show.setlist = list.concat(Number(sel.value));
       renderShowRows();
       updateDiff();
     });
@@ -294,6 +339,7 @@
     row.appendChild(input("date", v.date, (nv) => { v.date = nv; updateDiff(); }));
     row.appendChild(input("text", v.title, (nv) => { v.title = nv; updateDiff(); }, "标题", 24));
     row.appendChild(input("text", v.url, (nv) => { v.url = nv; updateDiff(); }, "链接", 28));
+    row.appendChild(input("text", v.cover, (nv) => { v.cover = nv; updateDiff(); }, "封面路径(可选)", 16));
     row.appendChild(delButton(() => {
       cur.videos = cur.videos.filter((x) => x !== v);
       renderVideoRows();
@@ -304,6 +350,21 @@
 
   // ---------- 添加表单 ----------
   function bindAddForms() {
+    document.getElementById("news-add").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const f = ev.target;
+      cur.news.push({
+        id: nextId(cur.news.concat(orig.news)),
+        date: f.date.value,
+        cat: f.cat.value,
+        title: f.title.value.trim(),
+        body: "", link: "", pinned: false,
+      });
+      f.reset();
+      renderNewsRows();
+      updateDiff();
+    });
+
     document.getElementById("song-add").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const f = ev.target;
@@ -325,6 +386,7 @@
         date: f.date.value,
         title: f.title.value.trim(),
         url: f.url.value.trim(),
+        cover: "",
       });
       f.reset();
       renderVideoRows();
@@ -353,7 +415,7 @@
         name: f.name.value.trim(),
         roman: f.roman.value.trim(),
         emoji: f.emoji.value.trim(),
-        heart: "", color: "", birthday: "", mascot: "", mbti: "",
+        heart: "", color: "", birthday: "", mascot: "", mbti: "", catch: "",
         intro: "", bio: "", photo: "", fanGroupName: "", fanGroup: "", socials: [],
       });
       f.reset();
@@ -424,6 +486,8 @@
         (v) => "影像「" + v.title + "」"), "videos"),
       songs: tag(ED.diffList(orig.songs, cur.songs, ED.SONG_FIELDS,
         (s) => "歌曲「" + s.title + "」"), "songs"),
+      news: tag(ED.diffList(orig.news, cur.news, ED.NEWS_FIELDS,
+        (n) => "情报「" + n.title + "」"), "news"),
       shows: tag(ED.diffList(orig.shows, cur.shows, ED.SHOW_FIELDS,
         (s) => "演出 " + s.date + (s.note ? "「" + s.note + "」" : "")), "shows"),
       events: tag(ED.diffList(orig.events, cur.events, ED.EVENT_FIELDS,
@@ -443,6 +507,7 @@
         events: [cur.events, orig.events],
         videos: [cur.videos, orig.videos],
         songs: [cur.songs, orig.songs],
+        news: [cur.news, orig.news],
       };
       const [curList, origList] = lists[ch.coll];
       const idx = curList.findIndex((x) => x.id === ch.ref);
@@ -457,7 +522,7 @@
 
   function updateDiff() {
     const c = computeChanges();
-    const all = c.group.concat(c.members, c.venues, c.songs, c.shows, c.events, c.videos);
+    const all = c.group.concat(c.members, c.venues, c.songs, c.shows, c.events, c.videos, c.news);
     const errors = ED.validateAll(cur);
     const box = document.getElementById("diff-list");
     document.getElementById("save").disabled = !all.length || errors.length > 0;
@@ -509,6 +574,7 @@
     if (c.events.length) jobs.push(post("events", cur.events));
     if (c.videos.length) jobs.push(post("videos", cur.videos));
     if (c.songs.length) jobs.push(post("songs", cur.songs));
+    if (c.news.length) jobs.push(post("news", cur.news));
     try {
       await Promise.all(jobs);
       orig = deepCopy(cur);
