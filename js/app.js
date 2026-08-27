@@ -104,8 +104,12 @@
     document.title = g.name + " " + g.emoji;
     // 大标题用 catchphrase(照片里已有 RealizE 手写字,避免名字连出现两次)
     setText("group-name", g.emoji + " " + (g.catch || g.name) + " " + g.emoji);
-    // 副标一行:所属 + 定位(intro · tagline),避免多行层级碎、信息重复
-    setText("group-tagline", [g.intro, g.tagline].filter(Boolean).join(" · "));
+    // 副标:所属 + 定位 + 站点性质(表明是粉丝站,与免责声明呼应);
+    // 每段 nowrap,窄屏只在「·」处换行,不把词组拦腰截断
+    document.getElementById("group-tagline").innerHTML =
+      [g.intro, g.tagline, "粉丝应援站"].filter(Boolean)
+        .map((t) => '<span class="tg-seg">' + esc(t) + "</span>")
+        .join(" · ");
     // PROFILE 式资料行:标签 + 值,竖线分隔
     const facts = [["出道", fmtDate(g.debutDate)]];
     if (g.agency) facts.push(["运营", g.agency]);

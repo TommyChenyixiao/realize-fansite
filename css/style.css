@@ -194,6 +194,8 @@ main { max-width: 860px; margin: 0 auto; padding: 0 20px; }
   text-indent: 0.16em;
   margin-top: 10px;
 }
+/* 副标各段不内部换行,窄屏只在分隔符处折行 */
+.tg-seg { white-space: nowrap; }
 .sub { color: var(--text); font-size: 1rem; line-height: 1.9; margin-top: 14px; }
 
 .facts {
