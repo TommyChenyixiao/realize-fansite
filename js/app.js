@@ -118,11 +118,13 @@
     const facts = [["出道", fmtDate(g.debutDate)]];
     if (g.agency) facts.push(["运营", g.agency]);
     if (g.manager) facts.push(["经纪人", g.manager]);
+    // 「竖线+资料项」绑成整体,窄屏换行不会把竖线孤零零留在行尾
     document.getElementById("group-sub").innerHTML = facts
-      .map(([k, v]) =>
+      .map(([k, v], i) =>
+        '<span class="fact-unit">' + (i ? '<span class="f-sep"></span>' : "") +
         '<span class="fact"><span class="f-label">' + esc(k) +
-        '</span><span class="f-value">' + esc(v) + "</span></span>")
-      .join('<span class="f-sep"></span>');
+        '</span><span class="f-value">' + esc(v) + "</span></span></span>")
+      .join("");
     const groupLinks = [];
     if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' +
       '<img class="wb-icon" src="assets/weibo.png" alt="">官方微博</a>');
@@ -171,7 +173,7 @@
         "</div>" +
         '<div class="next-venuebox">' +
         (next.venue ? '<div class="next-venue">📍 ' + esc(next.venue) + "</div>" : "") +
-        (v && v.address ? '<div class="next-address">' + esc(v.address) + "</div>" : "") +
+        (v && v.address ? '<div class="next-address">' + glueTail(v.address) + "</div>" : "") +
         (next.note ? '<div class="next-note">' + esc(next.note) + "</div>" : "") +
         "</div>" +
         "</div>";
@@ -509,7 +511,7 @@
       (s.time ? " · " + esc(s.time) : "") + "</div>" +
       (s.venue
         ? '<div class="sd-venue">📍 ' + esc(s.venue) +
-          (v && v.address ? '<span class="sd-address">' + esc(v.address) + "</span>" : "") + "</div>"
+          (v && v.address ? '<span class="sd-address">' + glueTail(v.address) + "</span>" : "") + "</div>"
         : "") +
       (s.note ? '<div class="sd-note">' + esc(s.note) + "</div>" : "") +
       '<div class="sd-label">出席</div><div class="sd-lineup">' + lineup + "</div>" +
@@ -736,5 +738,16 @@
     return String(s).replace(/[&<>"]/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
     );
+  }
+  // 地址末尾的短尾巴(如「2F」)连同前一个词整体不换行,避免孤字/孤词独占一行。
+  // 返回 HTML(内部已转义),调用处直接拼进 innerHTML
+  function glueTail(s) {
+    const tokens = String(s).split(" ");
+    if (tokens.length > 1 && [...tokens[tokens.length - 1]].length <= 3) {
+      const tail = tokens.splice(-2).join(" ");
+      return tokens.map(esc).join(" ") + (tokens.length ? " " : "") +
+        '<span class="nbk">' + esc(tail) + "</span>";
+    }
+    return esc(s);
   }
 })();
