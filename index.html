@@ -15,38 +15,48 @@
   <nav class="topnav">
     <a href="#top" class="nav-logo">RealizE</a>
     <div class="nav-links">
-      <a href="#sec-member">成员</a>
-      <a href="#sec-schedule">演出</a>
-      <a href="#sec-songs">歌曲</a>
-      <a href="#sec-video">影像</a>
-      <a href="#sec-history">大事纪</a>
+      <a href="#sec-news"><span class="zh">情报</span><span class="en">News</span></a>
+      <a href="#sec-member"><span class="zh">成员</span><span class="en">Member</span></a>
+      <a href="#sec-schedule"><span class="zh">演出</span><span class="en">Schedule</span></a>
+      <a href="#sec-songs"><span class="zh">歌曲</span><span class="en">Discography</span></a>
+      <a href="#sec-video"><span class="zh">影像</span><span class="en">Video</span></a>
+      <a href="#sec-history"><span class="zh">大事纪</span><span class="en">History</span></a>
     </div>
-    <a class="nav-sns" href="https://weibo.com/n/RealizE_Project" target="_blank" rel="noopener" title="官方微博"><img class="wb-icon" src="assets/weibo.png" alt="微博"></a>
   </nav>
 
-  <header class="hero" id="top">
-    <img class="logo" src="assets/logo.jpg" alt="RealizE logo">
-    <h1 id="group-name"></h1>
-    <p id="group-tagline" class="tagline"></p>
-    <p id="group-intro" class="sub"></p>
-    <p id="group-sub" class="sub"></p>
-    <p id="group-links" class="sub"></p>
-    <div id="next-show" class="next-show"></div>
-    <div id="stats" class="stats"></div>
-    <img class="hero-photo" src="assets/group-photo.jpg" alt="RealizE 团体公式照">
+  <header class="hero-full" id="top">
+    <img class="hero-photo" src="assets/group-photo.jpg" alt="RealizE 公式照">
   </header>
 
+  <section class="hero-info">
+    <h1 id="group-name"></h1>
+    <p id="group-tagline" class="tagline"></p>
+    <div id="next-show" class="next-show"></div>
+    <div id="group-sub" class="facts"></div>
+    <p id="group-links" class="sub"></p>
+  </section>
+
   <main>
-    <section id="sec-member">
+    <section id="sec-news">
+      <h2>情报 <span class="h2-en">NEWS</span></h2>
+      <div id="news" class="news"></div>
+    </section>
+
+    <section id="sec-member" class="sec-center">
       <h2>成员 <span class="h2-en">MEMBER</span></h2>
       <div id="members" class="members"></div>
     </section>
 
     <section id="sec-schedule">
       <h2>演出档案 <span class="h2-en">SCHEDULE</span> <span id="show-count" class="h2-sub"></span></h2>
+      <div class="view-toggle" id="view-toggle">
+        <button data-view="cal" class="on">📅 日历</button>
+        <button data-view="list">📋 列表</button>
+      </div>
       <div id="filters" class="filters"></div>
-      <div id="shows" class="shows"></div>
-      <div id="pager" class="pager"></div>
+      <div id="calendar" class="cal"></div>
+      <div id="shows" class="shows" hidden></div>
+      <div id="pager" class="pager" hidden></div>
     </section>
 
     <section id="sec-songs">
@@ -56,14 +66,26 @@
 
     <section id="sec-video">
       <h2>影像 <span class="h2-en">VIDEO</span></h2>
-      <div id="videos" class="videos"></div>
+      <div class="videos-wrap">
+        <button id="vid-prev" class="vid-nav prev" title="上一批" hidden>‹</button>
+        <div id="videos" class="videos"></div>
+        <button id="vid-next" class="vid-nav next" title="下一批" hidden>›</button>
+      </div>
     </section>
 
     <section id="sec-history">
       <h2>大事纪 <span class="h2-en">HISTORY</span></h2>
+      <div id="stats" class="stats"></div>
       <div id="timeline" class="timeline"></div>
     </section>
   </main>
+
+  <div id="show-modal" class="modal-mask" hidden>
+    <div class="modal show-dlg">
+      <button id="show-modal-close" class="modal-close" title="关闭">✕</button>
+      <div id="show-modal-body" class="show-dlg-body"></div>
+    </div>
+  </div>
 
   <div id="member-modal" class="modal-mask" hidden>
     <button id="modal-prev" class="modal-nav prev" title="上一位">‹</button>
@@ -85,12 +107,17 @@
         如权利人认为本站内容不妥，请联系<a href="https://weibo.com/n/银河系最美的银河" target="_blank" rel="noopener">站长微博</a>，将第一时间处理；
         官方事务可联系七韵官方邮箱 septavehr@yofuki.art。</p>
     </div>
-    公共数据：<a href="data/shows.json">演出 shows</a> ·
-    <a href="data/events.json">大事纪 events</a> ·
-    <a href="data/site.json">团体 site</a> ·
-    <a href="data/venues.json">场地 venues</a> ·
-    <a href="data/videos.json">影像 videos</a> ·
-    <a href="edit.html">编辑（仅本地）</a>
+    <div class="data-links">公开数据
+      <a href="data/shows.json">shows</a> ·
+      <a href="data/events.json">events</a> ·
+      <a href="data/site.json">site</a> ·
+      <a href="data/venues.json">venues</a> ·
+      <a href="data/videos.json">videos</a> ·
+      <a href="data/songs.json">songs</a> ·
+      <a href="data/news.json">news</a>
+      <span class="dl-sep">|</span>
+      <a href="edit.html">编辑（仅本地）</a>
+    </div>
   </footer>
 
   <script src="js/fallback.js"></script>

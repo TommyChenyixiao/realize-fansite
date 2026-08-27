@@ -3,13 +3,19 @@
     "id": 14,
     "date": "2026-06-07",
     "time": "",
-    "venue": "",
+    "venue": "新歌空间",
     "note": "出道日 ·【7.in ShangHai Fes Vol.1】I see the light:序章~RealizE初披露",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 15,
@@ -21,318 +27,479 @@
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 16,
     "date": "2026-06-13",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 17,
     "date": "2026-06-14",
     "time": "",
-    "venue": "",
+    "venue": "世界树",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 18,
     "date": "2026-06-19",
     "time": "",
-    "venue": "",
+    "venue": "世界树",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 19,
     "date": "2026-06-20",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 20,
     "date": "2026-06-21",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "小圆出道一周年",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 21,
     "date": "2026-06-27",
     "time": "",
-    "venue": "",
+    "venue": "世界树",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 22,
     "date": "2026-06-28",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 23,
     "date": "2026-07-04",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 26,
     "date": "2026-07-05",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 27,
     "date": "2026-07-08",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 24,
     "date": "2026-07-11",
     "time": "",
-    "venue": "",
+    "venue": "日不落",
     "note": "",
     "special": false,
     "absent": [
       "冰冰",
       "小噜"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 25,
     "date": "2026-07-12",
     "time": "",
-    "venue": "",
+    "venue": "日不落",
     "note": "",
     "special": false,
     "absent": [
       "冰冰"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      5,
+      4,
+      3,
+      2
+    ]
   },
   {
     "id": 28,
     "date": "2026-07-18",
     "time": "",
-    "venue": "",
+    "venue": "日不落",
     "note": "冰冰RealizE初舞台",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      6,
+      5,
+      3,
+      4
+    ]
   },
   {
     "id": 34,
     "date": "2026-07-26",
     "time": "",
-    "venue": "",
+    "venue": "世界树",
     "note": "",
     "special": false,
     "absent": [],
-    "setlist": []
+    "setlist": [
+      1,
+      6,
+      5,
+      3,
+      4
+    ]
   },
   {
     "id": 33,
     "date": "2026-07-29",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 42,
     "date": "2026-07-31",
     "time": "",
-    "venue": "",
+    "venue": "百联南方购物中心",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 35,
     "date": "2026-08-02",
     "time": "",
-    "venue": "",
+    "venue": "育音堂小镇C厅",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 36,
     "date": "2026-08-05",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 43,
     "date": "2026-08-07",
     "time": "",
-    "venue": "",
+    "venue": "百联南方购物中心",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 37,
     "date": "2026-08-08",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 44,
     "date": "2026-08-12",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 45,
     "date": "2026-08-14",
     "time": "",
-    "venue": "",
+    "venue": "百联南方购物中心",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 39,
     "date": "2026-08-15",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 40,
     "date": "2026-08-16",
     "time": "",
-    "venue": "",
+    "venue": "MAO LIVE HOUSE",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      6,
+      5,
+      3,
+      4
+    ]
   },
   {
     "id": 41,
     "date": "2026-08-19",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      7,
+      8,
+      9,
+      10
+    ]
   },
   {
     "id": 32,
     "date": "2026-08-22",
     "time": "",
-    "venue": "",
+    "venue": "育音堂音乐公园",
     "note": "",
     "special": false,
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      8,
+      9,
+      11
+    ]
   },
   {
     "id": 11,
@@ -344,7 +511,12 @@
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      8,
+      9,
+      11
+    ]
   },
   {
     "id": 12,
@@ -368,6 +540,12 @@
     "absent": [
       "阿鱼"
     ],
-    "setlist": []
+    "setlist": [
+      1,
+      6,
+      5,
+      3,
+      4
+    ]
   }
 ]

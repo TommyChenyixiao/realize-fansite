@@ -3,18 +3,28 @@
     "id": 3,
     "date": "2026-07-09",
     "title": "RealizE 出道一个月 · 成员寄语",
-    "url": "https://weibo.com/9106652275/5319120988147110"
+    "url": "https://weibo.com/9106652275/5319120988147110",
+    "cover": "assets/videos/v3.jpg"
+  },
+  {
+    "id": 4,
+    "date": "2026-07-03",
+    "title": "上海优雅系地下偶像来袭!公式照拍摄花絮 · 抖音首更",
+    "url": "https://www.douyin.com/video/7658267707935597222",
+    "cover": "assets/group-photo.jpg"
   },
   {
     "id": 2,
     "date": "2026-06-11",
     "title": "Jellyfish in bioomul · Ruruko 生日特别活动回顾",
-    "url": "https://weibo.com/9106652275/5308931639346315"
+    "url": "https://weibo.com/9106652275/5308931639346315",
+    "cover": "assets/videos/v2.jpg"
   },
   {
     "id": 1,
     "date": "2026-06-02",
     "title": "RealizE 新衣着公开",
-    "url": "https://weibo.com/9106652275/5305445302403587"
+    "url": "https://weibo.com/9106652275/5305445302403587",
+    "cover": "assets/videos/v1.jpg"
   }
 ]

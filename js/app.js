@@ -8,13 +8,14 @@
   }
 
   const D = window.derive;
-  const [site, shows, events, venues, videos, songs] = await Promise.all([
+  const [site, shows, events, venues, videos, songs, news] = await Promise.all([
     fetch("data/site.json").then((r) => r.json()),
     fetch("data/shows.json").then((r) => r.json()),
     fetch("data/events.json").then((r) => r.json()),
     fetch("data/venues.json").then((r) => r.json()),
     fetch("data/videos.json").then((r) => r.json()),
     fetch("data/songs.json").then((r) => r.json()),
+    fetch("data/news.json").then((r) => r.json()),
   ]);
   const venueByName = new Map(venues.map((v) => [v.name, v]));
   const songById = new Map(songs.map((s) => [s.id, s]));
@@ -26,6 +27,10 @@
   const PER_PAGE = 10;
   let curFilter = null;
   let curPage = 1;
+  let calView = "cal";
+  const bjNow = today.split("-").map(Number);
+  let calY = bjNow[0];
+  let calM = bjNow[1];
 
   renderHero();
   renderMembers();
@@ -34,13 +39,29 @@
   site.members.forEach((m) => {
     if (m.photo) new Image().src = m.photo;
   });
-  renderShows();
+  renderNews();
+  renderArchive();
   bindFilters();
+  bindShowModal();
+  bindViewToggle();
   bindSetlistToggle();
   renderSongs();
   renderVideos();
   renderTimeline();
   initReveal();
+  initNavAutoHide();
+
+  // ---------- 顶栏:大图上透明白字,滚过 Hero 后变毛玻璃 ----------
+  function initNavAutoHide() {
+    const nav = document.querySelector(".topnav");
+    const hero = document.querySelector(".hero-full");
+    if (!nav || !hero) return;
+    const update = () =>
+      nav.classList.toggle("over-hero", window.scrollY < hero.offsetHeight - 66);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
 
   // ---------- 滚动渐入(区块整体 + 成员卡错峰) ----------
   function initReveal() {
@@ -77,20 +98,35 @@
   function renderHero() {
     const g = site.group;
     document.title = g.name + " " + g.emoji;
-    setText("group-name", g.emoji + " " + g.name + " " + g.emoji);
-    setText("group-tagline", g.tagline);
-    setText("group-intro", g.intro || "");
-    const meta = [
-      fmtDate(g.debutDate) + " 出道",
-      "出道第 " + (D.daysBetween(g.debutDate, today) + 1) + " 天",
-      "已演出 " + past.length + " 场",
-    ];
-    if (g.agency) meta.push("运营：" + g.agency);
-    if (g.manager) meta.push("经纪人：" + g.manager);
-    setText("group-sub", meta.join(" · "));
-    const wbIcon = '<img class="wb-icon" src="assets/weibo.png" alt="">';
+    // 大标题用 catchphrase(照片里已有 RealizE 手写字,避免名字连出现两次)
+    setText("group-name", g.emoji + " " + (g.catch || g.name) + " " + g.emoji);
+    // 副标一行:所属 + 定位(intro · tagline),避免多行层级碎、信息重复
+    setText("group-tagline", [g.intro, g.tagline].filter(Boolean).join(" · "));
+    // PROFILE 式资料行:标签 + 值,竖线分隔
+    const facts = [["出道", fmtDate(g.debutDate)]];
+    if (g.agency) facts.push(["运营", g.agency]);
+    if (g.manager) facts.push(["经纪人", g.manager]);
+    document.getElementById("group-sub").innerHTML = facts
+      .map(([k, v]) =>
+        '<span class="fact"><span class="f-label">' + esc(k) +
+        '</span><span class="f-value">' + esc(v) + "</span></span>")
+      .join('<span class="f-sep"></span>');
     const groupLinks = [];
-    if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' + wbIcon + "官方微博</a>");
+    if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' +
+      '<img class="wb-icon" src="assets/weibo.png" alt="">官方微博</a>');
+    if (g.xiaohongshu) {
+      groupLinks.push('<a href="' + esc(g.xiaohongshu) + '" target="_blank" rel="noopener">' +
+        '<img class="wb-icon" src="assets/xhs.png" alt="">官方小红书</a>');
+    }
+    if (g.douyin) {
+      groupLinks.push('<a href="' + esc(g.douyin) + '" target="_blank" rel="noopener">' +
+        '<img class="wb-icon" src="assets/douyin.png" alt="">官方抖音</a>');
+    }
+    // 顺序:官方账号四连(微博/小红书/抖音/微博群)在前,小飞和七韵紧随其后
+    if (g.fanGroup) {
+      groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">' +
+        '<span class="link-emoji">💬</span>官方微博群</a>');
+    }
     if (g.managerWeibo) {
       const icon = g.managerIcon
         ? '<img class="link-avatar" src="' + esc(g.managerIcon) + '" alt=""> '
@@ -98,83 +134,73 @@
       groupLinks.push('<a href="' + esc(g.managerWeibo) + '" target="_blank" rel="noopener">' +
         icon + esc(g.manager || "经纪人") + " 微博</a>");
     }
-    if (g.fanGroup) {
-      groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">' +
-        '<span class="link-emoji">💬</span>微博群</a>');
-    }
     if (g.agencyWeibo) {
       groupLinks.push('<a href="' + esc(g.agencyWeibo) + '" target="_blank" rel="noopener">' +
-        wbIcon + "七韵官博</a>");
+        '<img class="wb-icon" src="assets/weibo.png" alt="">七韵官博</a>');
     }
-    document.getElementById("group-links").innerHTML = groupLinks.join(" · ");
+    document.getElementById("group-links").innerHTML = groupLinks.join("");
 
     const next = upcoming[0];
     const nextBox = document.getElementById("next-show");
     if (!next) {
-      nextBox.innerHTML = '<div class="next-label">暂无已排期的演出</div>';
+      nextBox.innerHTML = '<div class="next-label">Next Live</div>' +
+        '<div class="next-empty">暂无已排期的演出</div>';
     } else {
       const days = D.daysBetween(today, next.date);
       const when = days === 0 ? "就是今天！" : "还有 " + days + " 天";
       const v = next.venue ? venueByName.get(next.venue) : null;
       nextBox.innerHTML =
-        '<div class="next-label">下一场演出</div>' +
-        '<div class="next-date">' + fmtDate(next.date) + " " + weekday(next.date) + "</div>" +
-        '<div class="next-count">' + when + "</div>" +
-        (next.venue
-          ? '<div class="next-venue">📍 ' + esc(next.venue) +
-            (v && v.address ? '<span class="next-address">' + esc(v.address) + "</span>" : "") +
-            "</div>"
-          : "") +
-        (next.note ? '<div class="next-note">' + esc(next.note) + "</div>" : "");
+        '<div class="next-label">Next Live</div>' +
+        '<div class="next-flex">' +
+        '<div class="next-datebox">' +
+        '<div class="next-date-num">' + next.date.slice(5).replace("-", ".") + "</div>" +
+        '<div class="next-date-sub">' + next.date.slice(0, 4) + " · " + weekday(next.date) + "</div>" +
+        '<div class="next-badge' + (days === 0 ? " today" : "") + '">' + when + "</div>" +
+        "</div>" +
+        '<div class="next-venuebox">' +
+        (next.venue ? '<div class="next-venue">📍 ' + esc(next.venue) + "</div>" : "") +
+        (v && v.address ? '<div class="next-address">' + esc(v.address) + "</div>" : "") +
+        (next.note ? '<div class="next-note">' + esc(next.note) + "</div>" : "") +
+        "</div>" +
+        "</div>";
     }
 
     const mile = D.nextMilestone(past.length, site.milestones, numbered);
+    // 数字大写统计:数值 Comfortaa 大号 + 单位 + 小标签,竖线分隔;
+    // 里程碑并进第三格,避免和 NEXT LIVE/已排期重复
     const stats = [
-      ["已演出", past.length + " 场"],
-      ["接下来", upcoming.length + " 场已排期"],
+      [String(D.daysBetween(g.debutDate, today) + 1), "天", "出道至今"],
+      [String(past.length), "场", "已演出"],
+      mile
+        ? [String(mile.remaining), "场", "距第 " + mile.target + " 场"]
+        : [String(upcoming.length), "场", "已排期"],
     ];
-    if (mile) {
-      stats.push([
-        "第 " + mile.target + " 场",
-        "还差 " + mile.remaining + " 场" + (mile.date ? " · " + fmtDate(mile.date) : ""),
-      ]);
-    }
     document.getElementById("stats").innerHTML = stats
       .map(
-        ([label, value]) =>
-          '<div class="stat"><div class="stat-value">' + esc(value) +
-          '</div><div class="stat-label">' + esc(label) + "</div></div>"
+        ([num, unit, label]) =>
+          '<div class="stat"><div class="stat-value">' + esc(num) +
+          '<span class="stat-unit">' + esc(unit) + "</span></div>" +
+          '<div class="stat-label">' + esc(label) + "</div></div>"
       )
       .join("");
   }
 
   // ---------- 成员 ----------
+  // 参考 peel-the-apple.com/profile:居中大图 + 照片下方名字/罗马音,干净无卡片框;详细资料在弹窗里
   function renderMembers() {
     document.getElementById("members").innerHTML = site.members
       .map((m, i) => {
-        const s = D.memberStats(m.name, past);
-        const rows = [];
-        if (m.birthday) rows.push(["生日", m.birthday.replace("-", ".")]);
-        if (m.mascot) rows.push(["代表物", m.mascot]);
-        rows.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
-        rows.push(["出席", s.count + " 场"]);
         return (
-          '<div class="member-card" data-index="' + i + '" title="点击查看详细介绍"' +
-          (m.color ? ' style="border-top: 3px solid ' + esc(m.color) + '"' : "") + ">" +
-          '<div class="member-emoji"' +
-          (m.color ? ' style="background:' + esc(m.color) + '2e"' : "") + ">" + m.emoji + "</div>" +
+          '<div class="member-card" data-index="' + i + '" title="点击查看详细介绍">' +
+          (m.photo
+            ? '<img class="member-photo" src="' + esc(m.photo) +
+              '" alt="' + esc(m.name) + '" loading="lazy">'
+            : '<div class="member-emoji"' +
+              (m.color ? ' style="background:' + esc(m.color) + '2e"' : "") + ">" + m.emoji + "</div>") +
           '<div class="member-name">' + esc(m.name) + (m.heart ? " " + m.heart : "") + "</div>" +
           (m.roman ? '<div class="member-roman">' + esc(m.roman) + "</div>" : "") +
-          (m.intro ? '<div class="member-intro">' + esc(m.intro) + "</div>" : "") +
-          '<div class="member-meta">' +
-          rows
-            .map(
-              ([label, value]) =>
-                '<div class="mrow"><span class="ml">' + esc(label) +
-                '</span><span class="mv">' + esc(value) + "</span></div>"
-            )
-            .join("") +
-          "</div></div>"
+          (m.color ? '<div class="member-colorbar" style="background:' + esc(m.color) + '"></div>' : "") +
+          "</div>"
         );
       })
       .join("");
@@ -240,7 +266,7 @@
     const facts = [];
     if (m.birthday) facts.push(["生日", m.birthday.replace("-", ".")]);
     if (m.mbti) facts.push(["MBTI", m.mbti]);
-    if (m.mascot) facts.push(["代表物", m.mascot]);
+    if (m.mascot) facts.push(["代表物", m.mascot + (m.emoji ? " " + m.emoji : "")]);
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
     // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
@@ -256,27 +282,40 @@
     let links = (m.socials || [])
       .map((url) => {
         const kind = url.includes("bilibili")
-          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "她的B站"]
-          : url.includes("weibo")
-            ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "她的微博"]
-            : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
+          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
+          : url.includes("douyin")
+            ? ['<img class="wb-icon" src="assets/douyin.png" alt="">', "抖音"]
+            : url.includes("xiaohongshu")
+              ? ['<img class="wb-icon" src="assets/xhs.png" alt="">', "小红书"]
+              : url.includes("weibo")
+                ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
+                : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
         return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
           kind[0] + kind[1] + "</a>";
       })
       .join(" ");
     if (m.fanGroup) {
       links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">' +
-        '<span class="link-emoji">💬</span>' + esc(m.fanGroupName || "粉丝群") + "</a>";
+        '<span class="link-emoji">💬</span>微博群' +
+        (m.fanGroupName ? ":" + esc(m.fanGroupName) : "") + "</a>";
     }
     if (m.chaohua) {
       links += ' <a class="modal-weibo" href="' + esc(m.chaohua) + '" target="_blank" rel="noopener">' +
         '<span class="link-emoji">⭐</span>超话</a>';
     }
+    // 应援色沉浸:弹窗顶部色条 + 担当宣言
+    const modalEl = document.querySelector("#member-modal .modal");
+    modalEl.style.borderTop = "4px solid " + (m.color || "#a78bdb");
     document.getElementById("modal-body").innerHTML =
       photo +
       '<div class="modal-info">' +
       '<div class="modal-name">' + esc(m.name) + (m.heart ? " " + m.heart : "") +
-      ' <span class="modal-roman">' + esc(m.roman || "") + "</span></div>" +
+      ' <span class="modal-roman">' + esc(m.roman || "") + "</span>" +
+      (m.catch
+        ? ' <span class="catch-chip" style="background:' + esc(m.color || "#a78bdb") + '2e">' +
+          esc(m.catch) + "</span>"
+        : "") +
+      "</div>" +
       '<div class="modal-facts">' +
       facts.map(([l, v]) =>
         '<span class="fact"><span class="fact-l">' + esc(l) + "</span>" + esc(v) + "</span>").join("") +
@@ -285,6 +324,185 @@
       links +
       "</div>";
     document.getElementById("member-modal").hidden = false;
+    document.body.style.overflow = "hidden";
+    // 左右切换成员后回到顶部(手机上 modal-body 滚动、桌面上 modal-info 滚动)
+    const body = document.getElementById("modal-body");
+    body.scrollTop = 0;
+    const info = body.querySelector(".modal-info");
+    if (info) info.scrollTop = 0;
+  }
+
+  // ---------- 情报 NEWS ----------
+  function renderNews() {
+    const box = document.getElementById("news");
+    const list = news
+      .slice()
+      .sort((a, b) => (b.pinned - a.pinned) || (a.date < b.date ? 1 : -1));
+    if (!list.length) {
+      box.closest("section").hidden = true;
+      return;
+    }
+    const catClass = { "公演": "cat-live", "物贩": "cat-goods", "生诞祭": "cat-bday", "其他": "cat-other" };
+    box.innerHTML = list
+      .map((n) => {
+        const title = n.link
+          ? '<a href="' + esc(n.link) + '" target="_blank" rel="noopener">' + esc(n.title) + "</a>"
+          : esc(n.title);
+        return (
+          '<div class="news-row">' +
+          '<span class="news-date">' + fmtDate(n.date) + "</span>" +
+          '<span class="news-cat ' + (catClass[n.cat] || "cat-other") + '">' + esc(n.cat || "其他") + "</span>" +
+          '<div class="news-main"><div class="news-title">' +
+          (n.pinned ? '<span class="news-pin">置顶</span>' : "") + title + "</div>" +
+          (n.body ? '<div class="news-body">' + esc(n.body) + "</div>" : "") +
+          "</div></div>"
+        );
+      })
+      .join("");
+  }
+
+  // ---------- 演出档案:日历 / 列表 双视图 ----------
+  function renderArchive() {
+    const isCal = calView === "cal";
+    document.getElementById("calendar").hidden = !isCal;
+    // 成员筛选只属于列表视图;日历始终显示全部,不受筛选影响
+    document.getElementById("filters").hidden = isCal;
+    document.getElementById("shows").hidden = isCal;
+    document.getElementById("pager").hidden = isCal;
+    if (isCal) renderCalendar();
+    else renderShows();
+  }
+
+  function bindViewToggle() {
+    const box = document.getElementById("view-toggle");
+    box.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-view]");
+      if (!btn) return;
+      calView = btn.dataset.view;
+      box.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === btn));
+      renderArchive();
+    });
+  }
+
+  // 列表视图的翻页/筛选依旧走 renderShows;日历不受影响
+
+  function renderCalendar() {
+    const box = document.getElementById("calendar");
+    const cells = D.monthGrid(calY, calM);
+    // 日历不参与成员筛选,始终显示全部场次
+    document.getElementById("show-count").textContent = "共 " + numbered.length + " 场";
+    const showsByDate = new Map();
+    numbered.forEach((s) => {
+      if (!showsByDate.has(s.date)) showsByDate.set(s.date, []);
+      showsByDate.get(s.date).push(s);
+    });
+    const mmdd = (ymd) => ymd.slice(5);
+    let html =
+      '<div class="cal-head">' +
+      '<button class="cal-nav" data-nav="-1">‹</button>' +
+      '<span class="cal-title">' + calY + " 年 " + calM + " 月</span>" +
+      '<button class="cal-nav" data-nav="1">›</button>' +
+      '<button class="cal-today" data-nav="0">今天</button>' +
+      "</div>" +
+      '<div class="cal-grid">' +
+      ["日", "一", "二", "三", "四", "五", "六"].map((d) => '<div class="cal-dow">' + d + "</div>").join("");
+    for (const cell of cells) {
+      const isToday = cell.ymd === today;
+      let chips = "";
+      for (const s of showsByDate.get(cell.ymd) || []) {
+        const future = s.date >= today;
+        // 格子里只写场地名(没有场地才退回场次号);场次号/备注/出席都在悬停提示里
+        const label = s.venue || (future ? "待演" : "第" + s.n + "场");
+        const full = (future ? "待演" : "第" + s.n + "场") + (s.venue ? " · " + s.venue : "");
+        const lineup = site.members
+          .filter((m) => D.attended(s, m.name))
+          .map((m) => m.emoji + m.name)
+          .join(" ");
+        chips += '<span class="cal-chip' + (s.special ? " special" : "") + (future ? " future" : "") +
+          '" data-show-id="' + s.id + '" title="' + esc(full + (s.note ? " · " + s.note : "")) +
+          '">' + esc(label) + "</span>";
+      }
+      for (const m of site.members) {
+        if (m.birthday && m.birthday === mmdd(cell.ymd)) {
+          chips += '<span class="cal-chip bday" style="background:' + esc(m.color || "#ffd44d") + '33"' +
+            ' title="' + esc(m.name + " 的生日") + '">🎂 ' + esc(m.name) + "</span>";
+        }
+      }
+      html += '<div class="cal-cell' + (cell.inMonth ? "" : " other") + (isToday ? " today" : "") + '">' +
+        '<span class="cal-day">' + cell.day + "</span>" + chips + "</div>";
+    }
+    html += "</div>";
+    box.innerHTML = html;
+    box.querySelectorAll("[data-nav]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const d = Number(btn.dataset.nav);
+        if (d === 0) { calY = bjNow[0]; calM = bjNow[1]; }
+        else {
+          calM += d;
+          if (calM < 1) { calM = 12; calY--; }
+          if (calM > 12) { calM = 1; calY++; }
+        }
+        renderCalendar();
+      })
+    );
+  }
+
+  // ---------- 日历事件详情弹窗 ----------
+  function bindShowModal() {
+    const mask = document.getElementById("show-modal");
+    document.getElementById("calendar").addEventListener("click", (e) => {
+      const chip = e.target.closest(".cal-chip[data-show-id]");
+      if (chip) openShowModal(Number(chip.dataset.showId));
+    });
+    document.getElementById("show-modal-close").addEventListener("click", closeShowModal);
+    mask.addEventListener("click", (e) => { if (e.target === mask) closeShowModal(); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !mask.hidden) closeShowModal();
+    });
+  }
+
+  function closeShowModal() {
+    document.getElementById("show-modal").hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  function openShowModal(id) {
+    const s = numbered.find((x) => x.id === id);
+    if (!s) return;
+    const future = s.date >= today;
+    const v = s.venue ? venueByName.get(s.venue) : null;
+    const lineup = site.members
+      .map((m) => {
+        const here = D.attended(s, m.name);
+        return '<span class="dot' + (here ? "" : " absent") + '" title="' +
+          esc(m.name + (here ? "" : "（缺席）")) + '">' + m.emoji + "</span>";
+      })
+      .join("");
+    let setlistHtml = "";
+    if ((s.setlist || []).length) {
+      setlistHtml =
+        '<div class="sd-label">Setlist</div><ol class="sd-setlist">' +
+        D.setlistLabels(s.setlist, songById)
+          .map((it) =>
+            '<li><span class="sl-no">' + it.label + "</span>" +
+            esc(it.song ? it.song.title : "?") + "</li>")
+          .join("") +
+        "</ol>";
+    }
+    document.getElementById("show-modal-body").innerHTML =
+      '<div class="sd-badge' + (future ? " future" : "") + '">' +
+      (future ? "待演" : "第" + s.n + "场") +
+      (s.special ? ' <span class="tag">特别场</span>' : "") + "</div>" +
+      '<div class="sd-date">' + fmtDate(s.date) + " " + weekday(s.date) +
+      (s.time ? " · " + esc(s.time) : "") + "</div>" +
+      (s.venue
+        ? '<div class="sd-venue">📍 ' + esc(s.venue) +
+          (v && v.address ? '<span class="sd-address">' + esc(v.address) + "</span>" : "") + "</div>"
+        : "") +
+      (s.note ? '<div class="sd-note">' + esc(s.note) + "</div>" : "") +
+      '<div class="sd-label">出席</div><div class="sd-lineup">' + lineup + "</div>" +
+      setlistHtml;
+    document.getElementById("show-modal").hidden = false;
     document.body.style.overflow = "hidden";
   }
 
@@ -397,7 +615,7 @@
       box.querySelectorAll(".chip").forEach((b) => b.classList.toggle("on", b === btn));
       curFilter = btn.dataset.name || null;
       curPage = 1;
-      renderShows();
+      renderArchive();
     });
   }
 
@@ -426,7 +644,7 @@
     );
   }
 
-  // ---------- 影像 ----------
+  // ---------- 影像(封面卡片) ----------
   function renderVideos() {
     const box = document.getElementById("videos");
     if (!videos.length) {
@@ -436,15 +654,43 @@
     box.innerHTML = videos
       .map(
         (v) =>
-          '<a class="video-row" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
+          '<a class="video-card" href="' + esc(v.url) + '" target="_blank" rel="noopener">' +
+          '<span class="video-thumb">' +
+          (v.cover
+            ? '<img src="' + esc(v.cover) + '" alt="" loading="lazy">'
+            : '<span class="video-thumb-ph">✨</span>') +
           '<span class="video-play"></span>' +
+          "</span>" +
+          '<span class="video-meta">' +
           '<span class="video-title">' + esc(v.title) + "</span>" +
-          '<span class="video-right">' +
-          (v.date ? '<span class="video-date">' + fmtDate(v.date) + "</span>" : "") +
-          '<span class="video-src"><img class="wb-icon" src="assets/weibo.png" alt="">微博</span>' +
+          '<span class="video-sub">' +
+          (v.date ? fmtDate(v.date) + " · " : "") +
+          (v.url.includes("douyin")
+            ? '<img class="wb-icon" src="assets/douyin.png" alt="">抖音'
+            : '<img class="wb-icon" src="assets/weibo.png" alt="">微博') + "</span>" +
           "</span></a>"
       )
       .join("");
+    initVideoNav(box);
+  }
+
+  // 影像超过一屏(3 张)时启用左右箭头,按一张卡的宽度滚动
+  function initVideoNav(box) {
+    const prev = document.getElementById("vid-prev");
+    const next = document.getElementById("vid-next");
+    if (!prev || !next) return;
+    const many = videos.length > 3;
+    prev.hidden = next.hidden = !many;
+    if (!many) return;
+    const step = () => (box.querySelector(".video-card").offsetWidth + 16);
+    prev.addEventListener("click", () => box.scrollBy({ left: -step(), behavior: "smooth" }));
+    next.addEventListener("click", () => box.scrollBy({ left: step(), behavior: "smooth" }));
+    const sync = () => {
+      prev.classList.toggle("off", box.scrollLeft <= 2);
+      next.classList.toggle("off", box.scrollLeft >= box.scrollWidth - box.clientWidth - 2);
+    };
+    box.addEventListener("scroll", sync, { passive: true });
+    sync();
   }
 
   // ---------- 时间线 ----------

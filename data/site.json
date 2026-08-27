@@ -3,11 +3,14 @@
     "name": "RealizE",
     "emoji": "✨",
     "tagline": "上海地下偶像团体",
+    "catch": "和我们一起实现所有愿望吧！",
     "debutDate": "2026-06-07",
     "agency": "七韵文化",
     "manager": "小飞Tobi",
-    "intro": "七韵IdolProductions旗下女子偶像团体，和我们一起实现所有愿望吧！",
+    "intro": "七韵IdolProductions旗下",
     "weibo": "https://weibo.com/n/RealizE_Project",
+    "xiaohongshu": "https://www.xiaohongshu.com/user/profile/67049686000000001d032bdf",
+    "douyin": "https://www.douyin.com/user/MS4wLjABAAAADKMnEcfaJxo_7tGR1kvKMlbhnczC3vwBSbzZkbL4GcM",
     "managerWeibo": "https://weibo.com/n/-Toooobi-",
     "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5323851308473034&source_from=11",
     "managerIcon": "assets/tobi.png",
@@ -32,7 +35,8 @@
       "photo": "assets/members/sakana.jpg",
       "fanGroupName": "",
       "fanGroup": "",
-      "chaohua": ""
+      "chaohua": "",
+      "catch": "白色担当"
     },
     {
       "id": 1,
@@ -45,7 +49,9 @@
       "intro": "",
       "socials": [
         "https://weibo.com/n/小圆Madoka_RealizE",
-        "https://space.bilibili.com/1640250"
+        "https://space.bilibili.com/1640250",
+        "https://www.douyin.com/user/MS4wLjABAAAA6OCJId9Znj8w-EAKFn6KBdY-tfySw3wHsvezZqhfmaA",
+        "https://www.xiaohongshu.com/user/profile/5655c536a75c955f6fb17952"
       ],
       "mascot": "帝企鹅宝宝",
       "mbti": "ISFP",
@@ -53,7 +59,8 @@
       "photo": "assets/members/madoka.jpg",
       "fanGroupName": "见泷原驻上海办事处",
       "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5307555647591444&source_from=11",
-      "chaohua": "https://weibo.com/p/100808427f91accfc0b80834e6cc8676fd8f57"
+      "chaohua": "https://weibo.com/p/100808427f91accfc0b80834e6cc8676fd8f57",
+      "catch": "浅紫色担当"
     },
     {
       "id": 4,
@@ -65,7 +72,9 @@
       "birthday": "06-10",
       "intro": "",
       "socials": [
-        "https://weibo.com/n/小噜Ruruko_RealizE"
+        "https://weibo.com/n/小噜Ruruko_RealizE",
+        "https://www.douyin.com/user/MS4wLjABAAAATwEPBSuNhBrF4gkWqAZHJR8iUOcxkjCD5OvKFU7YGIc",
+        "https://www.xiaohongshu.com/user/profile/656c3f8d000000002003440e"
       ],
       "mascot": "水母",
       "mbti": "INFJ",
@@ -73,7 +82,8 @@
       "photo": "assets/members/ruruko.jpg",
       "fanGroupName": "我好想去海边啊",
       "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5228272574271297&source_from=11",
-      "chaohua": ""
+      "chaohua": "",
+      "catch": "水色担当"
     },
     {
       "id": 5,
@@ -86,7 +96,9 @@
       "intro": "",
       "socials": [
         "https://weibo.com/n/冰冰icey_RealizE",
-        "https://space.bilibili.com/1302286758"
+        "https://space.bilibili.com/1302286758",
+        "https://www.douyin.com/user/MS4wLjABAAAAG1Ac5I8DzxEZnGUPqJDYwNk9dt3syBqYyYZPfdkxqBnzXu-f2mCkpKnq5xiG50s4",
+        "https://www.xiaohongshu.com/user/profile/662f60340000000007005380"
       ],
       "mascot": "海豚",
       "mbti": "ENFP",
@@ -94,13 +106,14 @@
       "photo": "assets/members/icey.jpg",
       "fanGroupName": "冰冰的小岛",
       "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5191361072726107&source_from=11",
-      "chaohua": "https://weibo.com/p/100808e1de8f2e66242e1a074bbe2c82b83bcc"
+      "chaohua": "https://weibo.com/p/100808e1de8f2e66242e1a074bbe2c82b83bcc",
+      "catch": "黄色担当"
     },
     {
       "id": 3,
       "name": "芋圆",
       "roman": "Yuika",
-      "emoji": "🐰",
+      "emoji": "🐇",
       "heart": "💖",
       "color": "#ff7ab8",
       "birthday": "02-06",
@@ -114,7 +127,8 @@
       "photo": "assets/members/yuika.jpg",
       "fanGroupName": "",
       "fanGroup": "",
-      "chaohua": ""
+      "chaohua": "",
+      "catch": "粉色担当"
     }
   ],
   "milestones": [

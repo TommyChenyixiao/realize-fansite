@@ -84,3 +84,14 @@ test("setlistLabels:SE 曲标 SE,其余 M1/M2 顺延", () => {
   const noSE = D.setlistLabels([3, 2], songsById).map((x) => x.label);
   assert.deepStrictEqual(noSE, ["M1", "M2"]);
 });
+
+test("monthGrid:补齐首尾周的月历格子", () => {
+  const cells = D.monthGrid(2026, 8); // 2026-08-01 是周六
+  assert.strictEqual(cells.length % 7, 0);
+  assert.strictEqual(cells[6].ymd, "2026-08-01");
+  assert.strictEqual(cells[6].inMonth, true);
+  assert.strictEqual(cells[5].inMonth, false);
+  assert.strictEqual(cells[cells.length - 1].ymd >= "2026-08-31", true);
+  const aug31 = cells.find((c) => c.ymd === "2026-08-31");
+  assert.ok(aug31 && aug31.inMonth);
+});
