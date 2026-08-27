@@ -3,6 +3,8 @@
 RealizE(上海地下偶像团体,七韵文化旗下)的非官方粉丝应援站。
 纯静态 HTML/CSS/vanilla JS,无构建步骤、无第三方库。
 
+**线上地址:<https://tommychenyixiao.github.io/realize-fansite/>**(GitHub Pages,master 分支自动部署)
+
 > 给 AI/新会话的工作约定见 `.claude/skills/realize-fansite/SKILL.md`,
 > 视觉规范见 `STYLE.md`,路线图见 `PLAN.md`。
 
@@ -52,8 +54,8 @@ python3 serve.py
 
 ## 编辑数据(edit.html)
 
-<http://localhost:8123/edit.html>(首页页脚也有入口)。所有数据都在这里改,
-不手改文件:
+<http://localhost:8123/edit.html>(本地跑 serve.py 时首页页脚才显示入口,
+线上访客看不到)。所有数据都在这里改,不手改文件:
 
 - 表格直接改字段,顶部表单添加,行尾 🗑 删除
 - **所有改动先进「待保存改动」面板**,逐条列出、精确到字段,确认后才写文件;
@@ -70,4 +72,6 @@ python3 serve.py
   `./tools/publish.sh "说明"` 一键提交推送
 - 新增一类内容 = 新 JSON + app.js 渲染模块 + edit 页支持 + serve.py 白名单,四件套
 - 测试:`node --test test/*.test.js`(derive.js 与 edit-diff.js 的纯函数)
-- 仓库:TommyChenyixiao/realize-fansite(私有,之后转 public + GitHub Pages)
+- 仓库:TommyChenyixiao/realize-fansite(public);master 由 GitHub Pages 自动部署上线,
+  push 后一两分钟生效
+- 权限:任何人可提 PR,仅站长可审批合并(默认权限即如此,勿添加 collaborator)
