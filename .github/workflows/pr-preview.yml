@@ -1,0 +1,30 @@
+# 每个 PR 打开时自动评论双端预览链接(raw.githack 直接服务分支静态文件,零部署)。
+# 用 pull_request_target 以便对 fork 的 PR 也有评论权限;只读取分支名,不检出 PR 代码,安全。
+name: PR 预览链接
+on:
+  pull_request_target:
+    types: [opened, reopened]
+permissions:
+  pull-requests: write
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const base = `https://raw.githack.com/${pr.head.repo.full_name}/${pr.head.ref}`;
+            const body = [
+              '## 🔍 双端预览',
+              `- 桌面 / 手机真机:${base}/index.html`,
+              `- 桌面上看手机视口:${base}/tools/mobile-preview.html`,
+              '',
+              '_自动生成;分支后续更新后,同一链接刷新即最新效果。_',
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body,
+            });
