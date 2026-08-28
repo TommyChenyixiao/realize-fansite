@@ -29,6 +29,8 @@ RealizE 是上海地下偶像团体(七韵文化/七韵IdolProductions 旗下,�
    **AI 永远不做的事**:`git push` 到 master、`git push -f`、`gh pr merge`/approve、
    改仓库设置(可见性/Pages/权限)。一切上线动作只到"提 PR"为止,合并权只在站长手里。
    master 有 Ruleset 保护(必须走 PR + 禁 force push)。publish.sh 也已改为自动开分支提 PR。
+   **每个 PR 描述必附双端预览链接**(raw.githack.com/TommyChenyixiao/realize-fansite/<分支>/index.html
+   与 …/tools/mobile-preview.html),让站长合并前可直接点开看效果。
    **每一步 UI 改动必须双端校验后才 commit**:桌面(localhost:8123)+ 手机
    (tools/mobile-preview.html,390×844 iframe)都截图确认,再跑单测。缺一端不算完成。
 9. 成员卡顺序:阿鱼 → 小圆 → 小噜 → 冰冰 → 芋圆(与团体公式照对位,别动)。
