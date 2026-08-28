@@ -64,7 +64,14 @@ main section { scroll-margin-top: 82px; }
   text-decoration: none;
   line-height: 1;
 }
-.nav-links { display: flex; gap: 30px; margin: 0 auto; }
+/* 链接组以页面中轴绝对居中(左侧 logo 不再把它挤偏) */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .nav-links a {
   position: relative;
   display: flex;
@@ -1219,7 +1226,8 @@ button.del:hover { opacity: 1; }
   /* 顶栏收紧:隐藏英文小字和微博图标,六个链接一行放齐 */
   .topnav { height: 52px; padding: 0 12px; gap: 10px; }
   .nav-logo { font-size: 1.2rem; flex-shrink: 0; }
-  .nav-links { gap: 11px; overflow-x: auto; scrollbar-width: none; }
+  .nav-links { gap: 11px; overflow-x: auto; scrollbar-width: none;
+    position: static; transform: none; margin: 0 auto; }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { padding: 4px 0; }
   .nav-links .zh { font-size: 0.86rem; letter-spacing: 0.02em; white-space: nowrap; }
