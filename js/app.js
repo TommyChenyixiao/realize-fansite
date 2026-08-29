@@ -322,6 +322,7 @@
     const facts = [["职位", "经纪人"]];
     if (p.birthday) facts.push(["生日", p.birthday.replace("-", ".")]);
     if (p.mbti) facts.push(["MBTI", p.mbti]);
+    if (p.firstStage) facts.push(["初披露", p.firstStage]);
     // 微博(经纪人主链接)排最前,其余平台跟在后面
     const links = socialLinks([g.managerWeibo].filter(Boolean).concat(p.socials || []));
     document.querySelector("#member-modal .modal").style.borderTop = "4px solid " + color;
