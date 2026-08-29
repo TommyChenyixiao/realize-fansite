@@ -109,6 +109,7 @@
     row.appendChild(labeled("介绍", input("text", g.intro, (v) => { g.intro = v; updateDiff(); }, "更长的介绍(可选)", 24)));
     // 小飞Tobi 彩蛋弹窗(点首页资料行的经纪人名字触发)
     const mp = g.managerProfile = g.managerProfile || {};
+    row.appendChild(labeled("小飞显示名", input("text", mp.name, (v) => { mp.name = v; updateDiff(); }, "弹窗标题", 8)));
     row.appendChild(labeled("小飞罗马字", input("text", mp.roman, (v) => { mp.roman = v; updateDiff(); }, "", 8)));
     row.appendChild(labeled("小飞生日", input("text", mp.birthday, (v) => { mp.birthday = v; updateDiff(); }, "MM-DD", 6)));
     row.appendChild(labeled("小飞MBTI", input("text", mp.mbti, (v) => { mp.mbti = v; updateDiff(); }, "", 6)));

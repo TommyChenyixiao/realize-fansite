@@ -328,7 +328,7 @@
     document.getElementById("modal-body").innerHTML =
       photo +
       '<div class="modal-info">' +
-      '<div class="modal-name">' + esc(g.manager) +
+      '<div class="modal-name">' + esc(p.name || g.manager) +
       ' <span class="modal-roman">' + esc(p.roman || "") + "</span>" +
       (p.catch
         ? ' <span class="catch-chip" style="background:' + esc(color) + '2e">' + esc(p.catch) + "</span>"
