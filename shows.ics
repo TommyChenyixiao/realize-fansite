@@ -1,0 +1,375 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//realize-fansite//shows//CN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:RealizE 演出日程
+X-WR-CALDESC:RealizE 粉丝应援站整理的演出日程,以官方微博
+ 为准。https://realizefansite.com
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:show-14@realizefansite.com
+DTSTAMP:20260607T000000Z
+DTSTART;VALUE=DATE:20260607
+DTEND;VALUE=DATE:20260608
+SUMMARY:RealizE @ 新歌空间
+LOCATION:新歌空间
+DESCRIPTION:第1场\n出道日 ·【7.in ShangHai Fes Vol.1】I see the li
+ ght:序章~RealizE初披露\n缺席:冰冰\n演出时间以官方微博为
+ 准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-15@realizefansite.com
+DTSTAMP:20260610T000000Z
+DTSTART;VALUE=DATE:20260610
+DTEND;VALUE=DATE:20260611
+SUMMARY:RealizE @ 待定 ★
+LOCATION:
+DESCRIPTION:第2场\nRuruko 生日SP\n缺席:冰冰\n演出时间以官方
+ 微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-16@realizefansite.com
+DTSTAMP:20260613T000000Z
+DTSTART;VALUE=DATE:20260613
+DTEND;VALUE=DATE:20260614
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第3场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-17@realizefansite.com
+DTSTAMP:20260614T000000Z
+DTSTART;VALUE=DATE:20260614
+DTEND;VALUE=DATE:20260615
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第4场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-18@realizefansite.com
+DTSTAMP:20260619T000000Z
+DTSTART;VALUE=DATE:20260619
+DTEND;VALUE=DATE:20260620
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第5场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-19@realizefansite.com
+DTSTAMP:20260620T000000Z
+DTSTART;VALUE=DATE:20260620
+DTEND;VALUE=DATE:20260621
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第6场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-20@realizefansite.com
+DTSTAMP:20260621T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第7场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-21@realizefansite.com
+DTSTAMP:20260627T000000Z
+DTSTART;VALUE=DATE:20260627
+DTEND;VALUE=DATE:20260628
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第8场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-22@realizefansite.com
+DTSTAMP:20260628T000000Z
+DTSTART;VALUE=DATE:20260628
+DTEND;VALUE=DATE:20260629
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第9场\n缺席:冰冰\n演出时间以官方微博为准 http
+ s://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-23@realizefansite.com
+DTSTAMP:20260704T000000Z
+DTSTART;VALUE=DATE:20260704
+DTEND;VALUE=DATE:20260705
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第10场\n缺席:冰冰\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-26@realizefansite.com
+DTSTAMP:20260705T000000Z
+DTSTART;VALUE=DATE:20260705
+DTEND;VALUE=DATE:20260706
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第11场\n缺席:冰冰\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-27@realizefansite.com
+DTSTAMP:20260708T000000Z
+DTSTART;VALUE=DATE:20260708
+DTEND;VALUE=DATE:20260709
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第12场\n缺席:冰冰\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-24@realizefansite.com
+DTSTAMP:20260711T000000Z
+DTSTART;VALUE=DATE:20260711
+DTEND;VALUE=DATE:20260712
+SUMMARY:RealizE @ 日不落剧场
+LOCATION:日不落剧场
+DESCRIPTION:第13场\n缺席:冰冰·小噜\n演出时间以官方微博
+ 为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-25@realizefansite.com
+DTSTAMP:20260712T000000Z
+DTSTART;VALUE=DATE:20260712
+DTEND;VALUE=DATE:20260713
+SUMMARY:RealizE @ 日不落剧场
+LOCATION:日不落剧场
+DESCRIPTION:第14场\n缺席:冰冰\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-28@realizefansite.com
+DTSTAMP:20260718T000000Z
+DTSTART;VALUE=DATE:20260718
+DTEND;VALUE=DATE:20260719
+SUMMARY:RealizE @ 日不落剧场
+LOCATION:日不落剧场
+DESCRIPTION:第15场\n冰冰RealizE初舞台\n缺席:阿鱼\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-34@realizefansite.com
+DTSTAMP:20260726T000000Z
+DTSTART;VALUE=DATE:20260726
+DTEND;VALUE=DATE:20260727
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第16场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-33@realizefansite.com
+DTSTAMP:20260729T000000Z
+DTSTART;VALUE=DATE:20260729
+DTEND;VALUE=DATE:20260730
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第17场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-42@realizefansite.com
+DTSTAMP:20260731T000000Z
+DTSTART;VALUE=DATE:20260731
+DTEND;VALUE=DATE:20260801
+SUMMARY:RealizE @ 百联南方购物中心
+LOCATION:百联南方购物中心
+DESCRIPTION:第18场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-35@realizefansite.com
+DTSTAMP:20260802T000000Z
+DTSTART;VALUE=DATE:20260802
+DTEND;VALUE=DATE:20260803
+SUMMARY:RealizE @ 育音堂小镇C厅
+LOCATION:育音堂小镇C厅
+DESCRIPTION:第19场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-36@realizefansite.com
+DTSTAMP:20260805T000000Z
+DTSTART;VALUE=DATE:20260805
+DTEND;VALUE=DATE:20260806
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第20场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-43@realizefansite.com
+DTSTAMP:20260807T000000Z
+DTSTART;VALUE=DATE:20260807
+DTEND;VALUE=DATE:20260808
+SUMMARY:RealizE @ 百联南方购物中心
+LOCATION:百联南方购物中心
+DESCRIPTION:第21场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-37@realizefansite.com
+DTSTAMP:20260808T000000Z
+DTSTART;VALUE=DATE:20260808
+DTEND;VALUE=DATE:20260809
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第22场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-44@realizefansite.com
+DTSTAMP:20260812T000000Z
+DTSTART;VALUE=DATE:20260812
+DTEND;VALUE=DATE:20260813
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第23场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-45@realizefansite.com
+DTSTAMP:20260814T000000Z
+DTSTART;VALUE=DATE:20260814
+DTEND;VALUE=DATE:20260815
+SUMMARY:RealizE @ 百联南方购物中心
+LOCATION:百联南方购物中心
+DESCRIPTION:第24场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-39@realizefansite.com
+DTSTAMP:20260815T000000Z
+DTSTART;VALUE=DATE:20260815
+DTEND;VALUE=DATE:20260816
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第25场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-40@realizefansite.com
+DTSTAMP:20260816T000000Z
+DTSTART;VALUE=DATE:20260816
+DTEND;VALUE=DATE:20260817
+SUMMARY:RealizE @ MAO LIVE HOUSE
+LOCATION:MAO LIVE HOUSE
+DESCRIPTION:第26场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-41@realizefansite.com
+DTSTAMP:20260819T000000Z
+DTSTART;VALUE=DATE:20260819
+DTEND;VALUE=DATE:20260820
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第27场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-32@realizefansite.com
+DTSTAMP:20260822T000000Z
+DTSTART;VALUE=DATE:20260822
+DTEND;VALUE=DATE:20260823
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第28场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-11@realizefansite.com
+DTSTAMP:20260826T000000Z
+DTSTART;VALUE=DATE:20260826
+DTEND;VALUE=DATE:20260827
+SUMMARY:RealizE @ 育音堂音乐公园
+LOCATION:育音堂音乐公园 上海市长宁区愚园路1398号B1层 B1-
+ B2
+DESCRIPTION:第29场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-12@realizefansite.com
+DTSTAMP:20260829T000000Z
+DTSTART;VALUE=DATE:20260829
+DTEND;VALUE=DATE:20260830
+SUMMARY:RealizE @ 未来剧场
+LOCATION:未来剧场 上海市普陀区宜昌路179号 万代南梦宫上
+ 海文化中心 2F
+DESCRIPTION:第30场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-13@realizefansite.com
+DTSTAMP:20260830T000000Z
+DTSTART;VALUE=DATE:20260830
+DTEND;VALUE=DATE:20260831
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第31场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+END:VCALENDAR
