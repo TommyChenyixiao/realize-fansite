@@ -353,7 +353,9 @@
     const box = document.getElementById("news");
     const list = news
       .slice()
-      .sort((a, b) => (b.pinned - a.pinned) || (a.date < b.date ? 1 : -1));
+      // 置顶优先 → 日期新在前 → 同日按 id 新在前(原先同日返回 -1 是矛盾比较,顺序随引擎而定)
+      .sort((a, b) => (b.pinned - a.pinned) ||
+        (a.date === b.date ? b.id - a.id : (a.date < b.date ? 1 : -1)));
     if (!list.length) {
       box.closest("section").hidden = true;
       return;
