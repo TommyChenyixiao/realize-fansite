@@ -553,10 +553,20 @@
       document.getElementById("show-modal-body").innerHTML =
         '<div class="sd-badge">🔔 订阅演出日程</div>' +
         '<p class="ics-p">订阅一次,之后的新排期会自动同步进你的日历 App,不用再来站里翻。</p>' +
-        '<a class="ics-main" href="' + webcalUrl + '">📲 一键订阅（iPhone / Mac 日历）</a>' +
-        '<p class="ics-p">Google 日历或其他:复制链接,在日历里选「通过网址添加」粘贴:</p>' +
+        // target=_top:手机预览把站点包在 iframe 里,自定义协议(webcal)从 iframe 发起会被
+        // 浏览器静默拦截,跳出到顶层窗口才能唤起系统日历
+        '<a class="ics-main" href="' + webcalUrl + '" target="_top">📲 一键订阅（iPhone / Mac 日历）</a>' +
+        '<p class="ics-note">点击后系统会询问「是否打开日历」,确认即完成订阅,不会下载文件;' +
+        "浏览器若曾拒绝过该询问会静默无反应,请走下面两条路。</p>" +
+        // Google 日历走纯网页链接,不依赖系统协议,电脑端最稳
+        '<a class="ics-main ics-google" href="https://calendar.google.com/calendar/render?cid=' +
+        encodeURIComponent(webcalUrl) + '" target="_blank" rel="noopener">🗓 添加到 Google 日历（网页）</a>' +
+        '<p class="ics-p">其他日历 App:复制链接,在日历里选「通过网址添加 / 订阅」粘贴:</p>' +
         '<div class="ics-linkrow"><code class="ics-link">' + esc(httpsUrl) + "</code>" +
         '<button type="button" id="ics-copy" class="ics-copy">复制</button></div>' +
+        '<p class="ics-p">或 <a class="ics-dl" href="' + esc(httpsUrl) +
+        '" download="realize-shows.ics" target="_top">⬇️ 下载 .ics 文件</a>' +
+        "打开导入(一次性,之后不自动更新,推荐优先订阅)。</p>" +
         '<p class="ics-note">日程为全天事件,具体演出时间以官方微博为准。</p>';
       document.getElementById("ics-copy").addEventListener("click", async (e) => {
         try {

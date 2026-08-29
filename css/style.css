@@ -832,7 +832,15 @@ h2::after {
   flex-shrink: 0;
 }
 .ics-copy:hover { border-color: var(--accent); }
-.ics-note { margin-top: 14px; color: var(--muted); font-size: 0.8rem; }
+.ics-note { margin-top: 10px; color: var(--muted); font-size: 0.8rem; }
+.ics-dl { color: var(--accent-deep); font-weight: 600; }
+/* Google 日历按钮:描边样式,与主按钮区分层级 */
+.ics-main.ics-google {
+  background: var(--card);
+  color: var(--accent-deep);
+  border: 1px solid var(--accent);
+}
+.ics-main.ics-google:hover { background: var(--accent-soft); }
 
 .cal {
   background: var(--card);
