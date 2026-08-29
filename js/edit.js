@@ -264,6 +264,8 @@
     row.appendChild(labeled("分类", sel));
     row.appendChild(input("text", n.title, (v) => { n.title = v; updateDiff(); }, "标题", 20));
     row.appendChild(input("text", n.link, (v) => { n.link = v; updateDiff(); }, "链接(可选)", 16));
+    // 撤下日期(含当天):到期后首页自动不再展示,留空=一直展示
+    row.appendChild(labeled("展示至", input("date", n.until, (v) => { n.until = v; updateDiff(); })));
     row.appendChild(checkbox("置顶", !!n.pinned, (v) => { n.pinned = v; updateDiff(); }));
     row.appendChild(labeled("正文", textarea(n.body, (v) => { n.body = v; updateDiff(); })));
     row.appendChild(delButton(() => {
@@ -373,7 +375,7 @@
         date: f.date.value,
         cat: f.cat.value,
         title: f.title.value.trim(),
-        body: "", link: "", pinned: false,
+        body: "", link: "", until: "", pinned: false,
       });
       f.reset();
       renderNewsRows();
