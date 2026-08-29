@@ -546,8 +546,9 @@
     const btn = document.getElementById("ics-btn");
     if (!btn) return;
     btn.addEventListener("click", () => {
-      const httpsUrl = location.origin + "/shows.ics";
-      const webcalUrl = "webcal://" + location.host + "/shows.ics";
+      // 相对当前页面解析,正式域名(根目录)和 githack 分支预览(子路径)都指向正确文件
+      const httpsUrl = new URL("shows.ics", location.href).href;
+      const webcalUrl = httpsUrl.replace(/^https?:/, "webcal:");
       document.getElementById("show-modal-body").innerHTML =
         '<div class="sd-badge">🔔 订阅演出日程</div>' +
         '<p class="ics-p">订阅一次,之后的新排期会自动同步进你的日历 App,不用再来站里翻。</p>' +
