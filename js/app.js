@@ -275,6 +275,25 @@
     openMemberModal((curMemberIndex + delta + n) % n);
   }
 
+  // 社交链接 → 带平台图标的按钮串(成员弹窗与小飞彩蛋共用)
+  function socialLinks(list) {
+    return (list || [])
+      .map((url) => {
+        const kind = url.includes("bilibili")
+          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
+          : url.includes("douyin")
+            ? ['<img class="wb-icon" src="assets/douyin.png" alt="">', "抖音"]
+            : url.includes("xiaohongshu")
+              ? ['<img class="wb-icon" src="assets/xhs.png" alt="">', "小红书"]
+              : url.includes("weibo")
+                ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
+                : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
+        return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+          kind[0] + kind[1] + "</a>";
+      })
+      .join(" ");
+  }
+
   // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
   function bioToHtml(bio) {
     if (!bio) return "<p class=\"bio-empty\">详细介绍整理中…</p>";
@@ -303,11 +322,8 @@
     const facts = [["职位", "经纪人"]];
     if (p.birthday) facts.push(["生日", p.birthday.replace("-", ".")]);
     if (p.mbti) facts.push(["MBTI", p.mbti]);
-    let links = "";
-    if (g.managerWeibo) {
-      links = '<a class="modal-weibo" href="' + esc(g.managerWeibo) + '" target="_blank" rel="noopener">' +
-        '<img class="wb-icon" src="assets/weibo.png" alt="">微博</a>';
-    }
+    // 微博(经纪人主链接)排最前,其余平台跟在后面
+    const links = socialLinks([g.managerWeibo].filter(Boolean).concat(p.socials || []));
     document.querySelector("#member-modal .modal").style.borderTop = "4px solid " + color;
     document.getElementById("modal-body").innerHTML =
       photo +
@@ -354,21 +370,7 @@
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
     const bioHtml = bioToHtml(m.bio);
-    let links = (m.socials || [])
-      .map((url) => {
-        const kind = url.includes("bilibili")
-          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
-          : url.includes("douyin")
-            ? ['<img class="wb-icon" src="assets/douyin.png" alt="">', "抖音"]
-            : url.includes("xiaohongshu")
-              ? ['<img class="wb-icon" src="assets/xhs.png" alt="">', "小红书"]
-              : url.includes("weibo")
-                ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
-                : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
-        return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
-          kind[0] + kind[1] + "</a>";
-      })
-      .join(" ");
+    let links = socialLinks(m.socials);
     if (m.fanGroup) {
       links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">' +
         '<span class="link-emoji">💬</span>微博群' +

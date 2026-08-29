@@ -115,6 +115,10 @@
     row.appendChild(labeled("小飞口号", input("text", mp.catch, (v) => { mp.catch = v; updateDiff(); }, "", 10)));
     row.appendChild(labeled("小飞应援色", input("text", mp.color, (v) => { mp.color = v; updateDiff(); }, "#d43c3c", 8)));
     row.appendChild(labeled("小飞写真", input("text", mp.photo, (v) => { mp.photo = v; updateDiff(); }, "图片路径", 14)));
+    row.appendChild(labeled("小飞链接", input("text", (mp.socials || []).join(", "), (v) => {
+      mp.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
+      updateDiff();
+    }, "B站/小红书/抖音等,逗号分隔", 24)));
     row.appendChild(labeled("小飞简介", textarea(mp.bio, (v) => { mp.bio = v; updateDiff(); })));
     box.appendChild(row);
   }
