@@ -38,9 +38,10 @@ main section { scroll-margin-top: 82px; }
   z-index: 90;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
-/* Hero 大图上:透明底白字(参考日系官网),滚过后回到毛玻璃 */
+/* Hero 大图上:透明底白字(参考日系官网),滚过后回到毛玻璃;
+   加一条很淡的顶部渐变 scrim,白字压在公式照亮部(浅紫丝带等)也保持可读 */
 .topnav.over-hero {
-  background: transparent;
+  background: linear-gradient(to bottom, rgba(43, 39, 52, 0.34), rgba(43, 39, 52, 0));
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: none;
@@ -64,7 +65,14 @@ main section { scroll-margin-top: 82px; }
   text-decoration: none;
   line-height: 1;
 }
-.nav-links { display: flex; gap: 30px; margin: 0 auto; }
+/* 链接组以页面中轴绝对居中(左侧 logo 不再把它挤偏) */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .nav-links a {
   position: relative;
   display: flex;
@@ -420,6 +428,13 @@ h2::after {
 }
 @media (max-width: 860px) {
   .members { grid-template-columns: repeat(2, 1fr); }
+  /* 两列网格下末张孤行卡片(第 5 位)居中,不再贴左失衡;
+     宽度=单列宽(50% 减半个 gap),和上面的卡片一样大 */
+  .member-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 12px);
+  }
 }
 
 /* ---------- 演出档案 ---------- */
@@ -1219,7 +1234,8 @@ button.del:hover { opacity: 1; }
   /* 顶栏收紧:隐藏英文小字和微博图标,六个链接一行放齐 */
   .topnav { height: 52px; padding: 0 12px; gap: 10px; }
   .nav-logo { font-size: 1.2rem; flex-shrink: 0; }
-  .nav-links { gap: 11px; overflow-x: auto; scrollbar-width: none; }
+  .nav-links { gap: 11px; overflow-x: auto; scrollbar-width: none;
+    position: static; transform: none; margin: 0 auto; }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a { padding: 4px 0; }
   .nav-links .zh { font-size: 0.86rem; letter-spacing: 0.02em; white-space: nowrap; }
@@ -1229,6 +1245,16 @@ button.del:hover { opacity: 1; }
   /* 影像:手机一屏一张多露一点,手指横滑,箭头收起 */
   .videos { grid-auto-columns: 82%; }
   .vid-nav { display: none; }
+
+  /* 歌曲:披露信息换到歌名下方一行,歌名不再被右栏挤成竖条断行;
+     左缩进 36px = 序号宽 22px + 间距 14px,与歌名左缘对齐 */
+  .song-row { flex-wrap: wrap; row-gap: 2px; }
+  .song-stats {
+    margin-left: 0;
+    flex-basis: 100%;
+    padding-left: 36px;
+    font-size: 0.78rem;
+  }
 
   /* 日历:格子里只留场次号,场地名太长必然截断,悬停/详情看列表 */
   .cal-head { padding: 10px 10px; gap: 8px; }
@@ -1266,6 +1292,10 @@ button.del:hover { opacity: 1; }
   .hero-info { padding-top: 14px; }
   .hero-info h1 { font-size: 1.26rem; letter-spacing: 0.04em; white-space: nowrap; }
   .tagline { font-size: 0.78rem; letter-spacing: 0.08em; text-indent: 0.08em; }
+  /* 窄屏眉题必然折行:隐藏末个「·」,让「粉丝应援站」独占一行,
+     分隔符不再孤悬行尾(nth-last-child(2) = 末段前的那个分隔符) */
+  .tagline .tg-sep:nth-last-child(2) { display: none; }
+  .tagline .tg-seg:last-child { display: block; margin-top: 2px; }
   .sub { font-size: 0.92rem; }
   /* 换行后竖线会变成行首孤儿——手机端隐藏竖线,靠间距分隔 */
   .facts { gap: 6px 16px; }

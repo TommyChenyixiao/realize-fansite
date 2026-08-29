@@ -109,11 +109,12 @@
     const tailGap = /[！？。～!?]$/.test(catchText) ? "" : " ";
     setText("group-name", g.emoji + " " + catchText + tailGap + g.emoji);
     // 副标:所属 + 定位 + 站点性质(表明是粉丝站,与免责声明呼应);
-    // 每段 nowrap,窄屏只在「·」处换行,不把词组拦腰截断
+    // 每段 nowrap,窄屏只在「·」处换行,不把词组拦腰截断;
+    // 分隔符做成元素,手机端隐藏末个分隔符并让末段独占一行,避免「·」孤悬行尾
     document.getElementById("group-tagline").innerHTML =
       [g.intro, g.tagline, "粉丝应援站"].filter(Boolean)
         .map((t) => '<span class="tg-seg">' + esc(t) + "</span>")
-        .join(" · ");
+        .join('<span class="tg-sep"> · </span>');
     // PROFILE 式资料行:标签 + 值,竖线分隔
     const facts = [["出道", fmtDate(g.debutDate)]];
     if (g.agency) facts.push(["运营", g.agency]);
@@ -138,8 +139,9 @@
     }
     // 顺序:官方账号四连(微博/小红书/抖音/微博群)在前,小飞和七韵紧随其后
     if (g.fanGroup) {
+      // 微博群也是微博平台入口,用微博图标与前排官方账号统一(不再混 emoji)
       groupLinks.push('<a href="' + esc(g.fanGroup) + '" target="_blank" rel="noopener">' +
-        '<span class="link-emoji">💬</span>官方微博群</a>');
+        '<img class="wb-icon" src="assets/weibo.png" alt="">官方微博群</a>');
     }
     if (g.managerWeibo) {
       const icon = g.managerIcon
@@ -186,7 +188,7 @@
       [String(D.daysBetween(g.debutDate, today) + 1), "天", "出道至今"],
       [String(past.length), "场", "已演出"],
       mile
-        ? [String(mile.remaining), "场", "距第 " + mile.target + " 场"]
+        ? [String(mile.remaining), "场", "即满 " + mile.target + " 场"]
         : [String(upcoming.length), "场", "已排期"],
     ];
     document.getElementById("stats").innerHTML = stats
@@ -351,7 +353,9 @@
     const box = document.getElementById("news");
     const list = news
       .slice()
-      .sort((a, b) => (b.pinned - a.pinned) || (a.date < b.date ? 1 : -1));
+      // 置顶优先 → 日期新在前 → 同日按 id 新在前(原先同日返回 -1 是矛盾比较,顺序随引擎而定)
+      .sort((a, b) => (b.pinned - a.pinned) ||
+        (a.date === b.date ? b.id - a.id : (a.date < b.date ? 1 : -1)));
     if (!list.length) {
       box.closest("section").hidden = true;
       return;
