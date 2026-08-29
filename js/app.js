@@ -414,6 +414,8 @@
     const box = document.getElementById("news");
     const list = news
       .slice()
+      // 预设撤下日期(until,含当天):过期情报访客端自动不再展示,无需发版
+      .filter((n) => !n.until || n.until >= today)
       // 置顶优先 → 日期新在前 → 同日按 id 新在前(原先同日返回 -1 是矛盾比较,顺序随引擎而定)
       .sort((a, b) => (b.pinned - a.pinned) ||
         (a.date === b.date ? b.id - a.id : (a.date < b.date ? 1 : -1)));
