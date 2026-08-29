@@ -107,6 +107,19 @@
     row.appendChild(labeled("经纪公司微博", input("text", g.agencyWeibo, (v) => { g.agencyWeibo = v; updateDiff(); }, "链接", 18)));
     row.appendChild(labeled("经纪人头像", input("text", g.managerIcon, (v) => { g.managerIcon = v; updateDiff(); }, "图片路径", 14)));
     row.appendChild(labeled("介绍", input("text", g.intro, (v) => { g.intro = v; updateDiff(); }, "更长的介绍(可选)", 24)));
+    // 小飞Tobi 彩蛋弹窗(点首页资料行的经纪人名字触发)
+    const mp = g.managerProfile = g.managerProfile || {};
+    row.appendChild(labeled("小飞罗马字", input("text", mp.roman, (v) => { mp.roman = v; updateDiff(); }, "", 8)));
+    row.appendChild(labeled("小飞生日", input("text", mp.birthday, (v) => { mp.birthday = v; updateDiff(); }, "MM-DD", 6)));
+    row.appendChild(labeled("小飞MBTI", input("text", mp.mbti, (v) => { mp.mbti = v; updateDiff(); }, "", 6)));
+    row.appendChild(labeled("小飞口号", input("text", mp.catch, (v) => { mp.catch = v; updateDiff(); }, "", 10)));
+    row.appendChild(labeled("小飞应援色", input("text", mp.color, (v) => { mp.color = v; updateDiff(); }, "#d43c3c", 8)));
+    row.appendChild(labeled("小飞写真", input("text", mp.photo, (v) => { mp.photo = v; updateDiff(); }, "图片路径", 14)));
+    row.appendChild(labeled("小飞链接", input("text", (mp.socials || []).join(", "), (v) => {
+      mp.socials = v.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
+      updateDiff();
+    }, "B站/小红书/抖音等,逗号分隔", 24)));
+    row.appendChild(labeled("小飞简介", textarea(mp.bio, (v) => { mp.bio = v; updateDiff(); })));
     box.appendChild(row);
   }
 

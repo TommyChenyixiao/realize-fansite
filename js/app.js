@@ -124,8 +124,12 @@
       .map(([k, v], i) =>
         '<span class="fact-unit">' + (i ? '<span class="f-sep"></span>' : "") +
         '<span class="fact"><span class="f-label">' + esc(k) +
-        '</span><span class="f-value">' + esc(v) + "</span></span></span>")
+        '</span><span class="f-value"' + (k === "经纪人" ? ' data-egg="tobi"' : "") + '>' +
+        esc(v) + "</span></span></span>")
       .join("");
+    // 隐藏彩蛋:点资料行里的经纪人名字弹出小飞Tobi 简介(无视觉提示,懂的都懂)
+    const egg = document.querySelector('#group-sub .f-value[data-egg="tobi"]');
+    if (egg && g.managerProfile) egg.addEventListener("click", openTobiModal);
     const groupLinks = [];
     if (g.weibo) groupLinks.push('<a href="' + esc(g.weibo) + '" target="_blank" rel="noopener">' +
       '<img class="wb-icon" src="assets/weibo.png" alt="">官方微博</a>');
@@ -224,6 +228,8 @@
 
   // ---------- 成员详情弹窗 ----------
   let curMemberIndex = -1;
+  // 弹窗当前显示的是不是小飞Tobi 彩蛋(是则关掉左右切换)
+  let tobiMode = false;
 
   function bindMemberModal() {
     const mask = document.getElementById("member-modal");
@@ -264,12 +270,90 @@
   }
 
   function navMember(delta) {
+    if (tobiMode) return; // 彩蛋弹窗没有上/下一位
     const n = site.members.length;
     openMemberModal((curMemberIndex + delta + n) % n);
   }
 
+  // 社交链接 → 带平台图标的按钮串(成员弹窗与小飞彩蛋共用)
+  function socialLinks(list) {
+    return (list || [])
+      .map((url) => {
+        const kind = url.includes("bilibili")
+          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
+          : url.includes("douyin")
+            ? ['<img class="wb-icon" src="assets/douyin.png" alt="">', "抖音"]
+            : url.includes("xiaohongshu")
+              ? ['<img class="wb-icon" src="assets/xhs.png" alt="">', "小红书"]
+              : url.includes("weibo")
+                ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
+                : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
+        return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
+          kind[0] + kind[1] + "</a>";
+      })
+      .join(" ");
+  }
+
+  // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
+  function bioToHtml(bio) {
+    if (!bio) return "<p class=\"bio-empty\">详细介绍整理中…</p>";
+    return bio.split("\n").map((line) => {
+      const match = line.match(/^(.*?)\s*\[译[:：](.+)\]\s*$/);
+      if (!match) return "<p>" + esc(line) + "</p>";
+      return "<p>" + esc(match[1]) +
+        ' <button class="tr-btn" type="button">译</button>' +
+        '<span class="tr-text" hidden>' + esc(match[2]) + "</span></p>";
+    }).join("");
+  }
+
+  // 隐藏彩蛋:经纪人小飞Tobi 的简介弹窗,复用成员弹窗外壳
+  function openTobiModal() {
+    const g = site.group;
+    const p = g.managerProfile;
+    if (!p) return;
+    tobiMode = true;
+    document.getElementById("modal-prev").hidden = true;
+    document.getElementById("modal-next").hidden = true;
+    const color = p.color || "#d43c3c";
+    const photo = p.photo
+      ? '<img class="modal-photo" src="' + esc(p.photo) + '" alt="' + esc(g.manager) + '">'
+      : '<div class="modal-photo modal-photo-placeholder" style="background:' + esc(color) + '2e">' +
+        '<span class="ph-emoji">🎩</span><span class="ph-text">写真准备中</span></div>';
+    const facts = [["职位", "经纪人"]];
+    if (p.birthday) facts.push(["生日", p.birthday.replace("-", ".")]);
+    if (p.mbti) facts.push(["MBTI", p.mbti]);
+    // 微博(经纪人主链接)排最前,其余平台跟在后面
+    const links = socialLinks([g.managerWeibo].filter(Boolean).concat(p.socials || []));
+    document.querySelector("#member-modal .modal").style.borderTop = "4px solid " + color;
+    document.getElementById("modal-body").innerHTML =
+      photo +
+      '<div class="modal-info">' +
+      '<div class="modal-name">' + esc(g.manager) +
+      ' <span class="modal-roman">' + esc(p.roman || "") + "</span>" +
+      (p.catch
+        ? ' <span class="catch-chip" style="background:' + esc(color) + '2e">' + esc(p.catch) + "</span>"
+        : "") +
+      "</div>" +
+      '<div class="modal-facts">' +
+      facts.map(([l, v]) =>
+        '<span class="fact"><span class="fact-l">' + esc(l) + "</span>" + esc(v) + "</span>").join("") +
+      "</div>" +
+      '<div class="modal-bio">' + bioToHtml(p.bio) + "</div>" +
+      links +
+      "</div>";
+    document.getElementById("member-modal").hidden = false;
+    document.body.style.overflow = "hidden";
+    const body = document.getElementById("modal-body");
+    body.scrollTop = 0;
+    const info = body.querySelector(".modal-info");
+    if (info) info.scrollTop = 0;
+  }
+
   function openMemberModal(index) {
     curMemberIndex = index;
+    tobiMode = false;
+    document.getElementById("modal-prev").hidden = false;
+    document.getElementById("modal-next").hidden = false;
     const m = site.members[index];
     const s = D.memberStats(m.name, past);
     // 竖版(3:4)照片位:有照片放照片,没有就用应援色底 + emoji 占位
@@ -285,31 +369,8 @@
     if (m.mascot) facts.push(["代表物", m.mascot + (m.emoji ? " " + m.emoji : "")]);
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
-    // 行尾写 [译:xxx] 的句子会带一个「译」按钮,点击展开中文翻译
-    const bioHtml = m.bio
-      ? m.bio.split("\n").map((line) => {
-          const match = line.match(/^(.*?)\s*\[译[:：](.+)\]\s*$/);
-          if (!match) return "<p>" + esc(line) + "</p>";
-          return "<p>" + esc(match[1]) +
-            ' <button class="tr-btn" type="button">译</button>' +
-            '<span class="tr-text" hidden>' + esc(match[2]) + "</span></p>";
-        }).join("")
-      : "<p class=\"bio-empty\">详细介绍整理中…</p>";
-    let links = (m.socials || [])
-      .map((url) => {
-        const kind = url.includes("bilibili")
-          ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
-          : url.includes("douyin")
-            ? ['<img class="wb-icon" src="assets/douyin.png" alt="">', "抖音"]
-            : url.includes("xiaohongshu")
-              ? ['<img class="wb-icon" src="assets/xhs.png" alt="">', "小红书"]
-              : url.includes("weibo")
-                ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
-                : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
-        return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
-          kind[0] + kind[1] + "</a>";
-      })
-      .join(" ");
+    const bioHtml = bioToHtml(m.bio);
+    let links = socialLinks(m.socials);
     if (m.fanGroup) {
       links += ' <a class="modal-weibo" href="' + esc(m.fanGroup) + '" target="_blank" rel="noopener">' +
         '<span class="link-emoji">💬</span>微博群' +
