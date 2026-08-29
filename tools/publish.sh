@@ -13,6 +13,9 @@ fi
 msg="${1:-更新数据 $(date +%Y-%m-%d)}"
 branch="data/$(date +%Y%m%d-%H%M%S)"
 
+# 演出数据变了就同步重建日历订阅文件(shows.ics),测试会校验两者一致
+node tools/build-ics.js
+
 git checkout -b "$branch"
 git add -A
 git commit -m "$msg"

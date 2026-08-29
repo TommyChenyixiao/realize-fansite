@@ -44,6 +44,7 @@
   bindFilters();
   bindShowModal();
   bindViewToggle();
+  bindIcsSubscribe();
   bindSetlistToggle();
   renderSongs();
   renderVideos();
@@ -537,6 +538,34 @@
     mask.addEventListener("click", (e) => { if (e.target === mask) closeShowModal(); });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !mask.hidden) closeShowModal();
+    });
+  }
+
+  // 日程订阅弹窗:webcal 一键订阅(Apple)+ 复制链接(Google 等),复用日历详情弹窗外壳
+  function bindIcsSubscribe() {
+    const btn = document.getElementById("ics-btn");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const httpsUrl = location.origin + "/shows.ics";
+      const webcalUrl = "webcal://" + location.host + "/shows.ics";
+      document.getElementById("show-modal-body").innerHTML =
+        '<div class="sd-badge">🔔 订阅演出日程</div>' +
+        '<p class="ics-p">订阅一次,之后的新排期会自动同步进你的日历 App,不用再来站里翻。</p>' +
+        '<a class="ics-main" href="' + webcalUrl + '">📲 一键订阅（iPhone / Mac 日历）</a>' +
+        '<p class="ics-p">Google 日历或其他:复制链接,在日历里选「通过网址添加」粘贴:</p>' +
+        '<div class="ics-linkrow"><code class="ics-link">' + esc(httpsUrl) + "</code>" +
+        '<button type="button" id="ics-copy" class="ics-copy">复制</button></div>' +
+        '<p class="ics-note">日程为全天事件,具体演出时间以官方微博为准。</p>';
+      document.getElementById("ics-copy").addEventListener("click", async (e) => {
+        try {
+          await navigator.clipboard.writeText(httpsUrl);
+          e.target.textContent = "已复制 ✓";
+        } catch (err) {
+          e.target.textContent = "请手动复制上面的链接";
+        }
+      });
+      document.getElementById("show-modal").hidden = false;
+      document.body.style.overflow = "hidden";
     });
   }
 
