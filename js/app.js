@@ -609,9 +609,9 @@
               esc(m.name + (here ? "" : "（缺席）")) + '">' + m.emoji + "</span>";
           })
           .join("");
-        let html =
+        return (
           '<div class="show-row' + (future ? " future" : "") + (s.special ? " special" : "") +
-          (hasSetlist ? " has-setlist" : "") + '" data-id="' + s.id + '">' +
+          '" data-id="' + s.id + '" title="点击查看详情">' +
           '<div class="show-n">' + (future ? "待演" : "第" + s.n + "场") + "</div>" +
           '<div class="show-date">' + fmtDate(s.date) + " " + weekday(s.date) +
           (s.time ? " " + esc(s.time) : "") + "</div>" +
@@ -622,31 +622,18 @@
           "</div>" +
           (hasSetlist ? '<span class="setlist-badge">♪ 歌单</span>' : "") +
           '<div class="show-lineup">' + lineup + "</div>" +
-          "</div>";
-        if (hasSetlist && expandedShowId === s.id) {
-          const items = D.setlistLabels(s.setlist, songById)
-            .map((it) =>
-              '<div class="sl-item"><span class="sl-label">' + it.label + "</span>" +
-              '<span class="sl-title">' + esc(it.song ? it.song.title : "?") + "</span>" +
-              (it.song && it.song.artist
-                ? '<span class="sl-artist">' + esc(it.song.artist) + "</span>" : "") +
-              "</div>")
-            .join("");
-          html += '<div class="setlist-panel">' + items + "</div>";
-        }
-        return html;
+          "</div>"
+        );
       })
       .join("");
   }
 
-  let expandedShowId = null;
+  // 列表行点击 = 打开演出详情弹窗(与日历圆片同一入口;歌单/出席/地址都在弹窗里)
   function bindSetlistToggle() {
     document.getElementById("shows").addEventListener("click", (e) => {
-      const row = e.target.closest(".show-row.has-setlist");
+      const row = e.target.closest(".show-row");
       if (!row) return;
-      const id = Number(row.dataset.id);
-      expandedShowId = expandedShowId === id ? null : id;
-      renderShows();
+      openShowModal(Number(row.dataset.id));
     });
   }
 
