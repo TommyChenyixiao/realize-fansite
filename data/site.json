@@ -14,7 +14,16 @@
     "managerWeibo": "https://weibo.com/n/-Toooobi-",
     "fanGroup": "https://api.weibo.com/chat/#/chat?check_gid=5323851308473034&source_from=11",
     "managerIcon": "assets/tobi.png",
-    "agencyWeibo": "https://weibo.com/n/七韵IdolProductions"
+    "agencyWeibo": "https://weibo.com/n/七韵IdolProductions",
+    "managerProfile": {
+      "roman": "Tobi",
+      "birthday": "10-08",
+      "mbti": "INTJ",
+      "catch": "传奇红担",
+      "color": "#d43c3c",
+      "photo": "assets/tobi-profile.jpg",
+      "bio": "前地下偶像,现役经纪人——从舞台中央到舞台侧幕,一直没离开过现场。\n2023年5月在杭州 NatsumokuFes 上公开加入地下偶像团体 REAL1TY,同年兼任 T·S·D² 成员;2024年2月29日随数字单曲《星空 / Stay Real》正式出道。\n2024年6月从两团毕业、专注个人发展;2025年5月以兼职成员身份回归 REAL1TY,陪伴团体走到 2026年3月的最终公演。\n也在幕后执笔:REAL1TY《Dokidoki Premonition》与 ReNus《Blessing Praise》《No Live No Weekend》的词作均出自她手。\n2026年起担任 RealizE 经纪人,以「传奇红担」之名继续出没于各地 live 现场。"
+    }
   },
   "members": [
     {
