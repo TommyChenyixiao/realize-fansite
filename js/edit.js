@@ -113,6 +113,7 @@
     row.appendChild(labeled("小飞罗马字", input("text", mp.roman, (v) => { mp.roman = v; updateDiff(); }, "", 8)));
     row.appendChild(labeled("小飞生日", input("text", mp.birthday, (v) => { mp.birthday = v; updateDiff(); }, "MM-DD", 6)));
     row.appendChild(labeled("小飞MBTI", input("text", mp.mbti, (v) => { mp.mbti = v; updateDiff(); }, "", 6)));
+    row.appendChild(labeled("小飞初披露", input("text", mp.firstStage, (v) => { mp.firstStage = v; updateDiff(); }, "YYYY.MM.DD", 10)));
     row.appendChild(labeled("小飞口号", input("text", mp.catch, (v) => { mp.catch = v; updateDiff(); }, "", 10)));
     row.appendChild(labeled("小飞应援色", input("text", mp.color, (v) => { mp.color = v; updateDiff(); }, "#d43c3c", 8)));
     row.appendChild(labeled("小飞写真", input("text", mp.photo, (v) => { mp.photo = v; updateDiff(); }, "图片路径", 14)));
