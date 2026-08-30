@@ -192,9 +192,9 @@
     const stats = [
       [String(D.daysBetween(g.debutDate, today) + 1), "天", "出道至今"],
       [String(past.length), "场", "已演出"],
-      // 里程碑大数字写目标、小字写还差几场:「50 场 / 还差 20 场」一眼懂
+      // 里程碑大数字写目标、小字写倒数,句式与 NEXT LIVE 的「还有 N 天」统一
       mile
-        ? [String(mile.target), "场", "还差 " + mile.remaining + " 场"]
+        ? [String(mile.target), "场", "还有 " + mile.remaining + " 场"]
         : [String(upcoming.length), "场", "已排期"],
     ];
     document.getElementById("stats").innerHTML = stats
