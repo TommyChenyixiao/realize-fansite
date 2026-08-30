@@ -513,6 +513,11 @@
             ' title="' + esc(m.name + " 的生日") + '">🎂 ' + esc(m.name) + "</span>";
         }
       }
+      // 出道里程碑角标(整百天/周年),按格子日期现场推导,无需维护数据
+      const mile = D.debutMilestone(site.group.debutDate, cell.ymd);
+      if (mile) {
+        chips += '<span class="cal-chip mile" title="' + esc(mile) + '">🎉 ' + esc(mile) + "</span>";
+      }
       html += '<div class="cal-cell' + (cell.inMonth ? "" : " other") + (isToday ? " today" : "") + '">' +
         '<span class="cal-day">' + cell.day + "</span>" + chips + "</div>";
     }
