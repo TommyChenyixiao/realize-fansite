@@ -95,3 +95,20 @@ test("monthGrid:补齐首尾周的月历格子", () => {
   const aug31 = cells.find((c) => c.ymd === "2026-08-31");
   assert.ok(aug31 && aug31.inMonth);
 });
+
+test("debutMilestone:出道日算第 1 天,整百天与周年", () => {
+  const debut = "2026-06-07";
+  // 出道当天是第 1 天,不是里程碑
+  assert.strictEqual(D.debutMilestone(debut, "2026-06-07"), null);
+  // 第 100 天 = 出道日 + 99 天 = 2026-09-14
+  assert.strictEqual(D.debutMilestone(debut, "2026-09-14"), "出道100天");
+  assert.strictEqual(D.debutMilestone(debut, "2026-09-13"), null);
+  assert.strictEqual(D.debutMilestone(debut, "2026-09-15"), null);
+  // 第 200 天 = 2026-12-23
+  assert.strictEqual(D.debutMilestone(debut, "2026-12-23"), "出道200天");
+  // 一周年(同月同日,优先于整百天规则)
+  assert.strictEqual(D.debutMilestone(debut, "2027-06-07"), "出道1周年");
+  assert.strictEqual(D.debutMilestone(debut, "2028-06-07"), "出道2周年");
+  // 出道前不标
+  assert.strictEqual(D.debutMilestone(debut, "2026-01-01"), null);
+});

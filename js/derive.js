@@ -118,6 +118,17 @@
     return [y, m - 1, d];
   }
 
+  // 出道里程碑(日历角标用):出道当天算第 1 天。
+  // 周年(同月同日、年份晚于出道年)优先,其次整百天(第 100/200/300… 天);其余返回 null
+  function debutMilestone(debutDate, ymd) {
+    if (ymd.slice(5) === debutDate.slice(5) && ymd.slice(0, 4) > debutDate.slice(0, 4)) {
+      return "出道" + (Number(ymd.slice(0, 4)) - Number(debutDate.slice(0, 4))) + "周年";
+    }
+    const n = daysBetween(debutDate, ymd) + 1;
+    if (n > 0 && n % 100 === 0) return "出道" + n + "天";
+    return null;
+  }
+
   const derive = {
     sortByDate,
     withNumbers,
@@ -127,6 +138,7 @@
     nextMilestone,
     buildTimeline,
     daysBetween,
+    debutMilestone,
     beijingToday,
     songStats,
     setlistLabels,
