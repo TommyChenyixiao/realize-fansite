@@ -264,7 +264,8 @@
     row.appendChild(labeled("分类", sel));
     row.appendChild(input("text", n.title, (v) => { n.title = v; updateDiff(); }, "标题", 20));
     row.appendChild(input("text", n.link, (v) => { n.link = v; updateDiff(); }, "链接(可选)", 16));
-    // 撤下日期(含当天):到期后首页自动不再展示,留空=一直展示
+    // 生效/撤下日期(均含当天):未到生效日不展示、过撤下日不展示,留空=不限
+    row.appendChild(labeled("生效日", input("date", n.from, (v) => { n.from = v; updateDiff(); })));
     row.appendChild(labeled("展示至", input("date", n.until, (v) => { n.until = v; updateDiff(); })));
     row.appendChild(checkbox("置顶", !!n.pinned, (v) => { n.pinned = v; updateDiff(); }));
     row.appendChild(labeled("正文", textarea(n.body, (v) => { n.body = v; updateDiff(); })));
@@ -375,7 +376,7 @@
         date: f.date.value,
         cat: f.cat.value,
         title: f.title.value.trim(),
-        body: "", link: "", until: "", pinned: false,
+        body: "", link: "", from: "", until: "", pinned: false,
       });
       f.reset();
       renderNewsRows();

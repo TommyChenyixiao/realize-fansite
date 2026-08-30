@@ -416,8 +416,10 @@
     const box = document.getElementById("news");
     const list = news
       .slice()
-      // 预设撤下日期(until,含当天):过期情报访客端自动不再展示,无需发版
-      .filter((n) => !n.until || n.until >= today)
+      // 预设生效日(from,含当天)与撤下日期(until,含当天):
+      // 未到期不展示、过期不展示,均为访客端北京时间自动切换,无需发版。
+      // 周更公告可提前录好:from=下周一、until=周日,周一 00:00 自动上线
+      .filter((n) => (!n.from || n.from <= today) && (!n.until || n.until >= today))
       // 置顶优先 → 日期新在前 → 同日按 id 新在前(原先同日返回 -1 是矛盾比较,顺序随引擎而定)
       .sort((a, b) => (b.pinned - a.pinned) ||
         (a.date === b.date ? b.id - a.id : (a.date < b.date ? 1 : -1)));
