@@ -192,8 +192,10 @@
     const stats = [
       [String(D.daysBetween(g.debutDate, today) + 1), "天", "出道至今"],
       [String(past.length), "场", "已演出"],
+      // 里程碑:大数字写目标,小字「下一站」——旅途感,呼应首页标语;
+      // 剩几场不写,旁边「已演出」一减便知,留白即味道(站长定稿)
       mile
-        ? [String(mile.remaining), "场", "即满 " + mile.target + " 场"]
+        ? [String(mile.target), "场", "下一站"]
         : [String(upcoming.length), "场", "已排期"],
     ];
     document.getElementById("stats").innerHTML = stats
