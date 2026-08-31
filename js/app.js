@@ -378,6 +378,8 @@
     }
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
+    // 生涯出演 = 入团前场次(prevShows,站长录入)+ 本团出席,随每场演出自动增长
+    if (m.prevShows) facts.push(["生涯出演", (m.prevShows + s.count) + " 场"]);
     const bioHtml = bioToHtml(m.bio);
     let links = socialLinks(m.socials);
     if (m.fanGroup) {
