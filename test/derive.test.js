@@ -112,3 +112,11 @@ test("debutMilestone:出道日算第 1 天,整百天与周年", () => {
   // 出道前不标
   assert.strictEqual(D.debutMilestone(debut, "2026-01-01"), null);
 });
+
+test("yearsSince:同月同日的周年数,非周年为 0", () => {
+  assert.strictEqual(D.yearsSince("2026-06-07", "2027-06-07"), 1);
+  assert.strictEqual(D.yearsSince("2026-06-07", "2029-06-07"), 3);
+  assert.strictEqual(D.yearsSince("2026-06-07", "2026-06-07"), 0);
+  assert.strictEqual(D.yearsSince("2026-06-07", "2027-06-08"), 0);
+  assert.strictEqual(D.yearsSince("2026-06-07", "2025-06-07"), 0);
+});

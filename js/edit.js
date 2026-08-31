@@ -143,6 +143,8 @@
     row.appendChild(labeled("emoji", input("text", m.emoji, (v) => { m.emoji = v; updateDiff(); }, "", 3)));
     row.appendChild(labeled("应援心", input("text", m.heart, (v) => { m.heart = v; updateDiff(); }, "", 3)));
     row.appendChild(labeled("应援色", input("text", m.color, (v) => { m.color = v; updateDiff(); }, "#rrggbb", 8)));
+    // 出道日=个人偶像生涯出道(可能在前团),留空则弹窗不显示相关两项
+    row.appendChild(labeled("出道日", input("date", m.debutDate, (v) => { m.debutDate = v; updateDiff(); })));
     row.appendChild(labeled("生日", input("text", m.birthday, (v) => { m.birthday = v; updateDiff(); }, "月-日", 6)));
     row.appendChild(labeled("代表物", input("text", m.mascot, (v) => { m.mascot = v; updateDiff(); }, "", 8)));
     row.appendChild(labeled("MBTI", input("text", m.mbti, (v) => { m.mbti = v; updateDiff(); }, "", 5)));

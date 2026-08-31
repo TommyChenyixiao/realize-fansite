@@ -371,6 +371,11 @@
     if (m.birthday) facts.push(["生日", m.birthday.replace("-", ".")]);
     if (m.mbti) facts.push(["MBTI", m.mbti]);
     if (m.mascot) facts.push(["代表物", m.mascot + (m.emoji ? " " + m.emoji : "")]);
+    // 出道日=个人偶像生涯出道(可能早于本团,如前团经历),站长录入;初舞台=在本团首次登台,自动推导
+    if (m.debutDate) {
+      facts.push(["出道日", fmtDate(m.debutDate)]);
+      facts.push(["出道至今", (D.daysBetween(m.debutDate, today) + 1) + " 天"]);
+    }
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
     const bioHtml = bioToHtml(m.bio);
@@ -508,6 +513,10 @@
         chips += '<span class="cal-chip' + (s.special ? " special" : "") + (future ? " future" : "") +
           '" data-show-id="' + s.id + '" title="' + esc(full + (s.note ? " · " + s.note : "")) +
           '">' + esc(label) + "</span>";
+        // 场次里程碑:每 50 场(第 50/100/150…场)在落点日期标星,未来场次按排期自动落位
+        if (s.n % 50 === 0) {
+          chips += '<span class="cal-chip mile" title="第' + s.n + '场">⭐ 第' + s.n + "场</span>";
+        }
       }
       for (const m of site.members) {
         if (m.birthday && m.birthday === mmdd(cell.ymd)) {
@@ -519,6 +528,16 @@
       const mile = D.debutMilestone(site.group.debutDate, cell.ymd);
       if (mile) {
         chips += '<span class="cal-chip mile" title="' + esc(mile) + '">🎉 ' + esc(mile) + "</span>";
+      }
+      // 成员个人出道周年(出道日=个人生涯出道,可能在前团):
+      // 与团体出道同日的不单独标(并入上面的团体周年,免得同格爆多枚角标)
+      for (const m of site.members) {
+        if (!m.debutDate || m.debutDate === site.group.debutDate) continue;
+        const my = D.yearsSince(m.debutDate, cell.ymd);
+        if (my) {
+          chips += '<span class="cal-chip bday" style="background:' + esc(m.color || "#ffd44d") + '33"' +
+            ' title="' + esc(m.name + " 出道" + my + "周年") + '">🎉 ' + esc(m.name + " " + my + "周年") + "</span>";
+        }
       }
       html += '<div class="cal-cell' + (cell.inMonth ? "" : " other") + (isToday ? " today" : "") + '">' +
         '<span class="cal-day">' + cell.day + "</span>" + chips + "</div>";
