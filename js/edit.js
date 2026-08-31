@@ -253,7 +253,7 @@
     row.appendChild(input("date", n.date, (v) => { n.date = v; renderNewsRows(); updateDiff(); }));
     const sel = document.createElement("select");
     sel.className = "sl-select";
-    for (const c of ["公演", "物贩", "生诞祭", "其他"]) {
+    for (const c of ["公演", "物贩", "生诞祭", "里程碑", "其他"]) {
       const opt = document.createElement("option");
       opt.value = c;
       opt.textContent = c;

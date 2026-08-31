@@ -429,7 +429,9 @@
       box.closest("section").hidden = true;
       return;
     }
-    const catClass = { "公演": "cat-live", "物贩": "cat-goods", "生诞祭": "cat-bday", "其他": "cat-other" };
+    const catClass = { "公演": "cat-live", "物贩": "cat-goods", "生诞祭": "cat-bday", "里程碑": "cat-mile", "其他": "cat-other" };
+    // 里程碑分类的标签带 🎉,庆祝感和日历里程碑角标呼应
+    const catText = (c) => (c === "里程碑" ? "🎉 里程碑" : c || "其他");
     box.innerHTML = list
       .map((n) => {
         const title = n.link
@@ -438,7 +440,7 @@
         return (
           '<div class="news-row">' +
           '<span class="news-date">' + fmtDate(n.date) + "</span>" +
-          '<span class="news-cat ' + (catClass[n.cat] || "cat-other") + '">' + esc(n.cat || "其他") + "</span>" +
+          '<span class="news-cat ' + (catClass[n.cat] || "cat-other") + '">' + esc(catText(n.cat)) + "</span>" +
           '<div class="news-main"><div class="news-title">' +
           (n.pinned ? '<span class="news-pin">置顶</span>' : "") + title + "</div>" +
           (n.body ? '<div class="news-body">' + esc(n.body) + "</div>" : "") +
