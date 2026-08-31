@@ -765,6 +765,7 @@ h2::after {
 .cat-goods { background: #e8a13c; }
 .cat-bday { background: #ef8fb6; }
 .cat-other { background: #a9a2bd; }
+.cat-mile { background: linear-gradient(120deg, #ffd44d, #f0b9de); color: var(--text); }
 .news-main { min-width: 0; }
 .news-title { font-weight: 600; }
 .news-title a { color: var(--accent-deep); text-decoration: none; }
