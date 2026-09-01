@@ -1298,7 +1298,20 @@ button.del:hover { opacity: 1; }
   /* 日历:格子里只留场次号,场地名太长必然截断,悬停/详情看列表 */
   .cal-head { padding: 10px 10px; gap: 8px; }
   .cal-cell { min-height: 58px; padding: 3px 3px; }
-  .cal-chip { font-size: 0.6rem; padding: 1px 3px; border-radius: 4px; }
+  /* 手机格子只有 ~55px 宽,单行截断只剩一两个字——
+     改为最多折两行(line-clamp),场地名/里程碑基本能完整显示 */
+  .cal-chip {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+    border-radius: 4px;
+    white-space: normal;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.35;
+  }
   .cal-day { font-size: 0.72rem; }
 
   /* 成员弹窗:改上下结构,照片在上、资料在下整体滚动 */
