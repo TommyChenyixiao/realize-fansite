@@ -16,16 +16,28 @@ test("shows.ics 与 shows.json 同步(过期就重跑 node tools/build-ics.js)",
   assert.strictEqual(committed, build());
 });
 
-test("shows.ics 结构:事件数与演出数一致,必填字段齐全", () => {
+test("shows.ics 结构:事件数 = 演出 + 里程碑,必填字段齐全", () => {
   const shows = JSON.parse(fs.readFileSync(path.join(ROOT, "data/shows.json"), "utf8"));
+  const site = JSON.parse(fs.readFileSync(path.join(ROOT, "data/site.json"), "utf8"));
+  const g = site.group;
+  // 里程碑:整百天 10 个 + 团体周年 5 个 + 成员周年(有出道日且≠团体出道日,团体成立前的周年不计)
+  let memberAnniv = 0;
+  for (const m of site.members) {
+    if (!m.debutDate || m.debutDate === g.debutDate) continue;
+    for (let y = 1; y <= 5; y++) {
+      const ymd = m.debutDate.replace(/^\d{4}/, String(Number(m.debutDate.slice(0, 4)) + y));
+      if (ymd > g.debutDate) memberAnniv++;
+    }
+  }
+  const expected = shows.length + 10 + 5 + memberAnniv;
   const ics = build();
-  assert.strictEqual((ics.match(/BEGIN:VEVENT/g) || []).length, shows.length);
-  assert.strictEqual((ics.match(/END:VEVENT/g) || []).length, shows.length);
+  assert.strictEqual((ics.match(/BEGIN:VEVENT/g) || []).length, expected);
+  assert.strictEqual((ics.match(/END:VEVENT/g) || []).length, expected);
   assert.ok(ics.startsWith("BEGIN:VCALENDAR"));
   assert.ok(ics.trimEnd().endsWith("END:VCALENDAR"));
   // 每个事件的 UID 唯一
   const uids = ics.match(/UID:[^\r\n]+/g) || [];
-  assert.strictEqual(new Set(uids).size, shows.length);
+  assert.strictEqual(new Set(uids).size, expected);
   // RFC5545:行(含折行前)不超过 75 字节
   for (const line of ics.split("\r\n")) {
     assert.ok(Buffer.from(line, "utf8").length <= 75, "行超长: " + line);

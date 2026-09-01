@@ -919,6 +919,9 @@ h2::after {
 .cal-chip.bday { color: var(--text); }
 /* 出道里程碑(整百天/周年):金→粉渐变庆祝感,与特别场的紫粉渐变区分 */
 .cal-chip.mile { background: linear-gradient(120deg, #ffd44d, #f0b9de); color: var(--text); }
+/* 带 data-day 的角标可点开当日详情(手机上角标截断,弹窗看全文) */
+.cal-chip[data-day] { cursor: pointer; }
+.di-item { margin-top: 10px; font-size: 0.95rem; }
 
 /* ---------- 歌曲 ---------- */
 .songs { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }

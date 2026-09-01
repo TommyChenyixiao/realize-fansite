@@ -515,31 +515,13 @@
         chips += '<span class="cal-chip' + (s.special ? " special" : "") + (future ? " future" : "") +
           '" data-show-id="' + s.id + '" title="' + esc(full + (s.note ? " · " + s.note : "")) +
           '">' + esc(label) + "</span>";
-        // 场次里程碑:每 50 场(第 50/100/150…场)在落点日期标星,未来场次按排期自动落位
-        if (s.n % 50 === 0) {
-          chips += '<span class="cal-chip mile" title="第' + s.n + '场">⭐ 第' + s.n + "场</span>";
-        }
       }
-      for (const m of site.members) {
-        if (m.birthday && m.birthday === mmdd(cell.ymd)) {
-          chips += '<span class="cal-chip bday" style="background:' + esc(m.color || "#ffd44d") + '33"' +
-            ' title="' + esc(m.name + " 的生日") + '">🎂 ' + esc(m.name) + "</span>";
-        }
-      }
-      // 出道里程碑角标(整百天/周年),按格子日期现场推导,无需维护数据
-      const mile = D.debutMilestone(site.group.debutDate, cell.ymd);
-      if (mile) {
-        chips += '<span class="cal-chip mile" title="' + esc(mile) + '">🎉 ' + esc(mile) + "</span>";
-      }
-      // 成员个人出道周年(出道日=个人生涯出道,可能在前团):
-      // 与团体出道同日的不单独标(并入上面的团体周年,免得同格爆多枚角标)
-      for (const m of site.members) {
-        if (!m.debutDate || m.debutDate === site.group.debutDate) continue;
-        const my = D.yearsSince(m.debutDate, cell.ymd);
-        if (my) {
-          chips += '<span class="cal-chip bday" style="background:' + esc(m.color || "#ffd44d") + '33"' +
-            ' title="' + esc(m.name + " 出道" + my + "周年") + '">🎉 ' + esc(m.name + " " + my + "周年") + "</span>";
-        }
+      // 里程碑/生日/周年角标:统一由 dayExtras 推导;带 data-day,点开当日详情弹窗
+      // (手机上角标会被截断,弹窗是完整信息的唯一出口)
+      for (const e of dayExtras(cell.ymd)) {
+        chips += '<span class="cal-chip ' + e.cls + '" data-day="' + cell.ymd + '"' +
+          (e.color ? ' style="background:' + esc(e.color) + '33"' : "") +
+          ' title="' + esc(e.full) + '">' + esc(e.label) + "</span>";
       }
       html += '<div class="cal-cell' + (cell.inMonth ? "" : " other") + (isToday ? " today" : "") + '">' +
         '<span class="cal-day">' + cell.day + "</span>" + chips + "</div>";
@@ -565,7 +547,9 @@
     const mask = document.getElementById("show-modal");
     document.getElementById("calendar").addEventListener("click", (e) => {
       const chip = e.target.closest(".cal-chip[data-show-id]");
-      if (chip) openShowModal(Number(chip.dataset.showId));
+      if (chip) { openShowModal(Number(chip.dataset.showId)); return; }
+      const info = e.target.closest(".cal-chip[data-day]");
+      if (info) openDayInfoModal(info.dataset.day);
     });
     document.getElementById("show-modal-close").addEventListener("click", closeShowModal);
     mask.addEventListener("click", (e) => { if (e.target === mask) closeShowModal(); });
@@ -611,6 +595,43 @@
       document.getElementById("show-modal").hidden = false;
       document.body.style.overflow = "hidden";
     });
+  }
+
+  // 某日的非演出事项(场次里程碑/团体整百天与周年/成员生日/成员周年),日历角标与当日详情弹窗共用
+  function dayExtras(ymd) {
+    const out = [];
+    for (const s of numbered) {
+      if (s.date === ymd && s.n % 50 === 0) {
+        out.push({ cls: "mile", label: "⭐ 第" + s.n + "场", full: "场次里程碑:第" + s.n + "场" });
+      }
+    }
+    const mile = D.debutMilestone(site.group.debutDate, ymd);
+    if (mile) out.push({ cls: "mile", label: "🎉 " + mile, full: "RealizE " + mile });
+    for (const m of site.members) {
+      if (m.birthday && m.birthday === ymd.slice(5)) {
+        out.push({ cls: "bday", color: m.color, label: "🎂 " + m.name, full: m.name + " 的生日" });
+      }
+      // 成员个人出道周年(出道日可能在前团);与团体出道同日的并入团体周年,免得同格爆角标
+      if (m.debutDate && m.debutDate !== site.group.debutDate) {
+        const y = D.yearsSince(m.debutDate, ymd);
+        if (y) {
+          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + " " + y + "周年",
+            full: m.name + " 出道" + y + "周年(" + fmtDate(m.debutDate) + " 出道)" });
+        }
+      }
+    }
+    return out;
+  }
+
+  // 当日详情弹窗:完整展示该格所有里程碑/生日/周年(角标在手机上会截断)
+  function openDayInfoModal(ymd) {
+    const items = dayExtras(ymd);
+    if (!items.length) return;
+    document.getElementById("show-modal-body").innerHTML =
+      '<div class="sd-date">' + fmtDate(ymd) + " " + weekday(ymd) + "</div>" +
+      items.map((e) => '<div class="di-item">' + esc(e.full) + "</div>").join("");
+    document.getElementById("show-modal").hidden = false;
+    document.body.style.overflow = "hidden";
   }
 
   function closeShowModal() {

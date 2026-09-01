@@ -42,9 +42,34 @@ function nextDay(ymd) {
   return t.toISOString().slice(0, 10);
 }
 
-function buildIcs(shows, venues) {
+// 里程碑事件生成范围(确定性输出,不依赖生成时刻;快用完时上调常量重新生成即可)
+const HUNDRED_DAY_EVENTS = 10; // 出道 100~1000 天
+const ANNIV_YEARS = 5;         // 团体/成员周年 1~5 周年
+
+function addDays(ymd, n) {
+  const [y, m, d] = ymd.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+}
+
+function allDayEvent(lines, uid, ymd, summary, desc) {
+  const date = ymd.replace(/-/g, "");
+  lines.push(
+    "BEGIN:VEVENT",
+    "UID:" + uid + "@realizefansite.com",
+    "DTSTAMP:" + date + "T000000Z",
+    "DTSTART;VALUE=DATE:" + date,
+    "DTEND;VALUE=DATE:" + addDays(ymd, 1).replace(/-/g, ""),
+    "SUMMARY:" + icsEscape(summary),
+    "DESCRIPTION:" + icsEscape(desc),
+    "URL:" + SITE_URL,
+    "END:VEVENT"
+  );
+}
+
+function buildIcs(shows, venues, site) {
   const venueByName = new Map(venues.map((v) => [v.name, v]));
   const numbered = derive.withNumbers(shows);
+  const g = site.group;
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -60,7 +85,9 @@ function buildIcs(shows, venues) {
   for (const s of numbered) {
     const v = s.venue ? venueByName.get(s.venue) : null;
     const date = s.date.replace(/-/g, "");
-    const summary = "RealizE @ " + (s.venue || "待定") + (s.special ? " ★" : "");
+    // 第 50/100/150…场是场次里程碑,直接并进演出标题
+    const summary = "RealizE @ " + (s.venue || "待定") + (s.special ? " ★" : "") +
+      (s.n % 50 === 0 ? " ⭐第" + s.n + "场" : "");
     const descParts = ["第" + s.n + "场"];
     if (s.note) descParts.push(s.note);
     if (s.absent && s.absent.length) descParts.push("缺席:" + s.absent.join("·"));
@@ -79,6 +106,26 @@ function buildIcs(shows, venues) {
       "END:VEVENT"
     );
   }
+  // 团体里程碑:整百天(出道日=第 1 天,第 N 天 = 出道日 + N-1 天)与周年
+  for (let k = 1; k <= HUNDRED_DAY_EVENTS; k++) {
+    const n = k * 100;
+    allDayEvent(lines, "mile-day-" + n, addDays(g.debutDate, n - 1),
+      "🎉 RealizE 出道" + n + "天", "出道当天算第 1 天。" + SITE_URL);
+  }
+  for (let y = 1; y <= ANNIV_YEARS; y++) {
+    allDayEvent(lines, "mile-anniv-" + y, g.debutDate.replace(/^\d{4}/, String(Number(g.debutDate.slice(0, 4)) + y)),
+      "🎉 RealizE 出道" + y + "周年", "出道日 " + g.debutDate + "。" + SITE_URL);
+  }
+  // 成员个人出道周年(出道日可能在前团;与团体出道同日的并入团体周年,和站内日历同规则)
+  (site.members || []).forEach((m, i) => {
+    if (!m.debutDate || m.debutDate === g.debutDate) return;
+    for (let y = 1; y <= ANNIV_YEARS; y++) {
+      const ymd = m.debutDate.replace(/^\d{4}/, String(Number(m.debutDate.slice(0, 4)) + y));
+      if (ymd <= g.debutDate) continue; // 团体成立前的周年不进团体日程
+      allDayEvent(lines, "member-" + i + "-anniv-" + y, ymd,
+        "🎉 " + m.name + " 出道" + y + "周年", "出道日 " + m.debutDate + "。" + SITE_URL);
+    }
+  });
   lines.push("END:VCALENDAR");
   return lines.map(foldLine).join("\r\n") + "\r\n";
 }
@@ -86,7 +133,8 @@ function buildIcs(shows, venues) {
 function build() {
   const shows = JSON.parse(fs.readFileSync(path.join(ROOT, "data/shows.json"), "utf8"));
   const venues = JSON.parse(fs.readFileSync(path.join(ROOT, "data/venues.json"), "utf8"));
-  return buildIcs(shows, venues);
+  const site = JSON.parse(fs.readFileSync(path.join(ROOT, "data/site.json"), "utf8"));
+  return buildIcs(shows, venues, site);
 }
 
 if (require.main === module) {
