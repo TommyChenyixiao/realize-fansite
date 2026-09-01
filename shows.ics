@@ -395,4 +395,220 @@ DESCRIPTION:第33场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-100@realizefansite.com
+DTSTAMP:20260914T000000Z
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:🎉 RealizE 出道100天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-200@realizefansite.com
+DTSTAMP:20261223T000000Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+SUMMARY:🎉 RealizE 出道200天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-300@realizefansite.com
+DTSTAMP:20270402T000000Z
+DTSTART;VALUE=DATE:20270402
+DTEND;VALUE=DATE:20270403
+SUMMARY:🎉 RealizE 出道300天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-400@realizefansite.com
+DTSTAMP:20270711T000000Z
+DTSTART;VALUE=DATE:20270711
+DTEND;VALUE=DATE:20270712
+SUMMARY:🎉 RealizE 出道400天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-500@realizefansite.com
+DTSTAMP:20271019T000000Z
+DTSTART;VALUE=DATE:20271019
+DTEND;VALUE=DATE:20271020
+SUMMARY:🎉 RealizE 出道500天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-600@realizefansite.com
+DTSTAMP:20280127T000000Z
+DTSTART;VALUE=DATE:20280127
+DTEND;VALUE=DATE:20280128
+SUMMARY:🎉 RealizE 出道600天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-700@realizefansite.com
+DTSTAMP:20280506T000000Z
+DTSTART;VALUE=DATE:20280506
+DTEND;VALUE=DATE:20280507
+SUMMARY:🎉 RealizE 出道700天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-800@realizefansite.com
+DTSTAMP:20280814T000000Z
+DTSTART;VALUE=DATE:20280814
+DTEND;VALUE=DATE:20280815
+SUMMARY:🎉 RealizE 出道800天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-900@realizefansite.com
+DTSTAMP:20281122T000000Z
+DTSTART;VALUE=DATE:20281122
+DTEND;VALUE=DATE:20281123
+SUMMARY:🎉 RealizE 出道900天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-1000@realizefansite.com
+DTSTAMP:20290302T000000Z
+DTSTART;VALUE=DATE:20290302
+DTEND;VALUE=DATE:20290303
+SUMMARY:🎉 RealizE 出道1000天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-anniv-1@realizefansite.com
+DTSTAMP:20270607T000000Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270608
+SUMMARY:🎉 RealizE 出道1周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-anniv-2@realizefansite.com
+DTSTAMP:20280607T000000Z
+DTSTART;VALUE=DATE:20280607
+DTEND;VALUE=DATE:20280608
+SUMMARY:🎉 RealizE 出道2周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-anniv-3@realizefansite.com
+DTSTAMP:20290607T000000Z
+DTSTART;VALUE=DATE:20290607
+DTEND;VALUE=DATE:20290608
+SUMMARY:🎉 RealizE 出道3周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-anniv-4@realizefansite.com
+DTSTAMP:20300607T000000Z
+DTSTART;VALUE=DATE:20300607
+DTEND;VALUE=DATE:20300608
+SUMMARY:🎉 RealizE 出道4周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-anniv-5@realizefansite.com
+DTSTAMP:20310607T000000Z
+DTSTART;VALUE=DATE:20310607
+DTEND;VALUE=DATE:20310608
+SUMMARY:🎉 RealizE 出道5周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-anniv-1@realizefansite.com
+DTSTAMP:20260621T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:🎉 小圆 出道1周年
+DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-anniv-2@realizefansite.com
+DTSTAMP:20270621T000000Z
+DTSTART;VALUE=DATE:20270621
+DTEND;VALUE=DATE:20270622
+SUMMARY:🎉 小圆 出道2周年
+DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-anniv-3@realizefansite.com
+DTSTAMP:20280621T000000Z
+DTSTART;VALUE=DATE:20280621
+DTEND;VALUE=DATE:20280622
+SUMMARY:🎉 小圆 出道3周年
+DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-anniv-4@realizefansite.com
+DTSTAMP:20290621T000000Z
+DTSTART;VALUE=DATE:20290621
+DTEND;VALUE=DATE:20290622
+SUMMARY:🎉 小圆 出道4周年
+DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-anniv-5@realizefansite.com
+DTSTAMP:20300621T000000Z
+DTSTART;VALUE=DATE:20300621
+DTEND;VALUE=DATE:20300622
+SUMMARY:🎉 小圆 出道5周年
+DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-anniv-2@realizefansite.com
+DTSTAMP:20270607T000000Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270608
+SUMMARY:🎉 冰冰 出道2周年
+DESCRIPTION:出道日 2025-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-anniv-3@realizefansite.com
+DTSTAMP:20280607T000000Z
+DTSTART;VALUE=DATE:20280607
+DTEND;VALUE=DATE:20280608
+SUMMARY:🎉 冰冰 出道3周年
+DESCRIPTION:出道日 2025-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-anniv-4@realizefansite.com
+DTSTAMP:20290607T000000Z
+DTSTART;VALUE=DATE:20290607
+DTEND;VALUE=DATE:20290608
+SUMMARY:🎉 冰冰 出道4周年
+DESCRIPTION:出道日 2025-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-anniv-5@realizefansite.com
+DTSTAMP:20300607T000000Z
+DTSTART;VALUE=DATE:20300607
+DTEND;VALUE=DATE:20300608
+SUMMARY:🎉 冰冰 出道5周年
+DESCRIPTION:出道日 2025-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
 END:VCALENDAR

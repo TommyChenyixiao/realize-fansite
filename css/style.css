@@ -920,6 +920,9 @@ h2::after {
 .cal-chip.bday { color: var(--text); }
 /* 出道里程碑(整百天/周年):金→粉渐变庆祝感,与特别场的紫粉渐变区分 */
 .cal-chip.mile { background: linear-gradient(120deg, #ffd44d, #f0b9de); color: var(--text); }
+/* 带 data-day 的角标可点开当日详情(手机上角标截断,弹窗看全文) */
+.cal-chip[data-day] { cursor: pointer; }
+.di-item { margin-top: 10px; font-size: 0.95rem; }
 
 /* ---------- 歌曲 ---------- */
 .songs { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
@@ -1296,7 +1299,20 @@ button.del:hover { opacity: 1; }
   /* 日历:格子里只留场次号,场地名太长必然截断,悬停/详情看列表 */
   .cal-head { padding: 10px 10px; gap: 8px; }
   .cal-cell { min-height: 58px; padding: 3px 3px; }
-  .cal-chip { font-size: 0.6rem; padding: 1px 3px; border-radius: 4px; }
+  /* 手机格子只有 ~55px 宽,单行截断只剩一两个字——
+     改为最多折两行(line-clamp),场地名/里程碑基本能完整显示 */
+  .cal-chip {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+    border-radius: 4px;
+    white-space: normal;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.35;
+  }
   .cal-day { font-size: 0.72rem; }
 
   /* 成员弹窗:改上下结构,照片在上、资料在下整体滚动 */
