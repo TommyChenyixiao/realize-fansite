@@ -1304,8 +1304,10 @@ button.del:hover { opacity: 1; }
     font-size: 0.6rem;
     padding: 1px 3px;
     border-radius: 4px;
+    /* 只在汉字之间折行,数字/拉丁串(100、MAO 等)保持同一行不拆开 */
     white-space: normal;
-    word-break: break-all;
+    word-break: normal;
+    overflow-wrap: break-word;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
