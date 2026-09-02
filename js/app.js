@@ -278,10 +278,12 @@
     openMemberModal((curMemberIndex + delta + n) % n);
   }
 
-  // 社交链接 → 带平台图标的按钮串(成员弹窗与小飞彩蛋共用)
+  // 社交链接 → 带平台图标的按钮串(成员弹窗与小飞彩蛋共用)。
+  // 条目支持「url|自定义标签」:同平台多个账号时用标签区分(如「小红书·vlog」)
   function socialLinks(list) {
     return (list || [])
-      .map((url) => {
+      .map((entry) => {
+        const [url, custom] = String(entry).split("|");
         const kind = url.includes("bilibili")
           ? ['<img class="wb-icon" src="assets/bilibili.png" alt="">', "B站"]
           : url.includes("douyin")
@@ -292,7 +294,7 @@
                 ? ['<img class="wb-icon" src="assets/weibo.png" alt="">', "微博"]
                 : ["", esc(url.replace(/^https?:\/\//, "").split("/")[0])];
         return '<a class="modal-weibo" href="' + esc(url) + '" target="_blank" rel="noopener">' +
-          kind[0] + kind[1] + "</a>";
+          kind[0] + esc(custom || "") + (custom ? "" : kind[1]) + "</a>";
       })
       .join(" ");
   }
