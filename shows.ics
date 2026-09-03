@@ -445,11 +445,29 @@ DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:mile-day-520@realizefansite.com
+DTSTAMP:20271108T000000Z
+DTSTART;VALUE=DATE:20271108
+DTEND;VALUE=DATE:20271109
+SUMMARY:🎉 RealizE 出道520天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:mile-day-600@realizefansite.com
 DTSTAMP:20280127T000000Z
 DTSTART;VALUE=DATE:20280127
 DTEND;VALUE=DATE:20280128
 SUMMARY:🎉 RealizE 出道600天
+DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:mile-day-666@realizefansite.com
+DTSTAMP:20280402T000000Z
+DTSTART;VALUE=DATE:20280402
+DTEND;VALUE=DATE:20280403
+SUMMARY:🎉 RealizE 出道666天
 DESCRIPTION:出道当天算第 1 天。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -580,6 +598,96 @@ DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:member-1-day-400@realizefansite.com
+DTSTAMP:20260725T000000Z
+DTSTART;VALUE=DATE:20260725
+DTEND;VALUE=DATE:20260726
+SUMMARY:🎉 小圆 出道400天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-500@realizefansite.com
+DTSTAMP:20261102T000000Z
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:🎉 小圆 出道500天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-520@realizefansite.com
+DTSTAMP:20261122T000000Z
+DTSTART;VALUE=DATE:20261122
+DTEND;VALUE=DATE:20261123
+SUMMARY:🎉 小圆 出道520天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-600@realizefansite.com
+DTSTAMP:20270210T000000Z
+DTSTART;VALUE=DATE:20270210
+DTEND;VALUE=DATE:20270211
+SUMMARY:🎉 小圆 出道600天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-666@realizefansite.com
+DTSTAMP:20270417T000000Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+SUMMARY:🎉 小圆 出道666天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-700@realizefansite.com
+DTSTAMP:20270521T000000Z
+DTSTART;VALUE=DATE:20270521
+DTEND;VALUE=DATE:20270522
+SUMMARY:🎉 小圆 出道700天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-800@realizefansite.com
+DTSTAMP:20270829T000000Z
+DTSTART;VALUE=DATE:20270829
+DTEND;VALUE=DATE:20270830
+SUMMARY:🎉 小圆 出道800天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-900@realizefansite.com
+DTSTAMP:20271207T000000Z
+DTSTART;VALUE=DATE:20271207
+DTEND;VALUE=DATE:20271208
+SUMMARY:🎉 小圆 出道900天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-1-day-1000@realizefansite.com
+DTSTAMP:20280316T000000Z
+DTSTART;VALUE=DATE:20280316
+DTEND;VALUE=DATE:20280317
+SUMMARY:🎉 小圆 出道1000天
+DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:member-3-anniv-2@realizefansite.com
 DTSTAMP:20261222T000000Z
 DTSTART;VALUE=DATE:20261222
@@ -613,6 +721,231 @@ DTSTART;VALUE=DATE:20291222
 DTEND;VALUE=DATE:20291223
 SUMMARY:🎉 冰冰 出道5周年
 DESCRIPTION:出道日 2024-12-22。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-600@realizefansite.com
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260813
+DTEND;VALUE=DATE:20260814
+SUMMARY:🎉 冰冰 出道600天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-666@realizefansite.com
+DTSTAMP:20261018T000000Z
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+SUMMARY:🎉 冰冰 出道666天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-700@realizefansite.com
+DTSTAMP:20261121T000000Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:🎉 冰冰 出道700天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-800@realizefansite.com
+DTSTAMP:20270301T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:🎉 冰冰 出道800天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-900@realizefansite.com
+DTSTAMP:20270609T000000Z
+DTSTART;VALUE=DATE:20270609
+DTEND;VALUE=DATE:20270610
+SUMMARY:🎉 冰冰 出道900天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-3-day-1000@realizefansite.com
+DTSTAMP:20270917T000000Z
+DTSTART;VALUE=DATE:20270917
+DTEND;VALUE=DATE:20270918
+SUMMARY:🎉 冰冰 出道1000天
+DESCRIPTION:出道日 2024-12-22\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-anniv-1@realizefansite.com
+DTSTAMP:20270607T000000Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270608
+SUMMARY:🎉 芋圆 出道1周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-anniv-2@realizefansite.com
+DTSTAMP:20280607T000000Z
+DTSTART;VALUE=DATE:20280607
+DTEND;VALUE=DATE:20280608
+SUMMARY:🎉 芋圆 出道2周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-anniv-3@realizefansite.com
+DTSTAMP:20290607T000000Z
+DTSTART;VALUE=DATE:20290607
+DTEND;VALUE=DATE:20290608
+SUMMARY:🎉 芋圆 出道3周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-anniv-4@realizefansite.com
+DTSTAMP:20300607T000000Z
+DTSTART;VALUE=DATE:20300607
+DTEND;VALUE=DATE:20300608
+SUMMARY:🎉 芋圆 出道4周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-anniv-5@realizefansite.com
+DTSTAMP:20310607T000000Z
+DTSTART;VALUE=DATE:20310607
+DTEND;VALUE=DATE:20310608
+SUMMARY:🎉 芋圆 出道5周年
+DESCRIPTION:出道日 2026-06-07。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-100@realizefansite.com
+DTSTAMP:20260914T000000Z
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:🎉 芋圆 出道100天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-200@realizefansite.com
+DTSTAMP:20261223T000000Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261224
+SUMMARY:🎉 芋圆 出道200天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-300@realizefansite.com
+DTSTAMP:20270402T000000Z
+DTSTART;VALUE=DATE:20270402
+DTEND;VALUE=DATE:20270403
+SUMMARY:🎉 芋圆 出道300天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-400@realizefansite.com
+DTSTAMP:20270711T000000Z
+DTSTART;VALUE=DATE:20270711
+DTEND;VALUE=DATE:20270712
+SUMMARY:🎉 芋圆 出道400天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-500@realizefansite.com
+DTSTAMP:20271019T000000Z
+DTSTART;VALUE=DATE:20271019
+DTEND;VALUE=DATE:20271020
+SUMMARY:🎉 芋圆 出道500天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-520@realizefansite.com
+DTSTAMP:20271108T000000Z
+DTSTART;VALUE=DATE:20271108
+DTEND;VALUE=DATE:20271109
+SUMMARY:🎉 芋圆 出道520天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-600@realizefansite.com
+DTSTAMP:20280127T000000Z
+DTSTART;VALUE=DATE:20280127
+DTEND;VALUE=DATE:20280128
+SUMMARY:🎉 芋圆 出道600天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-666@realizefansite.com
+DTSTAMP:20280402T000000Z
+DTSTART;VALUE=DATE:20280402
+DTEND;VALUE=DATE:20280403
+SUMMARY:🎉 芋圆 出道666天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-700@realizefansite.com
+DTSTAMP:20280506T000000Z
+DTSTART;VALUE=DATE:20280506
+DTEND;VALUE=DATE:20280507
+SUMMARY:🎉 芋圆 出道700天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-800@realizefansite.com
+DTSTAMP:20280814T000000Z
+DTSTART;VALUE=DATE:20280814
+DTEND;VALUE=DATE:20280815
+SUMMARY:🎉 芋圆 出道800天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-900@realizefansite.com
+DTSTAMP:20281122T000000Z
+DTSTART;VALUE=DATE:20281122
+DTEND;VALUE=DATE:20281123
+SUMMARY:🎉 芋圆 出道900天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-4-day-1000@realizefansite.com
+DTSTAMP:20290302T000000Z
+DTSTART;VALUE=DATE:20290302
+DTEND;VALUE=DATE:20290303
+SUMMARY:🎉 芋圆 出道1000天
+DESCRIPTION:出道日 2026-06-07\,当天算第 1 天。https://realizefans
+ ite.com
 URL:https://realizefansite.com
 END:VEVENT
 END:VCALENDAR

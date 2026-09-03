@@ -28,6 +28,7 @@
   let curFilter = null;
   let curPage = 1;
   let calView = "cal";
+  let calKind = "all"; // 日历角标筛选:all/show(演出)/mile(纪念日)
   const bjNow = today.split("-").map(Number);
   let calY = bjNow[0];
   let calM = bjNow[1];
@@ -44,6 +45,7 @@
   bindFilters();
   bindShowModal();
   bindViewToggle();
+  bindKindToggle();
   bindIcsSubscribe();
   bindSetlistToggle();
   renderSongs();
@@ -465,10 +467,22 @@
     document.getElementById("calendar").hidden = !isCal;
     // 成员筛选只属于列表视图;日历始终显示全部,不受筛选影响
     document.getElementById("filters").hidden = isCal;
+    document.getElementById("kind-toggle").hidden = !isCal;
     document.getElementById("shows").hidden = isCal;
     document.getElementById("pager").hidden = isCal;
     if (isCal) renderCalendar();
     else renderShows();
+  }
+
+  function bindKindToggle() {
+    const box = document.getElementById("kind-toggle");
+    box.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-kind]");
+      if (!btn) return;
+      calKind = btn.dataset.kind;
+      box.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === btn));
+      renderCalendar();
+    });
   }
 
   function bindViewToggle() {
@@ -516,13 +530,15 @@
           .filter((m) => D.attended(s, m.name))
           .map((m) => m.emoji + m.name)
           .join(" ");
-        chips += '<span class="cal-chip' + (s.special ? " special" : "") + (future ? " future" : "") +
-          '" data-show-id="' + s.id + '" title="' + esc(full + (s.note ? " · " + s.note : "")) +
-          '">' + esc(label) + "</span>";
+        if (calKind !== "mile") {
+          chips += '<span class="cal-chip' + (s.special ? " special" : "") + (future ? " future" : "") +
+            '" data-show-id="' + s.id + '" title="' + esc(full + (s.note ? " · " + s.note : "")) +
+            '">' + esc(label) + "</span>";
+        }
       }
       // 里程碑/生日/周年角标:统一由 dayExtras 推导;带 data-day,点开当日详情弹窗
       // (手机上角标会被截断,弹窗是完整信息的唯一出口)
-      for (const e of dayExtras(cell.ymd)) {
+      for (const e of (calKind === "show" ? [] : dayExtras(cell.ymd))) {
         chips += '<span class="cal-chip ' + e.cls + '" data-day="' + cell.ymd + '"' +
           (e.color ? ' style="background:' + esc(e.color) + '33"' : "") +
           ' title="' + esc(e.full) + '">' + esc(e.label) + "</span>";
@@ -615,12 +631,18 @@
       if (m.birthday && m.birthday === ymd.slice(5)) {
         out.push({ cls: "bday", color: m.color, label: "🎂 " + m.name, full: m.name + " 的生日" });
       }
-      // 成员个人出道周年(出道日可能在前团);与团体出道同日的并入团体周年,免得同格爆角标
-      if (m.debutDate && m.debutDate !== site.group.debutDate) {
+      // 成员个人出道纪念(出道日可能在前团):周年 + 纪念天数(整百/520/666)。
+      // 填了出道日就都有(与团体同日出道的也单独标,站长要求);团体成立前的日子不标(与 ics 同规则)
+      if (m.debutDate && ymd > site.group.debutDate) {
         const y = D.yearsSince(m.debutDate, ymd);
         if (y) {
-          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + " " + y + "周年",
+          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + "出道" + y + "周年",
             full: m.name + " 出道" + y + "周年(" + fmtDate(m.debutDate) + " 出道)" });
+        }
+        const n = D.milestoneDayNo(m.debutDate, ymd);
+        if (n) {
+          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + "出道" + n + "天",
+            full: m.name + " 出道" + n + "天(" + fmtDate(m.debutDate) + " 出道)" });
         }
       }
     }

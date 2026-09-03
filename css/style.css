@@ -794,6 +794,9 @@ h2::after {
   cursor: pointer;
 }
 .view-toggle button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* 日历角标筛选行:紧贴视图切换行,按钮字号收一档 */
+.kind-toggle { margin-top: -6px; }
+.kind-toggle button { font-size: 0.8rem; padding: 3px 13px; }
 /* 订阅按钮:虚线描边和视图切换区分,不参与选中态 */
 .view-toggle .ics-btn { border-style: dashed; border-color: var(--accent); color: var(--accent-deep); }
 .view-toggle .ics-btn:hover { background: var(--accent-soft); }

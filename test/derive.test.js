@@ -39,13 +39,15 @@ test("nextMilestone：还差几场 + 已排期的带日期", () => {
   assert.strictEqual(D.nextMilestone(10, [1, 10], numbered), null);
 });
 
-test("buildTimeline 合并大事纪与有备注/特别场的演出，按日期倒序", () => {
+test("buildTimeline 只合并大事纪与特别场(note 是展示字段,不入大事纪),按日期倒序", () => {
   const events = [{ date: "2026-06-01", title: "团名初披露", note: "" }];
   const tl = D.buildTimeline(events, D.withNumbers(shows));
   assert.deepStrictEqual(tl.map((t) => [t.date, t.type]), [
-    ["2026-06-10", "show"], ["2026-06-07", "show"], ["2026-06-01", "event"],
+    ["2026-06-10", "show"], ["2026-06-01", "event"],
   ]);
   assert.strictEqual(tl[0].note, "第2场 · 特别场");
+  // 仅有 note 的场(6/7 出道日)不再自动进大事纪——那种大事显式录 events
+  assert.ok(!tl.some((t) => t.date === "2026-06-07"));
 });
 
 test("daysBetween", () => {
@@ -119,4 +121,18 @@ test("yearsSince:同月同日的周年数,非周年为 0", () => {
   assert.strictEqual(D.yearsSince("2026-06-07", "2026-06-07"), 0);
   assert.strictEqual(D.yearsSince("2026-06-07", "2027-06-08"), 0);
   assert.strictEqual(D.yearsSince("2026-06-07", "2025-06-07"), 0);
+});
+
+test("milestoneDayNo:整百天 + 520/666,出道日=第 1 天", () => {
+  const debut = "2026-06-07";
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-09-14"), 100);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-09-15"), 0);
+  // 第 520 天 = 出道日 + 519 天 = 2027-11-08
+  assert.strictEqual(D.milestoneDayNo(debut, "2027-11-08"), 520);
+  // 第 666 天 = 出道日 + 665 天 = 2028-04-02
+  assert.strictEqual(D.milestoneDayNo(debut, "2028-04-02"), 666);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-06-07"), 0);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-01-01"), 0);
+  // debutMilestone 透传纪念天数
+  assert.strictEqual(D.debutMilestone(debut, "2027-11-08"), "出道520天");
 });

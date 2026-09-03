@@ -47,13 +47,14 @@
     };
   }
 
-  // 大事纪 + 有备注/特别场的演出，合并成一条时间线(新事在前,倒序)
+  // 大事纪 = 手工录入的 events + 特别场;演出的 note 只是展示用途(NEXT LIVE/弹窗),
+  // 不再自动流入大事纪——活动名之类的 note 不该被当成大事(站长定的规则)
   function buildTimeline(events, numbered) {
     const items = events
       .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
       .concat(
         numbered
-          .filter((s) => s.note || s.special)
+          .filter((s) => s.special)
           .map((s) => ({
             date: s.date,
             title: s.note || "特别公演",
@@ -125,13 +126,22 @@
     return y > 0 ? y : 0;
   }
 
+  // 值得纪念的天数:整百天(100/200/300…)+ 特殊数字(520 我爱你、666 顺顺顺)
+  const SPECIAL_DAYS = [520, 666];
+  // ymd 是 anchor 起(当天=第 1 天)的第几个纪念天?非纪念天返回 0
+  function milestoneDayNo(anchor, ymd) {
+    const n = daysBetween(anchor, ymd) + 1;
+    if (n > 0 && (n % 100 === 0 || SPECIAL_DAYS.includes(n))) return n;
+    return 0;
+  }
+
   // 出道里程碑(日历角标用):出道当天算第 1 天。
-  // 周年(同月同日、年份晚于出道年)优先,其次整百天(第 100/200/300… 天);其余返回 null
+  // 周年(同月同日、年份晚于出道年)优先,其次纪念天数;其余返回 null
   function debutMilestone(debutDate, ymd) {
     const y = yearsSince(debutDate, ymd);
     if (y) return "出道" + y + "周年";
-    const n = daysBetween(debutDate, ymd) + 1;
-    if (n > 0 && n % 100 === 0) return "出道" + n + "天";
+    const n = milestoneDayNo(debutDate, ymd);
+    if (n) return "出道" + n + "天";
     return null;
   }
 
@@ -145,6 +155,8 @@
     buildTimeline,
     daysBetween,
     yearsSince,
+    milestoneDayNo,
+    SPECIAL_DAYS,
     debutMilestone,
     beijingToday,
     songStats,
