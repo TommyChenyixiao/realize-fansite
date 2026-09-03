@@ -441,8 +441,7 @@
       return;
     }
     const catClass = { "公演": "cat-live", "物贩": "cat-goods", "生诞祭": "cat-bday", "里程碑": "cat-mile", "其他": "cat-other" };
-    // 里程碑分类的标签带 🎉,庆祝感和日历里程碑角标呼应
-    const catText = (c) => (c === "里程碑" ? "🎉 里程碑" : c || "其他");
+    const catText = (c) => c || "其他";
     box.innerHTML = list
       .map((n) => {
         const title = n.link
