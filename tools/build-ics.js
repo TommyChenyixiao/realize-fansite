@@ -121,10 +121,10 @@ function buildIcs(shows, venues, site) {
     allDayEvent(lines, "mile-anniv-" + y, g.debutDate.replace(/^\d{4}/, String(Number(g.debutDate.slice(0, 4)) + y)),
       "🎉 RealizE 出道" + y + "周年", "出道日 " + g.debutDate + "。" + SITE_URL);
   }
-  // 成员个人出道纪念(出道日可能在前团;与团体出道同日的并入团体角标,和站内日历同规则):
-  // 周年 + 纪念天数,团体成立前的日子不进团体日程
+  // 成员个人出道纪念(出道日可能在前团):周年 + 纪念天数。
+  // 填了出道日就都有(与团体同日出道的也单独出,站长要求);团体成立前的日子不进团体日程
   (site.members || []).forEach((m, i) => {
-    if (!m.debutDate || m.debutDate === g.debutDate) return;
+    if (!m.debutDate) return;
     for (let y = 1; y <= ANNIV_YEARS; y++) {
       const ymd = m.debutDate.replace(/^\d{4}/, String(Number(m.debutDate.slice(0, 4)) + y));
       if (ymd <= g.debutDate) continue;

@@ -47,13 +47,14 @@
     };
   }
 
-  // 大事纪 + 有备注/特别场的演出，合并成一条时间线(新事在前,倒序)
+  // 大事纪 = 手工录入的 events + 特别场;演出的 note 只是展示用途(NEXT LIVE/弹窗),
+  // 不再自动流入大事纪——活动名之类的 note 不该被当成大事(站长定的规则)
   function buildTimeline(events, numbered) {
     const items = events
       .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
       .concat(
         numbered
-          .filter((s) => s.note || s.special)
+          .filter((s) => s.special)
           .map((s) => ({
             date: s.date,
             title: s.note || "特别公演",

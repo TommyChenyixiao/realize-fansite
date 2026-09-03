@@ -616,16 +616,16 @@
         out.push({ cls: "bday", color: m.color, label: "🎂 " + m.name, full: m.name + " 的生日" });
       }
       // 成员个人出道纪念(出道日可能在前团):周年 + 纪念天数(整百/520/666)。
-      // 与团体出道同日的并入团体角标;团体成立前的日子不标(与 ics 同规则)
-      if (m.debutDate && m.debutDate !== site.group.debutDate && ymd > site.group.debutDate) {
+      // 填了出道日就都有(与团体同日出道的也单独标,站长要求);团体成立前的日子不标(与 ics 同规则)
+      if (m.debutDate && ymd > site.group.debutDate) {
         const y = D.yearsSince(m.debutDate, ymd);
         if (y) {
-          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + " " + y + "周年",
+          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + "出道" + y + "周年",
             full: m.name + " 出道" + y + "周年(" + fmtDate(m.debutDate) + " 出道)" });
         }
         const n = D.milestoneDayNo(m.debutDate, ymd);
         if (n) {
-          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + " " + n + "天",
+          out.push({ cls: "bday", color: m.color, label: "🎉 " + m.name + "出道" + n + "天",
             full: m.name + " 出道" + n + "天(" + fmtDate(m.debutDate) + " 出道)" });
         }
       }
