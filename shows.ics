@@ -215,7 +215,8 @@ DTSTAMP:20260731T000000Z
 DTSTART;VALUE=DATE:20260731
 DTEND;VALUE=DATE:20260801
 SUMMARY:RealizE @ 百联南方购物中心
-LOCATION:百联南方购物中心
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
 DESCRIPTION:第18场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
@@ -249,7 +250,8 @@ DTSTAMP:20260807T000000Z
 DTSTART;VALUE=DATE:20260807
 DTEND;VALUE=DATE:20260808
 SUMMARY:RealizE @ 百联南方购物中心
-LOCATION:百联南方购物中心
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
 DESCRIPTION:第21场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
@@ -284,7 +286,8 @@ DTSTAMP:20260814T000000Z
 DTSTART;VALUE=DATE:20260814
 DTEND;VALUE=DATE:20260815
 SUMMARY:RealizE @ 百联南方购物中心
-LOCATION:百联南方购物中心
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
 DESCRIPTION:第24场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
@@ -378,9 +381,10 @@ DTSTAMP:20260904T000000Z
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260905
 SUMMARY:RealizE @ 百联南方购物中心
-LOCATION:百联南方购物中心
-DESCRIPTION:第32场\n缺席:阿鱼\n演出时间以官方微博为准 htt
- ps://realizefansite.com
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
+DESCRIPTION:第32场\nIDOLDAY 偶像日\n缺席:阿鱼\n演出时间以官
+ 方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
