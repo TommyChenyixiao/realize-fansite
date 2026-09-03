@@ -120,3 +120,17 @@ test("yearsSince:同月同日的周年数,非周年为 0", () => {
   assert.strictEqual(D.yearsSince("2026-06-07", "2027-06-08"), 0);
   assert.strictEqual(D.yearsSince("2026-06-07", "2025-06-07"), 0);
 });
+
+test("milestoneDayNo:整百天 + 520/666,出道日=第 1 天", () => {
+  const debut = "2026-06-07";
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-09-14"), 100);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-09-15"), 0);
+  // 第 520 天 = 出道日 + 519 天 = 2027-11-08
+  assert.strictEqual(D.milestoneDayNo(debut, "2027-11-08"), 520);
+  // 第 666 天 = 出道日 + 665 天 = 2028-04-02
+  assert.strictEqual(D.milestoneDayNo(debut, "2028-04-02"), 666);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-06-07"), 0);
+  assert.strictEqual(D.milestoneDayNo(debut, "2026-01-01"), 0);
+  // debutMilestone 透传纪念天数
+  assert.strictEqual(D.debutMilestone(debut, "2027-11-08"), "出道520天");
+});

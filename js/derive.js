@@ -125,13 +125,22 @@
     return y > 0 ? y : 0;
   }
 
+  // 值得纪念的天数:整百天(100/200/300…)+ 特殊数字(520 我爱你、666 顺顺顺)
+  const SPECIAL_DAYS = [520, 666];
+  // ymd 是 anchor 起(当天=第 1 天)的第几个纪念天?非纪念天返回 0
+  function milestoneDayNo(anchor, ymd) {
+    const n = daysBetween(anchor, ymd) + 1;
+    if (n > 0 && (n % 100 === 0 || SPECIAL_DAYS.includes(n))) return n;
+    return 0;
+  }
+
   // 出道里程碑(日历角标用):出道当天算第 1 天。
-  // 周年(同月同日、年份晚于出道年)优先,其次整百天(第 100/200/300… 天);其余返回 null
+  // 周年(同月同日、年份晚于出道年)优先,其次纪念天数;其余返回 null
   function debutMilestone(debutDate, ymd) {
     const y = yearsSince(debutDate, ymd);
     if (y) return "出道" + y + "周年";
-    const n = daysBetween(debutDate, ymd) + 1;
-    if (n > 0 && n % 100 === 0) return "出道" + n + "天";
+    const n = milestoneDayNo(debutDate, ymd);
+    if (n) return "出道" + n + "天";
     return null;
   }
 
@@ -145,6 +154,8 @@
     buildTimeline,
     daysBetween,
     yearsSince,
+    milestoneDayNo,
+    SPECIAL_DAYS,
     debutMilestone,
     beijingToday,
     songStats,

@@ -106,9 +106,14 @@ function buildIcs(shows, venues, site) {
       "END:VEVENT"
     );
   }
-  // 团体里程碑:整百天(出道日=第 1 天,第 N 天 = 出道日 + N-1 天)与周年
-  for (let k = 1; k <= HUNDRED_DAY_EVENTS; k++) {
-    const n = k * 100;
+  // 纪念天数集合:整百天(至 HUNDRED_DAY_EVENTS×100)+ 特殊数字(520/666),升序去重
+  const dayNos = [];
+  for (let k = 1; k <= HUNDRED_DAY_EVENTS; k++) dayNos.push(k * 100);
+  for (const s of derive.SPECIAL_DAYS) if (!dayNos.includes(s)) dayNos.push(s);
+  dayNos.sort((a, b) => a - b);
+
+  // 团体里程碑:纪念天数(出道日=第 1 天,第 N 天 = 出道日 + N-1 天)与周年
+  for (const n of dayNos) {
     allDayEvent(lines, "mile-day-" + n, addDays(g.debutDate, n - 1),
       "🎉 RealizE 出道" + n + "天", "出道当天算第 1 天。" + SITE_URL);
   }
@@ -116,14 +121,21 @@ function buildIcs(shows, venues, site) {
     allDayEvent(lines, "mile-anniv-" + y, g.debutDate.replace(/^\d{4}/, String(Number(g.debutDate.slice(0, 4)) + y)),
       "🎉 RealizE 出道" + y + "周年", "出道日 " + g.debutDate + "。" + SITE_URL);
   }
-  // 成员个人出道周年(出道日可能在前团;与团体出道同日的并入团体周年,和站内日历同规则)
+  // 成员个人出道纪念(出道日可能在前团;与团体出道同日的并入团体角标,和站内日历同规则):
+  // 周年 + 纪念天数,团体成立前的日子不进团体日程
   (site.members || []).forEach((m, i) => {
     if (!m.debutDate || m.debutDate === g.debutDate) return;
     for (let y = 1; y <= ANNIV_YEARS; y++) {
       const ymd = m.debutDate.replace(/^\d{4}/, String(Number(m.debutDate.slice(0, 4)) + y));
-      if (ymd <= g.debutDate) continue; // 团体成立前的周年不进团体日程
+      if (ymd <= g.debutDate) continue;
       allDayEvent(lines, "member-" + i + "-anniv-" + y, ymd,
         "🎉 " + m.name + " 出道" + y + "周年", "出道日 " + m.debutDate + "。" + SITE_URL);
+    }
+    for (const n of dayNos) {
+      const ymd = addDays(m.debutDate, n - 1);
+      if (ymd <= g.debutDate) continue;
+      allDayEvent(lines, "member-" + i + "-day-" + n, ymd,
+        "🎉 " + m.name + " 出道" + n + "天", "出道日 " + m.debutDate + ",当天算第 1 天。" + SITE_URL);
     }
   });
   lines.push("END:VCALENDAR");
