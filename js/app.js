@@ -29,6 +29,8 @@
   let curPage = 1;
   let calView = "cal";
   let calKind = "all"; // 日历角标筛选:all/show(演出)/mile(纪念日)
+  // 披露统计暂时下线(站长要求,2026-09-05);要恢复改回 true 即可
+  const SHOW_SONG_STATS = false;
   const bjNow = today.split("-").map(Number);
   let calY = bjNow[0];
   let calM = bjNow[1];
@@ -763,9 +765,11 @@
     box.innerHTML = songs
       .map((song, i) => {
         const st = D.songStats(song.id, past);
-        const right = st.count
-          ? "披露 " + st.count + " 回 · 最近 " + fmtDate(st.lastDate)
-          : esc(song.note || "");
+        const right = !SHOW_SONG_STATS
+          ? esc(song.note || "")
+          : st.count
+            ? "披露 " + st.count + " 回 · 最近 " + fmtDate(st.lastDate)
+            : esc(song.note || "");
         return (
           '<div class="song-row">' +
           '<span class="song-idx">' + String(i + 1).padStart(2, "0") + "</span>" +

@@ -58,7 +58,7 @@
           .map((s) => ({
             date: s.date,
             title: s.note || "特别公演",
-            note: "第" + s.n + "场" + (s.special ? " · 特别场" : ""),
+            note: "特别场", // 大事纪不报场号(站长定的),只入选特别场
             type: "show",
           }))
       );

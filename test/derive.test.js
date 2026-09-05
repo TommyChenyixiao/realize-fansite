@@ -45,7 +45,7 @@ test("buildTimeline 只合并大事纪与特别场(note 是展示字段,不入�
   assert.deepStrictEqual(tl.map((t) => [t.date, t.type]), [
     ["2026-06-10", "show"], ["2026-06-01", "event"],
   ]);
-  assert.strictEqual(tl[0].note, "第2场 · 特别场");
+  assert.strictEqual(tl[0].note, "特别场");
   // 仅有 note 的场(6/7 出道日)不再自动进大事纪——那种大事显式录 events
   assert.ok(!tl.some((t) => t.date === "2026-06-07"));
 });
