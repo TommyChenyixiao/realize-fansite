@@ -29,7 +29,7 @@
   let curPage = 1;
   let calView = "cal";
   let calKind = "all"; // 日历角标筛选:all/show(演出)/mile(纪念日)
-  // 披露统计暂时下线(站长要求,2026-09-05);要恢复改回 true 即可
+  // 披露统计暂时下线(本站管理员要求,2026-09-05);要恢复改回 true 即可
   const SHOW_SONG_STATS = false;
   const bjNow = today.split("-").map(Number);
   let calY = bjNow[0];
@@ -197,7 +197,7 @@
       [String(D.daysBetween(g.debutDate, today) + 1), "天", "出道至今"],
       [String(past.length), "场", "已演出"],
       // 里程碑:大数字写目标,小字「下一站」——旅途感,呼应首页标语;
-      // 剩几场不写,旁边「已演出」一减便知,留白即味道(站长定稿)
+      // 剩几场不写,旁边「已演出」一减便知,留白即味道(本站管理员定稿)
       mile
         ? [String(mile.target), "场", "下一站"]
         : [String(upcoming.length), "场", "已排期"],
@@ -377,14 +377,14 @@
     if (m.birthday) facts.push(["生日", m.birthday.replace("-", ".")]);
     if (m.mbti) facts.push(["MBTI", m.mbti]);
     if (m.mascot) facts.push(["代表物", m.mascot + (m.emoji ? " " + m.emoji : "")]);
-    // 出道日=个人偶像生涯出道(可能早于本团,如前团经历),站长录入;初舞台=在本团首次登台,自动推导
+    // 出道日=个人偶像生涯出道(可能早于本团,如前团经历),本站管理员录入;初舞台=在本团首次登台,自动推导
     if (m.debutDate) {
       facts.push(["出道日", fmtDate(m.debutDate)]);
       facts.push(["出道至今", (D.daysBetween(m.debutDate, today) + 1) + " 天"]);
     }
     facts.push(["初舞台", s.firstDate ? fmtDate(s.firstDate) : "待定"]);
     facts.push(["出席", s.count + " 场"]);
-    // 生涯出演 = 入团前场次(prevShows,站长录入)+ 本团出席,随每场演出自动增长
+    // 生涯出演 = 入团前场次(prevShows,本站管理员录入)+ 本团出席,随每场演出自动增长
     if (m.prevShows) facts.push(["生涯出演", (m.prevShows + s.count) + " 场"]);
     const bioHtml = bioToHtml(m.bio);
     let links = socialLinks(m.socials);
@@ -633,7 +633,7 @@
         out.push({ cls: "bday", color: m.color, label: "🎂 " + m.name, full: m.name + " 的生日" });
       }
       // 成员个人出道纪念(出道日可能在前团):周年 + 纪念天数(整百/520/666)。
-      // 填了出道日就都有(与团体同日出道的也单独标,站长要求);团体成立前的日子不标(与 ics 同规则)
+      // 填了出道日就都有(与团体同日出道的也单独标,本站管理员要求);团体成立前的日子不标(与 ics 同规则)
       if (m.debutDate && ymd > site.group.debutDate) {
         const y = D.yearsSince(m.debutDate, ymd);
         if (y) {

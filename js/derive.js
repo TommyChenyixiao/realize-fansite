@@ -48,7 +48,7 @@
   }
 
   // 大事纪 = 手工录入的 events + 特别场;演出的 note 只是展示用途(NEXT LIVE/弹窗),
-  // 不再自动流入大事纪——活动名之类的 note 不该被当成大事(站长定的规则)
+  // 不再自动流入大事纪——活动名之类的 note 不该被当成大事(本站管理员定的规则)
   function buildTimeline(events, numbered) {
     const items = events
       .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
@@ -58,7 +58,7 @@
           .map((s) => ({
             date: s.date,
             title: s.note || "特别公演",
-            note: "特别场", // 大事纪不报场号(站长定的),只入选特别场
+            note: "特别场", // 大事纪不报场号(本站管理员定的),只入选特别场
             type: "show",
           }))
       );

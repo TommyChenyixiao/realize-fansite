@@ -59,7 +59,7 @@ python3 serve.py          # → http://localhost:8123
 
 约定:
 
-- **所有改动(含数据)一律走 branch + PR**,master 受保护不可直推,仅站长可审批合并
+- **所有改动(含数据)一律走 branch + PR**,master 受保护不可直推,仅本站管理员可审批合并
 - 新增内容类型 = 新 JSON + 渲染 + 编辑页 + serve.py 白名单,四件套缺一不可
 - 改了 `shows / venues / site` 数据要跑 `node tools/build-ics.js` 重建订阅文件
   (用 `tools/publish.sh` 发布则自动处理,忘了测试也会拦住)
