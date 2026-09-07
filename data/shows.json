@@ -568,5 +568,27 @@
     "absent": [
       "阿鱼"
     ]
+  },
+  {
+    "id": 48,
+    "date": "2026-09-12",
+    "time": "",
+    "venue": "世界树剧场",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 49,
+    "date": "2026-09-13",
+    "time": "",
+    "venue": "世界树剧场",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
   }
 ]

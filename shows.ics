@@ -400,6 +400,30 @@ DESCRIPTION:第33场\n缺席:阿鱼\n演出时间以官方微博为准 htt
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-48@realizefansite.com
+DTSTAMP:20260912T000000Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第34场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-49@realizefansite.com
+DTSTAMP:20260913T000000Z
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260914
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第35场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:mile-day-100@realizefansite.com
 DTSTAMP:20260914T000000Z
 DTSTART;VALUE=DATE:20260914
