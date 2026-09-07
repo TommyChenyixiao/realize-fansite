@@ -4,7 +4,7 @@
 
 ## 🔗 直接访问
 
-**<https://tommychenyixiao.github.io/realize-fansite/>**
+**<https://realizefansite.com>**
 
 手机电脑都能看,不用安装任何东西。
 
