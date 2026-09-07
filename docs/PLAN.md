@@ -119,7 +119,7 @@
 
 ### 3.0-② 转公开 + GitHub Pages 部署
 - 公开前检查:仓库无隐私信息、免责声明齐全、图片授权无问题
-- Settings → Pages → master 根目录;验证 `tommychenyixiao.github.io/realize-fansite`
+- Settings → Pages → master 根目录;验证 `tommychenyixiao.github.io/realize-fansite`(已完成;现绑定自定义域名 https://realizefansite.com,强制 HTTPS)
 - 站内已全用相对路径,理论上零改动可跑;README 补线上地址
 - 可选:自定义域名
 

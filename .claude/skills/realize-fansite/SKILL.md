@@ -6,7 +6,7 @@ description: RealizE 粉丝应援站项目的工作约定——数据架构、�
 # RealizE 粉丝站 · 工作约定
 
 RealizE 是上海地下偶像团体(七韵文化/七韵IdolProductions 旗下,经纪人小飞Tobi)。
-本仓库是站长(用户)维护的非官方粉丝站,纯静态 HTML/CSS/vanilla JS,无构建、无第三方库。
+本仓库是本站管理员(用户)维护的非官方粉丝站;对外措辞用「本站管理员/粉丝站管理员」,不用「站长」,纯静态 HTML/CSS/vanilla JS,无构建、无第三方库。
 
 ## 铁律(违反过、被用户纠正过的)
 
