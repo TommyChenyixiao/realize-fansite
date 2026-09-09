@@ -576,7 +576,9 @@
     "venue": "百联南方购物中心",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 48,
@@ -585,7 +587,9 @@
     "venue": "世界树剧场",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 49,
@@ -594,7 +598,9 @@
     "venue": "世界树剧场",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 51,
@@ -603,7 +609,9 @@
     "venue": "世界树剧场",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 52,
@@ -612,7 +620,9 @@
     "venue": "场馆待定",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 53,
@@ -621,7 +631,9 @@
     "venue": "场馆待定",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 54,
@@ -630,7 +642,9 @@
     "venue": "场馆待定",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   },
   {
     "id": 55,
@@ -639,6 +653,8 @@
     "venue": "场馆待定",
     "note": "",
     "special": false,
-    "absent": []
+    "absent": [
+      "阿鱼"
+    ]
   }
 ]
