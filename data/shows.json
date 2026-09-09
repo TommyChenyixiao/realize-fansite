@@ -570,6 +570,15 @@
     ]
   },
   {
+    "id": 50,
+    "date": "2026-09-11",
+    "time": "",
+    "venue": "百联南方购物中心",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
     "id": 48,
     "date": "2026-09-12",
     "time": "",
@@ -583,6 +592,51 @@
     "date": "2026-09-13",
     "time": "",
     "venue": "世界树剧场",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
+    "id": 51,
+    "date": "2026-09-25",
+    "time": "",
+    "venue": "世界树剧场",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
+    "id": 52,
+    "date": "2026-09-26",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
+    "id": 53,
+    "date": "2026-09-27",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
+    "id": 54,
+    "date": "2026-10-01",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": []
+  },
+  {
+    "id": 55,
+    "date": "2026-10-04",
+    "time": "",
+    "venue": "场馆待定",
     "note": "",
     "special": false,
     "absent": []

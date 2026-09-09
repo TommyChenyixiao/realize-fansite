@@ -400,6 +400,18 @@ DESCRIPTION:第33场\n缺席:阿鱼\n演出时间以官方微博为准 htt
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-50@realizefansite.com
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20260911
+DTEND;VALUE=DATE:20260912
+SUMMARY:RealizE @ 百联南方购物中心
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
+DESCRIPTION:第34场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:show-48@realizefansite.com
 DTSTAMP:20260912T000000Z
 DTSTART;VALUE=DATE:20260912
@@ -407,7 +419,7 @@ DTEND;VALUE=DATE:20260913
 SUMMARY:RealizE @ 世界树剧场
 LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
  商业中心 7层
-DESCRIPTION:第34场\n演出时间以官方微博为准 https://realizefan
+DESCRIPTION:第35场\n演出时间以官方微博为准 https://realizefan
  site.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -419,7 +431,63 @@ DTEND;VALUE=DATE:20260914
 SUMMARY:RealizE @ 世界树剧场
 LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
  商业中心 7层
-DESCRIPTION:第35场\n演出时间以官方微博为准 https://realizefan
+DESCRIPTION:第36场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-51@realizefansite.com
+DTSTAMP:20260925T000000Z
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260926
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第37场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-52@realizefansite.com
+DTSTAMP:20260926T000000Z
+DTSTART;VALUE=DATE:20260926
+DTEND;VALUE=DATE:20260927
+SUMMARY:RealizE @ 场馆待定
+LOCATION:场馆待定
+DESCRIPTION:第38场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-53@realizefansite.com
+DTSTAMP:20260927T000000Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:RealizE @ 场馆待定
+LOCATION:场馆待定
+DESCRIPTION:第39场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-54@realizefansite.com
+DTSTAMP:20261001T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:RealizE @ 场馆待定
+LOCATION:场馆待定
+DESCRIPTION:第40场\n演出时间以官方微博为准 https://realizefan
+ site.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-55@realizefansite.com
+DTSTAMP:20261004T000000Z
+DTSTART;VALUE=DATE:20261004
+DTEND;VALUE=DATE:20261005
+SUMMARY:RealizE @ 场馆待定
+LOCATION:场馆待定
+DESCRIPTION:第41场\n演出时间以官方微博为准 https://realizefan
  site.com
 URL:https://realizefansite.com
 END:VEVENT
