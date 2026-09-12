@@ -436,6 +436,17 @@ DESCRIPTION:第36场\n缺席:阿鱼\n演出时间以官方微博为准 htt
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-56@realizefansite.com
+DTSTAMP:20260919T000000Z
+DTSTART;VALUE=DATE:20260919
+DTEND;VALUE=DATE:20260920
+SUMMARY:RealizE @ 场馆待定
+LOCATION:场馆待定
+DESCRIPTION:第37场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+ ps://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:show-51@realizefansite.com
 DTSTAMP:20260925T000000Z
 DTSTART;VALUE=DATE:20260925
@@ -443,7 +454,7 @@ DTEND;VALUE=DATE:20260926
 SUMMARY:RealizE @ 世界树剧场
 LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
  商业中心 7层
-DESCRIPTION:第37场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+DESCRIPTION:第38场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -454,7 +465,7 @@ DTSTART;VALUE=DATE:20260926
 DTEND;VALUE=DATE:20260927
 SUMMARY:RealizE @ 场馆待定
 LOCATION:场馆待定
-DESCRIPTION:第38场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+DESCRIPTION:第39场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -465,7 +476,7 @@ DTSTART;VALUE=DATE:20260927
 DTEND;VALUE=DATE:20260928
 SUMMARY:RealizE @ 场馆待定
 LOCATION:场馆待定
-DESCRIPTION:第39场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+DESCRIPTION:第40场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -476,7 +487,7 @@ DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261002
 SUMMARY:RealizE @ 场馆待定
 LOCATION:场馆待定
-DESCRIPTION:第40场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+DESCRIPTION:第41场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -487,7 +498,7 @@ DTSTART;VALUE=DATE:20261004
 DTEND;VALUE=DATE:20261005
 SUMMARY:RealizE @ 场馆待定
 LOCATION:场馆待定
-DESCRIPTION:第41场\n缺席:阿鱼\n演出时间以官方微博为准 htt
+DESCRIPTION:第42场\n缺席:阿鱼\n演出时间以官方微博为准 htt
  ps://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
