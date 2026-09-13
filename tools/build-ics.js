@@ -90,7 +90,9 @@ function buildIcs(shows, venues, site) {
       (s.n % 50 === 0 ? " ⭐第" + s.n + "场" : "");
     const descParts = ["第" + s.n + "场"];
     if (s.note) descParts.push(s.note);
-    if (s.absent && s.absent.length) descParts.push("缺席:" + s.absent.join("·"));
+    // 只写出席成员(站长要求:不写缺席),顺序按 site.members
+    const here = (site.members || []).filter((m) => derive.attended(s, m.name)).map((m) => m.name);
+    if (here.length) descParts.push("出席:" + here.join("·"));
     descParts.push("演出时间以官方微博为准 " + SITE_URL);
     lines.push(
       "BEGIN:VEVENT",
