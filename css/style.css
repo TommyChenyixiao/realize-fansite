@@ -1096,6 +1096,8 @@ h2::after {
 .tl-date { font-size: 0.82rem; color: var(--muted); }
 .tl-title { font-weight: 600; }
 .tl-note { font-size: 0.85rem; color: var(--muted); }
+.tl-note a { color: var(--accent-deep); text-decoration: underline dotted; text-underline-offset: 3px; }
+.tl-note a:hover { text-decoration-style: solid; }
 
 footer {
   text-align: center;
