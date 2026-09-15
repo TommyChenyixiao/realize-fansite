@@ -10,7 +10,7 @@
     ["title", "曲名"], ["artist", "原唱"], ["note", "备注"], ["call", "应援"],
   ];
   const EVENT_FIELDS = [
-    ["date", "日期"], ["title", "标题"], ["note", "备注"], ["who", "关联"],
+    ["date", "日期"], ["title", "标题"], ["note", "备注"], ["link", "链接"], ["who", "关联"],
   ];
   const GROUP_FIELDS = [
     ["name", "团名"], ["emoji", "emoji"], ["tagline", "一句介绍"], ["catch", "标语"],

@@ -910,7 +910,11 @@
           '<div class="tl-item ' + it.type + '">' +
           '<div class="tl-date">' + fmtDate(it.date) + "</div>" +
           '<div class="tl-body"><div class="tl-title">' + esc(it.title) + "</div>" +
-          (it.note ? '<div class="tl-note">' + esc(it.note) + "</div>" : "") +
+          // 有 link 时把备注渲成外链(如百日手写信的微博);没备注就显示「查看」
+          (it.link
+            ? '<div class="tl-note"><a href="' + esc(it.link) + '" target="_blank" rel="noopener">' +
+              esc(it.note || "查看") + " ↗</a></div>"
+            : it.note ? '<div class="tl-note">' + esc(it.note) + "</div>" : "") +
           "</div></div>"
       )
       .join("");

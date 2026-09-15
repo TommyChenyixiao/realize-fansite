@@ -51,7 +51,7 @@
   // 不再自动流入大事纪——活动名之类的 note 不该被当成大事(本站管理员定的规则)
   function buildTimeline(events, numbered) {
     const items = events
-      .map((e) => ({ date: e.date, title: e.title, note: e.note, type: "event" }))
+      .map((e) => ({ date: e.date, title: e.title, note: e.note, link: e.link || "", type: "event" }))
       .concat(
         numbered
           .filter((s) => s.special)

@@ -229,6 +229,7 @@
     row.appendChild(input("date", e.date, (v) => { e.date = v; renderEventRows(); updateDiff(); }));
     row.appendChild(input("text", e.title, (v) => { e.title = v; updateDiff(); }, "标题", 16));
     row.appendChild(input("text", e.note, (v) => { e.note = v; updateDiff(); }, "备注", 10));
+    row.appendChild(input("text", e.link, (v) => { e.link = v; updateDiff(); }, "链接(可选,备注会变成外链)", 18));
     const whoBox = el("span", "member-checks");
     whoBox.append("关联:");
     for (const name of whoOptions()) {
