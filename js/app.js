@@ -227,6 +227,11 @@
           '<div class="member-name">' + esc(m.name) + (m.heart ? " " + m.heart : "") + "</div>" +
           (m.roman ? '<div class="member-roman">' + esc(m.roman) + "</div>" : "") +
           (m.color ? '<div class="member-colorbar" style="background:' + esc(m.color) + '"></div>' : "") +
+          // 出道天数(出道当天算第 1 天,与弹窗「出道至今」同口径);没填出道日的成员不显示
+          (m.debutDate
+            ? '<div class="member-days">出道 <b' + (m.color ? ' style="color:' + esc(m.color) + '"' : "") + ">" +
+              (D.daysBetween(m.debutDate, today) + 1) + "</b> 天</div>"
+            : "") +
           "</div>"
         );
       })
@@ -331,7 +336,12 @@
     const facts = [["职位", "经纪人"]];
     if (p.birthday) facts.push(["生日", p.birthday.replace("-", ".")]);
     if (p.mbti) facts.push(["MBTI", p.mbti]);
-    if (p.firstStage) facts.push(["初披露", p.firstStage]);
+    if (p.firstStage) {
+      facts.push(["初披露", p.firstStage]);
+      // firstStage 录入格式为 2023.02.12,转成 ymd 再算天数(初披露当天算第 1 天)
+      const ymd = p.firstStage.replace(/\./g, "-");
+      if (/^\d{4}-\d{2}-\d{2}$/.test(ymd)) facts.push(["初披露至今", (D.daysBetween(ymd, today) + 1) + " 天"]);
+    }
     // 微博(经纪人主链接)排最前,其余平台跟在后面
     const links = socialLinks([g.managerWeibo].filter(Boolean).concat(p.socials || []));
     document.querySelector("#member-modal .modal").style.borderTop = "4px solid " + color;

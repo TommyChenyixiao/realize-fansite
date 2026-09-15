@@ -418,6 +418,13 @@ h2::after {
   color: var(--muted);
   margin-top: 2px;
 }
+.member-days {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+.member-days b { font-weight: 700; }
 .member-colorbar {
   width: 26px;
   height: 4px;
