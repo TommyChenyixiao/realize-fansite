@@ -212,6 +212,16 @@
       .join("");
   }
 
+  // 应援色太浅(如阿鱼的白色系 #dfe3ea)时,小字数字在白底上几乎看不见,回退到正文色。
+  // 相对亮度(WCAG)> 0.72 视为浅色;冰冰的黄色 #ffd44d ≈ 0.69 仍保留原色
+  function isLightColor(hex) {
+    const h = String(hex || "").replace("#", "");
+    if (!/^[0-9a-f]{6}$/i.test(h)) return false;
+    const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+    const r = lin(parseInt(h.slice(0, 2), 16)), g = lin(parseInt(h.slice(2, 4), 16)), b = lin(parseInt(h.slice(4, 6), 16));
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.72;
+  }
+
   // ---------- 成员 ----------
   // 参考 peel-the-apple.com/profile:居中大图 + 照片下方名字/罗马音,干净无卡片框;详细资料在弹窗里
   function renderMembers() {
@@ -229,7 +239,7 @@
           (m.color ? '<div class="member-colorbar" style="background:' + esc(m.color) + '"></div>' : "") +
           // 出道天数(出道当天算第 1 天,与弹窗「出道至今」同口径);没填出道日的成员不显示
           (m.debutDate
-            ? '<div class="member-days">出道 <b' + (m.color ? ' style="color:' + esc(m.color) + '"' : "") + ">" +
+            ? '<div class="member-days">出道 <b' + (m.color && !isLightColor(m.color) ? ' style="color:' + esc(m.color) + '"' : "") + ">" +
               (D.daysBetween(m.debutDate, today) + 1) + "</b> 天</div>"
             : "") +
           "</div>"
