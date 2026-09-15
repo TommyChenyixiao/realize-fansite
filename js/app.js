@@ -336,11 +336,10 @@
     const facts = [["职位", "经纪人"]];
     if (p.birthday) facts.push(["生日", p.birthday.replace("-", ".")]);
     if (p.mbti) facts.push(["MBTI", p.mbti]);
-    if (p.firstStage) {
-      facts.push(["初披露", p.firstStage]);
-      // firstStage 录入格式为 2023.02.12,转成 ymd 再算天数(初披露当天算第 1 天)
-      const ymd = p.firstStage.replace(/\./g, "-");
-      if (/^\d{4}-\d{2}-\d{2}$/.test(ymd)) facts.push(["初披露至今", (D.daysBetween(ymd, today) + 1) + " 天"]);
+    // 小飞也按出道口径展示(与成员一致:出道当天算第 1 天)
+    if (p.debutDate) {
+      facts.push(["出道日", fmtDate(p.debutDate)]);
+      facts.push(["出道至今", (D.daysBetween(p.debutDate, today) + 1) + " 天"]);
     }
     // 微博(经纪人主链接)排最前,其余平台跟在后面
     const links = socialLinks([g.managerWeibo].filter(Boolean).concat(p.socials || []));
