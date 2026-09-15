@@ -792,6 +792,33 @@ DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:member-2-anniv-3@realizefansite.com
+DTSTAMP:20260723T000000Z
+DTSTART;VALUE=DATE:20260723
+DTEND;VALUE=DATE:20260724
+SUMMARY:🎉 小噜 出道3周年
+DESCRIPTION:出道日 2023-07-23。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-2-anniv-4@realizefansite.com
+DTSTAMP:20270723T000000Z
+DTSTART;VALUE=DATE:20270723
+DTEND;VALUE=DATE:20270724
+SUMMARY:🎉 小噜 出道4周年
+DESCRIPTION:出道日 2023-07-23。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:member-2-anniv-5@realizefansite.com
+DTSTAMP:20280723T000000Z
+DTSTART;VALUE=DATE:20280723
+DTEND;VALUE=DATE:20280724
+SUMMARY:🎉 小噜 出道5周年
+DESCRIPTION:出道日 2023-07-23。https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:member-3-anniv-2@realizefansite.com
 DTSTAMP:20261222T000000Z
 DTSTART;VALUE=DATE:20261222
