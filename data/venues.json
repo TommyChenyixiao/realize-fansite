@@ -26,5 +26,12 @@
     "address": "上海市闵行区沪闵路7388号 二区3楼中庭",
     "transit": "",
     "note": ""
+  },
+  {
+    "id": 5,
+    "name": "黄浦剧场",
+    "address": "",
+    "transit": "",
+    "note": ""
   }
 ]

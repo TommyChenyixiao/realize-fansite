@@ -629,7 +629,7 @@
     "id": 52,
     "date": "2026-09-26",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "黄浦剧场",
     "note": "",
     "special": false,
     "absent": [
@@ -640,7 +640,7 @@
     "id": 53,
     "date": "2026-09-27",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "黄浦剧场",
     "note": "",
     "special": false,
     "absent": [
@@ -672,6 +672,17 @@
   {
     "id": 57,
     "date": "2026-09-19",
+    "time": "",
+    "venue": "世界树剧场",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 58,
+    "date": "2026-09-26",
     "time": "",
     "venue": "世界树剧场",
     "note": "",
