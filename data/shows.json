@@ -691,5 +691,60 @@
     "absent": [
       "阿鱼"
     ]
+  },
+  {
+    "id": 59,
+    "date": "2026-10-02",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 60,
+    "date": "2026-10-05",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 61,
+    "date": "2026-10-06",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 62,
+    "date": "2026-10-07",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 63,
+    "date": "2026-10-25",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
   }
 ]
