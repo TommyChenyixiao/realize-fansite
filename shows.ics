@@ -158,7 +158,8 @@ DTSTAMP:20260711T000000Z
 DTSTART;VALUE=DATE:20260711
 DTEND;VALUE=DATE:20260712
 SUMMARY:RealizE @ 日不落剧场
-LOCATION:日不落剧场
+LOCATION:日不落剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
 DESCRIPTION:第13场\n出席:阿鱼·小圆·芋圆\n演出时间以官方
  微博为准 https://realizefansite.com
 URL:https://realizefansite.com
@@ -169,7 +170,8 @@ DTSTAMP:20260712T000000Z
 DTSTART;VALUE=DATE:20260712
 DTEND;VALUE=DATE:20260713
 SUMMARY:RealizE @ 日不落剧场
-LOCATION:日不落剧场
+LOCATION:日不落剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
 DESCRIPTION:第14场\n出席:阿鱼·小圆·小噜·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
@@ -180,7 +182,8 @@ DTSTAMP:20260718T000000Z
 DTSTART;VALUE=DATE:20260718
 DTEND;VALUE=DATE:20260719
 SUMMARY:RealizE @ 日不落剧场
-LOCATION:日不落剧场
+LOCATION:日不落剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
 DESCRIPTION:第15场\n冰冰RealizE初舞台\n出席:小圆·小噜·冰
  冰·芋圆\n演出时间以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
@@ -518,6 +521,18 @@ DESCRIPTION:第43场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-64@realizefansite.com
+DTSTAMP:20261001T000000Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:RealizE @ 漾星球
+LOCATION:漾星球 上海市黄浦区南京东路830号 第一百货商业
+ 中心 6层
+DESCRIPTION:第44场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:show-59@realizefansite.com
 DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261002
@@ -525,7 +540,7 @@ DTEND;VALUE=DATE:20261003
 SUMMARY:RealizE @ 世界树剧场
 LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
  商业中心 7层
-DESCRIPTION:第44场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第45场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -534,9 +549,10 @@ UID:show-55@realizefansite.com
 DTSTAMP:20261004T000000Z
 DTSTART;VALUE=DATE:20261004
 DTEND;VALUE=DATE:20261005
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第45场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 日不落剧场
+LOCATION:日不落剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第46场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -545,9 +561,10 @@ UID:show-60@realizefansite.com
 DTSTAMP:20261005T000000Z
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第46场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 聚一场8号馆
+LOCATION:聚一场8号馆 上海市黄浦区南京西路2-68号 新世界
+ 城 12层
+DESCRIPTION:第47场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -556,9 +573,10 @@ UID:show-61@realizefansite.com
 DTSTAMP:20261006T000000Z
 DTSTART;VALUE=DATE:20261006
 DTEND;VALUE=DATE:20261007
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第47场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 世界树剧场
+LOCATION:世界树剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第48场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -567,9 +585,10 @@ UID:show-62@realizefansite.com
 DTSTAMP:20261007T000000Z
 DTSTART;VALUE=DATE:20261007
 DTEND;VALUE=DATE:20261008
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第48场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 日不落剧场
+LOCATION:日不落剧场 上海市黄浦区南京东路830号 第一百货
+ 商业中心 7层
+DESCRIPTION:第49场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -578,9 +597,9 @@ UID:show-63@realizefansite.com
 DTSTAMP:20261025T000000Z
 DTSTART;VALUE=DATE:20261025
 DTEND;VALUE=DATE:20261026
-SUMMARY:RealizE @ 场馆待定
+SUMMARY:RealizE @ 场馆待定 ⭐第50场
 LOCATION:场馆待定
-DESCRIPTION:第49场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第50场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
