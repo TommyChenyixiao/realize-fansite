@@ -660,10 +660,21 @@
     ]
   },
   {
+    "id": 64,
+    "date": "2026-10-01",
+    "time": "",
+    "venue": "漾星球",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
     "id": 55,
     "date": "2026-10-04",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "日不落剧场",
     "note": "",
     "special": false,
     "absent": [
@@ -707,7 +718,7 @@
     "id": 60,
     "date": "2026-10-05",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "聚一场8号馆",
     "note": "",
     "special": false,
     "absent": [
@@ -718,7 +729,7 @@
     "id": 61,
     "date": "2026-10-06",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "世界树剧场",
     "note": "",
     "special": false,
     "absent": [
@@ -729,7 +740,7 @@
     "id": 62,
     "date": "2026-10-07",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "日不落剧场",
     "note": "",
     "special": false,
     "absent": [
