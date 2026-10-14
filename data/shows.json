@@ -757,5 +757,27 @@
     "absent": [
       "阿鱼"
     ]
+  },
+  {
+    "id": 65,
+    "date": "2026-10-16",
+    "time": "",
+    "venue": "百联南方购物中心",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 66,
+    "date": "2026-10-18",
+    "time": "",
+    "venue": "上海欢乐谷",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
   }
 ]
