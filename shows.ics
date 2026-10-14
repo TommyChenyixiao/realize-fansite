@@ -593,13 +593,36 @@ DESCRIPTION:第49场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-65@realizefansite.com
+DTSTAMP:20261016T000000Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261017
+SUMMARY:RealizE @ 百联南方购物中心 ⭐第50场
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
+DESCRIPTION:第50场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-66@realizefansite.com
+DTSTAMP:20261018T000000Z
+DTSTART;VALUE=DATE:20261018
+DTEND;VALUE=DATE:20261019
+SUMMARY:RealizE @ 上海欢乐谷
+LOCATION:上海欢乐谷 上海市松江区佘山林湖路888号
+DESCRIPTION:第51场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:show-63@realizefansite.com
 DTSTAMP:20261025T000000Z
 DTSTART;VALUE=DATE:20261025
 DTEND;VALUE=DATE:20261026
-SUMMARY:RealizE @ 场馆待定 ⭐第50场
+SUMMARY:RealizE @ 场馆待定
 LOCATION:场馆待定
-DESCRIPTION:第50场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第52场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
