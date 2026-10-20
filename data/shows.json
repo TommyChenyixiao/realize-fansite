@@ -779,5 +779,126 @@
     "absent": [
       "阿鱼"
     ]
+  },
+  {
+    "id": 67,
+    "date": "2026-10-24",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 68,
+    "date": "2026-10-30",
+    "time": "",
+    "venue": "百联南方购物中心",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 69,
+    "date": "2026-10-31",
+    "time": "",
+    "venue": "新世界树",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 70,
+    "date": "2026-11-01",
+    "time": "",
+    "venue": "新世界树",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 71,
+    "date": "2026-11-07",
+    "time": "",
+    "venue": "聚一场8号馆",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 72,
+    "date": "2026-11-14",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 73,
+    "date": "2026-11-15",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 74,
+    "date": "2026-11-29",
+    "time": "",
+    "venue": "聚一场8号馆",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 75,
+    "date": "2026-12-04",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 76,
+    "date": "2026-12-05",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 77,
+    "date": "2026-12-06",
+    "time": "",
+    "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
   }
 ]
