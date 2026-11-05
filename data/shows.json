@@ -826,7 +826,7 @@
   },
   {
     "id": 71,
-    "date": "2026-11-07",
+    "date": "2026-11-08",
     "time": "",
     "venue": "聚一场8号馆",
     "note": "",
@@ -895,6 +895,17 @@
     "date": "2026-12-06",
     "time": "",
     "venue": "场馆待定",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 78,
+    "date": "2026-11-07",
+    "time": "",
+    "venue": "十二夜剧场",
     "note": "",
     "special": false,
     "absent": [
