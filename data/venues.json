@@ -75,5 +75,33 @@
     "address": "上海市黄浦区南京西路2-68号 新世界城",
     "transit": "",
     "note": ""
+  },
+  {
+    "id": 12,
+    "name": "MAO Livehouse",
+    "address": "",
+    "transit": "",
+    "note": ""
+  },
+  {
+    "id": 13,
+    "name": "广州SDLive House",
+    "address": "",
+    "transit": "",
+    "note": ""
+  },
+  {
+    "id": 14,
+    "name": "广州粤发剧场",
+    "address": "",
+    "transit": "",
+    "note": ""
+  },
+  {
+    "id": 15,
+    "name": "广州中大MAO",
+    "address": "",
+    "transit": "",
+    "note": ""
   }
 ]
