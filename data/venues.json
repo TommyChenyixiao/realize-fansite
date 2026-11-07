@@ -79,28 +79,28 @@
   {
     "id": 12,
     "name": "MAO Livehouse",
-    "address": "",
+    "address": "上海市黄浦区重庆南路308号 白玉兰剧场3楼",
     "transit": "",
     "note": ""
   },
   {
     "id": 13,
     "name": "广州SDLive House",
-    "address": "",
+    "address": "广州市海珠区南洲路154号 侨建·HICITY 2楼",
     "transit": "",
     "note": ""
   },
   {
     "id": 14,
     "name": "广州粤发剧场",
-    "address": "",
+    "address": "广州市番禺区洛溪环岛南路398号 洛溪大厦喜邻里商业中心5楼",
     "transit": "",
     "note": ""
   },
   {
     "id": 15,
     "name": "广州中大MAO",
-    "address": "",
+    "address": "广州市海珠区新港西路82号 中大门中大天地东3楼3501铺",
     "transit": "",
     "note": ""
   }
