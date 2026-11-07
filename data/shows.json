@@ -839,22 +839,24 @@
     "id": 72,
     "date": "2026-11-14",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "MAO Livehouse",
     "note": "",
     "special": false,
     "absent": [
-      "阿鱼"
+      "阿鱼",
+      "小噜"
     ]
   },
   {
     "id": 73,
     "date": "2026-11-15",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "MAO Livehouse",
     "note": "",
     "special": false,
     "absent": [
-      "阿鱼"
+      "阿鱼",
+      "小噜"
     ]
   },
   {
@@ -872,7 +874,7 @@
     "id": 75,
     "date": "2026-12-04",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "广州SDLive House",
     "note": "",
     "special": false,
     "absent": [
@@ -883,7 +885,7 @@
     "id": 76,
     "date": "2026-12-05",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "广州粤发剧场",
     "note": "",
     "special": false,
     "absent": [
@@ -894,7 +896,7 @@
     "id": 77,
     "date": "2026-12-06",
     "time": "",
-    "venue": "场馆待定",
+    "venue": "广州中大MAO",
     "note": "",
     "special": false,
     "absent": [
@@ -906,6 +908,17 @@
     "date": "2026-11-07",
     "time": "",
     "venue": "十二夜剧场",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 79,
+    "date": "2026-11-20",
+    "time": "",
+    "venue": "百联南方购物中心",
     "note": "",
     "special": false,
     "absent": [

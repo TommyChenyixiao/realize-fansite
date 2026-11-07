@@ -704,10 +704,11 @@ UID:show-72@realizefansite.com
 DTSTAMP:20261114T000000Z
 DTSTART;VALUE=DATE:20261114
 DTEND;VALUE=DATE:20261115
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第59场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
- 以官方微博为准 https://realizefansite.com
+SUMMARY:RealizE @ MAO Livehouse
+LOCATION:MAO Livehouse 上海市黄浦区重庆南路308号 白玉兰剧
+ 场3楼
+DESCRIPTION:第59场\n出席:小圆·冰冰·芋圆\n演出时间以官方
+ 微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
@@ -715,9 +716,22 @@ UID:show-73@realizefansite.com
 DTSTAMP:20261115T000000Z
 DTSTART;VALUE=DATE:20261115
 DTEND;VALUE=DATE:20261116
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第60场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ MAO Livehouse
+LOCATION:MAO Livehouse 上海市黄浦区重庆南路308号 白玉兰剧
+ 场3楼
+DESCRIPTION:第60场\n出席:小圆·冰冰·芋圆\n演出时间以官方
+ 微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-79@realizefansite.com
+DTSTAMP:20261120T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:RealizE @ 百联南方购物中心
+LOCATION:百联南方购物中心 上海市闵行区沪闵路7388号 二
+ 区3楼中庭
+DESCRIPTION:第61场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -729,7 +743,7 @@ DTEND;VALUE=DATE:20261130
 SUMMARY:RealizE @ 聚一场8号馆
 LOCATION:聚一场8号馆 上海市黄浦区南京西路2-68号 新世界
  城 12层
-DESCRIPTION:第61场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第62场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -738,9 +752,10 @@ UID:show-75@realizefansite.com
 DTSTAMP:20261204T000000Z
 DTSTART;VALUE=DATE:20261204
 DTEND;VALUE=DATE:20261205
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第62场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 广州SDLive House
+LOCATION:广州SDLive House 广州市海珠区南洲路154号 侨建·HICI
+ TY 2楼
+DESCRIPTION:第63场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -749,9 +764,10 @@ UID:show-76@realizefansite.com
 DTSTAMP:20261205T000000Z
 DTSTART;VALUE=DATE:20261205
 DTEND;VALUE=DATE:20261206
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第63场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 广州粤发剧场
+LOCATION:广州粤发剧场 广州市番禺区洛溪环岛南路398号 洛
+ 溪大厦喜邻里商业中心5楼
+DESCRIPTION:第64场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -760,9 +776,10 @@ UID:show-77@realizefansite.com
 DTSTAMP:20261206T000000Z
 DTSTART;VALUE=DATE:20261206
 DTEND;VALUE=DATE:20261207
-SUMMARY:RealizE @ 场馆待定
-LOCATION:场馆待定
-DESCRIPTION:第64场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+SUMMARY:RealizE @ 广州中大MAO
+LOCATION:广州中大MAO 广州市海珠区新港西路82号 中大门中
+ 大天地东3楼3501铺
+DESCRIPTION:第65场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
