@@ -915,10 +915,33 @@
     ]
   },
   {
-    "id": 79,
-    "date": "2026-11-20",
+    "id": 80,
+    "date": "2026-11-19",
     "time": "",
-    "venue": "百联南方购物中心",
+    "venue": "新世界树",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼",
+      "小噜"
+    ]
+  },
+  {
+    "id": 81,
+    "date": "2026-11-21",
+    "time": "",
+    "venue": "聚一场8号馆",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 82,
+    "date": "2026-11-22",
+    "time": "",
+    "venue": "MAO Livehouse",
     "note": "",
     "special": false,
     "absent": [
