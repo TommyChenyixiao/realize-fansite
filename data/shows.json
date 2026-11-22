@@ -18,24 +18,6 @@
     ]
   },
   {
-    "id": 15,
-    "date": "2026-06-10",
-    "time": "",
-    "venue": "",
-    "note": "Ruruko 生日SP",
-    "special": true,
-    "absent": [
-      "冰冰"
-    ],
-    "setlist": [
-      1,
-      5,
-      4,
-      3,
-      2
-    ]
-  },
-  {
     "id": 16,
     "date": "2026-06-13",
     "time": "",
@@ -942,6 +924,28 @@
     "date": "2026-11-22",
     "time": "",
     "venue": "MAO Livehouse",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 83,
+    "date": "2026-11-27",
+    "time": "",
+    "venue": "聚一场8号馆",
+    "note": "",
+    "special": false,
+    "absent": [
+      "阿鱼"
+    ]
+  },
+  {
+    "id": 84,
+    "date": "2026-11-28",
+    "time": "",
+    "venue": "聚一场8号馆",
     "note": "",
     "special": false,
     "absent": [
