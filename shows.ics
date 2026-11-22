@@ -760,6 +760,30 @@ DESCRIPTION:第63场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
+UID:show-83@realizefansite.com
+DTSTAMP:20261127T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:RealizE @ 聚一场8号馆
+LOCATION:聚一场8号馆 上海市黄浦区南京西路2-68号 新世界
+ 城 12层
+DESCRIPTION:第64场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
+UID:show-84@realizefansite.com
+DTSTAMP:20261128T000000Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:RealizE @ 聚一场8号馆
+LOCATION:聚一场8号馆 上海市黄浦区南京西路2-68号 新世界
+ 城 12层
+DESCRIPTION:第65场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+ 以官方微博为准 https://realizefansite.com
+URL:https://realizefansite.com
+END:VEVENT
+BEGIN:VEVENT
 UID:show-74@realizefansite.com
 DTSTAMP:20261129T000000Z
 DTSTART;VALUE=DATE:20261129
@@ -767,7 +791,7 @@ DTEND;VALUE=DATE:20261130
 SUMMARY:RealizE @ 聚一场8号馆
 LOCATION:聚一场8号馆 上海市黄浦区南京西路2-68号 新世界
  城 12层
-DESCRIPTION:第64场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第66场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -779,7 +803,7 @@ DTEND;VALUE=DATE:20261205
 SUMMARY:RealizE @ 广州SDLive House
 LOCATION:广州SDLive House 广州市海珠区南洲路154号 侨建·HICI
  TY 2楼
-DESCRIPTION:第65场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第67场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -791,7 +815,7 @@ DTEND;VALUE=DATE:20261206
 SUMMARY:RealizE @ 广州粤发剧场
 LOCATION:广州粤发剧场 广州市番禺区洛溪环岛南路398号 洛
  溪大厦喜邻里商业中心5楼
-DESCRIPTION:第66场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第68场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -803,7 +827,7 @@ DTEND;VALUE=DATE:20261207
 SUMMARY:RealizE @ 广州中大MAO
 LOCATION:广州中大MAO 广州市海珠区新港西路82号 中大门中
  大天地东3楼3501铺
-DESCRIPTION:第67场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
+DESCRIPTION:第69场\n出席:小圆·小噜·冰冰·芋圆\n演出时间
  以官方微博为准 https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
@@ -1127,136 +1151,136 @@ URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-anniv-1@realizefansite.com
-DTSTAMP:20260621T000000Z
-DTSTART;VALUE=DATE:20260621
-DTEND;VALUE=DATE:20260622
+DTSTAMP:20260622T000000Z
+DTSTART;VALUE=DATE:20260622
+DTEND;VALUE=DATE:20260623
 SUMMARY:🎉 小圆 出道1周年
-DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+DESCRIPTION:出道日 2025-06-22。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-anniv-2@realizefansite.com
-DTSTAMP:20270621T000000Z
-DTSTART;VALUE=DATE:20270621
-DTEND;VALUE=DATE:20270622
+DTSTAMP:20270622T000000Z
+DTSTART;VALUE=DATE:20270622
+DTEND;VALUE=DATE:20270623
 SUMMARY:🎉 小圆 出道2周年
-DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+DESCRIPTION:出道日 2025-06-22。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-anniv-3@realizefansite.com
-DTSTAMP:20280621T000000Z
-DTSTART;VALUE=DATE:20280621
-DTEND;VALUE=DATE:20280622
+DTSTAMP:20280622T000000Z
+DTSTART;VALUE=DATE:20280622
+DTEND;VALUE=DATE:20280623
 SUMMARY:🎉 小圆 出道3周年
-DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+DESCRIPTION:出道日 2025-06-22。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-anniv-4@realizefansite.com
-DTSTAMP:20290621T000000Z
-DTSTART;VALUE=DATE:20290621
-DTEND;VALUE=DATE:20290622
+DTSTAMP:20290622T000000Z
+DTSTART;VALUE=DATE:20290622
+DTEND;VALUE=DATE:20290623
 SUMMARY:🎉 小圆 出道4周年
-DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+DESCRIPTION:出道日 2025-06-22。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-anniv-5@realizefansite.com
-DTSTAMP:20300621T000000Z
-DTSTART;VALUE=DATE:20300621
-DTEND;VALUE=DATE:20300622
+DTSTAMP:20300622T000000Z
+DTSTART;VALUE=DATE:20300622
+DTEND;VALUE=DATE:20300623
 SUMMARY:🎉 小圆 出道5周年
-DESCRIPTION:出道日 2025-06-21。https://realizefansite.com
+DESCRIPTION:出道日 2025-06-22。https://realizefansite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-400@realizefansite.com
-DTSTAMP:20260725T000000Z
-DTSTART;VALUE=DATE:20260725
-DTEND;VALUE=DATE:20260726
+DTSTAMP:20260726T000000Z
+DTSTART;VALUE=DATE:20260726
+DTEND;VALUE=DATE:20260727
 SUMMARY:🎉 小圆 出道400天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-500@realizefansite.com
-DTSTAMP:20261102T000000Z
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261103
+DTSTAMP:20261103T000000Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
 SUMMARY:🎉 小圆 出道500天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-520@realizefansite.com
-DTSTAMP:20261122T000000Z
-DTSTART;VALUE=DATE:20261122
-DTEND;VALUE=DATE:20261123
+DTSTAMP:20261123T000000Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261124
 SUMMARY:🎉 小圆 出道520天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-600@realizefansite.com
-DTSTAMP:20270210T000000Z
-DTSTART;VALUE=DATE:20270210
-DTEND;VALUE=DATE:20270211
+DTSTAMP:20270211T000000Z
+DTSTART;VALUE=DATE:20270211
+DTEND;VALUE=DATE:20270212
 SUMMARY:🎉 小圆 出道600天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-666@realizefansite.com
-DTSTAMP:20270417T000000Z
-DTSTART;VALUE=DATE:20270417
-DTEND;VALUE=DATE:20270418
+DTSTAMP:20270418T000000Z
+DTSTART;VALUE=DATE:20270418
+DTEND;VALUE=DATE:20270419
 SUMMARY:🎉 小圆 出道666天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-700@realizefansite.com
-DTSTAMP:20270521T000000Z
-DTSTART;VALUE=DATE:20270521
-DTEND;VALUE=DATE:20270522
+DTSTAMP:20270522T000000Z
+DTSTART;VALUE=DATE:20270522
+DTEND;VALUE=DATE:20270523
 SUMMARY:🎉 小圆 出道700天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-800@realizefansite.com
-DTSTAMP:20270829T000000Z
-DTSTART;VALUE=DATE:20270829
-DTEND;VALUE=DATE:20270830
+DTSTAMP:20270830T000000Z
+DTSTART;VALUE=DATE:20270830
+DTEND;VALUE=DATE:20270831
 SUMMARY:🎉 小圆 出道800天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-900@realizefansite.com
-DTSTAMP:20271207T000000Z
-DTSTART;VALUE=DATE:20271207
-DTEND;VALUE=DATE:20271208
+DTSTAMP:20271208T000000Z
+DTSTART;VALUE=DATE:20271208
+DTEND;VALUE=DATE:20271209
 SUMMARY:🎉 小圆 出道900天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
 BEGIN:VEVENT
 UID:member-1-day-1000@realizefansite.com
-DTSTAMP:20280316T000000Z
-DTSTART;VALUE=DATE:20280316
-DTEND;VALUE=DATE:20280317
+DTSTAMP:20280317T000000Z
+DTSTART;VALUE=DATE:20280317
+DTEND;VALUE=DATE:20280318
 SUMMARY:🎉 小圆 出道1000天
-DESCRIPTION:出道日 2025-06-21\,当天算第 1 天。https://realizefans
+DESCRIPTION:出道日 2025-06-22\,当天算第 1 天。https://realizefans
  ite.com
 URL:https://realizefansite.com
 END:VEVENT
